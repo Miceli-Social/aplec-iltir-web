@@ -3,16 +3,27 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import "./globals.css";
 
+const siteTitle = "Aplec Iltir 2026";
+const siteDescription =
+  "Cabanelles, Lladó i Navata s'organitzen per guanyar autonomia, sobirania i resiliència des del territori.";
+const socialDescription =
+  "Tres pobles. Una xarxa viva. Capacitat compartida per transformar el territori.";
+
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://iltir.example.org"),
-  title: { default: "MVP - Iltiŕ Canalla", template: "%s · MVP - Iltiŕ Canalla" },
-  description:
-    "Cabanelles, Lladó i Navata s’organitzen per guanyar autonomia, sobirania i resiliència des del territori.",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://apleciltir.cat"),
+  title: { default: siteTitle, template: `%s · ${siteTitle}` },
+  description: siteDescription,
   openGraph: {
-    title: "MVP - Iltiŕ Canalla",
-    description: "Tres pobles. Una xarxa viva. Capacitat compartida per transformar el territori.",
+    title: siteTitle,
+    description: socialDescription,
+    siteName: siteTitle,
     locale: "ca_ES",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteTitle,
+    description: socialDescription,
   },
 };
 
