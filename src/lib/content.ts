@@ -308,7 +308,7 @@ if (lladoCoordination) {
       url: "/documents/consell-poble-llado-1.pdf",
     },
     {
-      title: "Totes les actes del Consell de Poble de Lladó",
+      title: "Totes les Actes del Consell de Poble de Lladó",
       url: "https://docs.google.com/document/d/1QGsWr-VpAZvZUJiK7RsfXBkTedxkQzKfkdRPdvg_MGc/edit?tab=t.0",
     },
   ];
