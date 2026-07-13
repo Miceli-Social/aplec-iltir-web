@@ -239,6 +239,16 @@ const energiaSectorial = circleBySlug("sectorial-energia");
 if (energiaSectorial) {
   energiaSectorial.whatsappUrl = "https://chat.whatsapp.com/EQ9j4JfLkWZE9PociVmTDt";
   energiaSectorial.whatsappActive = true;
+  energiaSectorial.documents = [
+    {
+      title: "Acta #2 - Sectorial d’Energia",
+      url: "/documents/sectorial-energia-2.pdf",
+    },
+    {
+      title: "Totes les Actes de la Sectorial d’Energia",
+      url: "https://docs.google.com/document/d/16JME5UhCQ6y0zZar1hab3Sqe-CCRvDRZ/edit",
+    },
+  ];
   energiaSectorial.nextSteps = [
     "Fer una fotografia rigorosa dels consums, potencials i opcions energètiques del territori",
     "Explicar millor les Comunitats Energètiques Locals i sumar més persones al cercle",
@@ -296,7 +306,6 @@ if (lladoCoordination) {
     {
       title: "Acta #1 - Consell de Poble de Lladó",
       url: "/documents/consell-poble-llado-1.pdf",
-      date: "30 de juny de 2026",
     },
     {
       title: "Totes les actes del Consell de Poble de Lladó",
@@ -311,7 +320,6 @@ if (cabanellesCoordination) {
     {
       title: "Acta #2 - Consell de Poble de Cabanelles",
       url: "/documents/consell-poble-cabanelles-2.pdf",
-      date: "4 de juliol de 2026",
     },
   ];
 }

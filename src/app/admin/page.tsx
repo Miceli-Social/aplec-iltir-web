@@ -295,7 +295,7 @@ export default async function AdminPage({
               <article key={document.url}>
                 <div>
                   <strong>{document.title}</strong>
-                  <small>{document.date || selectedDocumentCircle.name}</small>
+                  <small>{selectedDocumentCircle.name}</small>
                 </div>
                 {editableDocumentUrls.has(document.url) ? (
                   <form action={removeDocument}>

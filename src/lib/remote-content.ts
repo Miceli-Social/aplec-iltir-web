@@ -78,7 +78,6 @@ const polishDocumentTitle = (circleSlug: string, document: DocumentLink): Docume
     return {
       ...document,
       title: "Acta #2 - Consell de Poble de Cabanelles",
-      date: document.date || "4 de juliol de 2026",
     };
   }
 
@@ -121,7 +120,6 @@ const polishDocumentTitle = (circleSlug: string, document: DocumentLink): Docume
     return {
       ...document,
       title: "Acta #1 - Consell de Poble de Lladó",
-      date: document.date || "30 de juny de 2026",
     };
   }
 

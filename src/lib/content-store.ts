@@ -179,11 +179,6 @@ export async function uploadPublicDocument(file: File, title: string) {
     (blob): DocumentLink => ({
       title,
       url: blob.url,
-      date: new Intl.DateTimeFormat("ca-ES", {
-        day: "numeric",
-        month: "long",
-        year: "numeric",
-      }).format(new Date()),
     }),
   );
 }

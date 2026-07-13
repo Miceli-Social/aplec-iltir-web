@@ -169,7 +169,7 @@ export default async function Home() {
                 <Link href={document.url} target="_blank" rel="noreferrer" key={`${document.circleSlug}-${document.url}`}>
                   <span>
                     <strong>{document.title}</strong>
-                    <small>{document.circleName}{document.date ? ` · ${document.date}` : ""}</small>
+                    <small>{document.circleName}</small>
                   </span>
                   <span aria-hidden="true">↗</span>
                 </Link>
