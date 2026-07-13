@@ -70,6 +70,23 @@ const polishDocumentTitle = (circleSlug: string, document: DocumentLink): Docume
   const title = document.title.trim();
   const normalized = normalizeForMatch(`${title} ${document.url}`);
 
+  if (circleSlug === "sectorial-energia") {
+    if (normalized.includes("docs.google.com/document") || normalized.includes("totes les actes")) {
+      return {
+        ...document,
+        title: "Totes les Actes de la Sectorial d’Energia",
+      };
+    }
+
+    const meetingNumber = normalized.match(/(?:trobada|acta|sectorial-energia)[\s#-]*(\d+)/)?.[1];
+    if (meetingNumber !== undefined) {
+      return {
+        ...document,
+        title: `Trobada ${Number(meetingNumber)} · Sectorial d’Energia`,
+      };
+    }
+  }
+
   if (
     circleSlug === "cabanelles-coordinacio" &&
     normalized.includes("cabanelles") &&
@@ -129,12 +146,19 @@ const polishDocumentTitle = (circleSlug: string, document: DocumentLink): Docume
   };
 };
 
+const documentSequenceNumber = (document: DocumentLink) => {
+  const normalized = normalizeForMatch(`${document.title} ${document.url}`);
+
+  const sequenceNumber = normalized.match(/(?:trobada|acta|sectorial-energia)[\s#-]*(\d+)/)?.[1];
+  return sequenceNumber === undefined ? undefined : Number(sequenceNumber);
+};
+
 const documentOrder = (document: DocumentLink) => {
   const normalized = normalizeForMatch(`${document.title} ${document.url}`);
   if (normalized.includes("totes les actes")) return 1000;
 
-  const actNumber = normalized.match(/acta\s*#?\s*(\d+)/)?.[1];
-  if (actNumber) return 100 - Number(actNumber);
+  const sequenceNumber = documentSequenceNumber(document);
+  if (sequenceNumber !== undefined) return 100 - sequenceNumber;
 
   return 500;
 };

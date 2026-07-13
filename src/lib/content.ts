@@ -241,7 +241,7 @@ if (energiaSectorial) {
   energiaSectorial.whatsappActive = true;
   energiaSectorial.documents = [
     {
-      title: "Acta #2 - Sectorial d’Energia",
+      title: "Trobada 2 · Sectorial d’Energia",
       url: "/documents/sectorial-energia-2.pdf",
     },
     {
