@@ -11,6 +11,16 @@ type EncryptedPayload = {
   data: string;
 };
 
+export class ConsentDecryptionError extends Error {
+  constructor() {
+    super("No s'han pogut desxifrar els consentiments existents.");
+    this.name = "ConsentDecryptionError";
+  }
+}
+
+export const isConsentDecryptionError = (error: unknown) =>
+  error instanceof ConsentDecryptionError;
+
 const getStoreIdFromToken = () => {
   const token = process.env.BLOB_READ_WRITE_TOKEN;
   const storeId = token?.split("_")[3];
@@ -63,13 +73,23 @@ const decryptConsents = (payload: EncryptedPayload): WhatsappConsent[] => {
 export const hasConsentStore = () =>
   Boolean(process.env.BLOB_READ_WRITE_TOKEN && (process.env.CONSENT_ENCRYPTION_SECRET || process.env.ADMIN_SESSION_SECRET));
 
-export async function getWhatsappConsents(): Promise<WhatsappConsent[]> {
+export async function getWhatsappConsents(options?: {
+  failOnUnreadable?: boolean;
+}): Promise<WhatsappConsent[]> {
   if (!hasConsentStore()) return [];
   const url = getConsentUrl();
   if (!url) return [];
   const response = await fetch(url, { cache: "no-store" });
   if (response.status === 404 || !response.ok) return [];
-  return decryptConsents((await response.json()) as EncryptedPayload);
+  try {
+    return decryptConsents((await response.json()) as EncryptedPayload);
+  } catch (error) {
+    console.warn("No s'han pogut desxifrar els consentiments existents.", error);
+    if (options?.failOnUnreadable) {
+      throw new ConsentDecryptionError();
+    }
+    return [];
+  }
 }
 
 export async function saveWhatsappConsents(consents: WhatsappConsent[]) {

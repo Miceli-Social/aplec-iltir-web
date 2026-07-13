@@ -1,7 +1,11 @@
 import { NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 import { syncConsentToDrive } from "@/lib/consent-drive";
-import { getWhatsappConsents, saveWhatsappConsents } from "@/lib/consent-store";
+import {
+  getWhatsappConsents,
+  isConsentDecryptionError,
+  saveWhatsappConsents,
+} from "@/lib/consent-store";
 import { getCircles } from "@/lib/remote-content";
 
 const CONSENT_VERSION = "MIC-2025-drets-imatge-proteccio-dades";
@@ -42,7 +46,22 @@ export async function POST(request: Request) {
     );
   }
 
-  const consents = await getWhatsappConsents();
+  let consents;
+  try {
+    consents = await getWhatsappConsents({ failOnUnreadable: true });
+  } catch (error) {
+    if (isConsentDecryptionError(error)) {
+      return NextResponse.json(
+        {
+          ok: false,
+          error:
+            "El registre de protecció de dades necessita recuperar el secret de xifrat antic abans de poder afegir nous consentiments.",
+        },
+        { status: 503 },
+      );
+    }
+    throw error;
+  }
   const acceptedAt = new Date().toISOString();
   const forwardedFor = request.headers.get("x-forwarded-for") || "";
   const ipAddress =
