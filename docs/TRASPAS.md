@@ -10,6 +10,16 @@ Que el web deixi de dependre del compte personal i passi a dependre dels comptes
 - Vercel: compte vinculat a `iltir@miceli.social`.
 - Domini: `apleciltir.cat`, comprat a cdmon.
 
+## Mode sense pagar
+
+Per evitar costos mensuals:
+
+- A GitHub, es pot treballar amb el compte `Miceli-Social` i el repo `Miceli-Social/aplec-iltir-web`.
+- A Vercel, cal evitar crear un “Team” de pagament si no és imprescindible.
+- La via més barata és tenir el projecte dins el compte Vercel associat a `iltir@miceli.social` i compartir l’accés al correu amb qui porti comunicació.
+
+Important: el pla Hobby de Vercel és gratuït, però no inclou col·laboració d’equip. Si es volen usuaris separats dins Vercel, normalment s’entra en lògica Pro/de seats. Per aquest projecte, si l’objectiu és no pagar, millor treballar amb un compte genèric compartit i tenir el codi a GitHub.
+
 ## Estat actual que cal respectar
 
 El projecte no és només codi. Hi ha contingut editorial viu a Vercel Blob:
@@ -22,7 +32,11 @@ Per això, el traspàs s’ha de fer sense perdre `BLOB_READ_WRITE_TOKEN` ni `CO
 
 ## Pas 1 · Crear el repo nou a GitHub
 
-Opció recomanada:
+Repo creat:
+
+- `https://github.com/Miceli-Social/aplec-iltir-web`
+
+Si cal repetir-ho en un altre entorn, l’opció recomanada és:
 
 1. Entrar a GitHub amb el compte `iltir@miceli.social`.
 2. Crear un repositori privat o públic, per exemple:
