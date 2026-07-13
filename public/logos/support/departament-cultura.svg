@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 104" role="img" aria-label="Generalitat de Catalunya Departament de Cultura">
+  <rect width="520" height="104" fill="none"/>
+  <g fill="#d21f2b">
+    <rect x="12" y="24" width="8" height="54"/>
+    <rect x="26" y="24" width="8" height="54"/>
+    <rect x="40" y="24" width="8" height="54"/>
+    <rect x="54" y="24" width="8" height="54"/>
+  </g>
+  <rect x="7" y="19" width="60" height="64" rx="4" fill="none" stroke="#d21f2b" stroke-width="2"/>
+  <text x="86" y="42" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" fill="#ffffff">Generalitat de Catalunya</text>
+  <text x="86" y="71" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="800" fill="#ffffff">Departament de Cultura</text>
+</svg>

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 96" role="img" aria-label="Diputació de Girona">
+  <rect width="440" height="96" fill="none"/>
+  <circle cx="44" cy="48" r="32" fill="none" stroke="#ffffff" stroke-width="4"/>
+  <path d="M30 38h28M30 48h28M30 58h28" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+  <text x="94" y="43" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#ffffff">Diputació</text>
+  <text x="94" y="70" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#ffffff">de Girona</text>
+</svg>

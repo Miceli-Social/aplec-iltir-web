@@ -1,0 +1,14 @@
+node_modules
+.next
+out
+.env
+.env.local
+.vercel
+npm-debug.log*
+debug.log
+tmp
+tsconfig.tsbuildinfo
+
+.vercel
+.env*
+!.env.example
