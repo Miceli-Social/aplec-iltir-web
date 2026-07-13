@@ -25,6 +25,7 @@ export default async function Home() {
       "drets-imatge",
       "drets d'imatge",
       "drets imatge",
+      "totes les actes",
     ].some((blocked) => text.includes(blocked));
   };
   const latestDocuments = circles
