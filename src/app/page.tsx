@@ -8,7 +8,8 @@ import { ManifestoSlider } from "@/components/manifesto-slider";
 import { upcomingEvents } from "@/lib/event-utils";
 import { getCircles, getEvents } from "@/lib/remote-content";
 
-export const revalidate = 300;
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export default async function Home() {
   const [circles, events] = await Promise.all([getCircles(), getEvents()]);
