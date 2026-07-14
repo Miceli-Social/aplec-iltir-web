@@ -1,4 +1,4 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import Image from "next/image";
 import { GovernanceMap } from "@/components/governance-map";
 import { EventCard } from "@/components/event-card";
@@ -48,11 +48,11 @@ export default async function Home() {
           <span className="eyebrow hero-places">CABANELLES · LLADÓ · NAVATA</span>
           <h1>Tres pobles,<br />una xarxa viva.</h1>
           <p className="hero-lead">
-            Ens organitzem des del territori per guanyar capacitat, autonomia i resiliÃ¨ncia. La governanÃ§a compartida Ã©s el camÃ­ i lâ€™Aplec Ã©s la celebraciÃ³ del procÃ©s.
+            Ens organitzem des del territori per guanyar capacitat, autonomia i resiliència. La governança compartida és el camí i l’Aplec és la celebració del procés.
           </p>
           <div className="hero-actions">
             <Link className="button button-primary" href="#arquitectura">Descobreix la xarxa <ArrowIcon /></Link>
-            <Link className="text-link" href="/agenda">Veure les properes trobades <span>â†—</span></Link>
+            <Link className="text-link" href="/agenda">Veure les properes trobades <span>↗</span></Link>
           </div>
         </div>
         <div className="hero-visual">
@@ -85,10 +85,10 @@ export default async function Home() {
       <section className="aplec-overview">
         <div className="aplec-overview-main">
           <div className="aplec-overview-heading">
-            <span className="eyebrow">QuÃ¨ Ã©s lâ€™Aplec?</span>
-            <h2>Lâ€™Aplec IltiÅ•</h2>
+            <span className="eyebrow">Què és l’Aplec?</span>
+            <h2>L’Aplec Iltiŕ</h2>
             <p>
-              Una trobada per compartir les propostes de resiliÃ¨ncia que es treballen des dels pobles, compartir aprenentatges, expressar el vincle amb el territori i celebrar la cultura arrelada al lloc.
+              Una trobada per compartir les propostes de resiliència que es treballen des dels pobles, compartir aprenentatges, expressar el vincle amb el territori i celebrar la cultura arrelada al lloc.
             </p>
           </div>
           <div className="aplec-symbol-card" aria-hidden="true">
@@ -101,22 +101,22 @@ export default async function Home() {
             />
           </div>
         </div>
-        <div className="aplec-principles" aria-label="Principis de lâ€™Aplec IltiÅ•">
+        <div className="aplec-principles" aria-label="Principis de l’Aplec Iltiŕ">
           {[
             {
               number: "01",
-              title: "DEMOCRÃ€CIA",
-              text: "Crear condicions perquÃ¨ la comunitat pugui orientar, decidir i assumir responsabilitats sobre allÃ² que afecta la vida del poble.",
+              title: "DEMOCRÀCIA",
+              text: "Crear condicions perquè la comunitat pugui orientar, decidir i assumir responsabilitats sobre allò que afecta la vida del poble.",
             },
             {
               number: "02",
-              title: "REGENERACIÃ“",
-              text: "Augmentar la vitalitat del territori: cuidar relacions, sÃ²ls, aigua, cultura i capacitat dâ€™organitzar-nos.",
+              title: "REGENERACIÓ",
+              text: "Augmentar la vitalitat del territori: cuidar relacions, sòls, aigua, cultura i capacitat d’organitzar-nos.",
             },
             {
               number: "03",
-              title: "BIOREGIÃ“",
-              text: "Llegir els pobles com a part dâ€™un mateix sistema viu, on paisatge, economia, cultura i ecologia es condicionen mÃºtuament.",
+              title: "BIOREGIÓ",
+              text: "Llegir els pobles com a part d’un mateix sistema viu, on paisatge, economia, cultura i ecologia es condicionen mútuament.",
             },
           ].map(({ number, title, text }) => (
             <article key={title}>
@@ -135,7 +135,7 @@ export default async function Home() {
           <div><span className="eyebrow">Com ens organitzem</span><h2>Una estructura adaptativa per a una realitat complexa</h2></div>
           <div className="architecture-summary">
             <span>Una xarxa adaptativa</span>
-            <p>Cada poble treballa els seus propis reptes i es coordina amb els altres quan compartir informaciÃ³ o actuar plegats pot reforÃ§ar el procÃ©s.</p>
+            <p>Cada poble treballa els seus propis reptes i es coordina amb els altres quan compartir informació o actuar plegats pot reforçar el procés.</p>
           </div>
         </div>
         <GovernanceExplainer />
@@ -151,12 +151,12 @@ export default async function Home() {
             <Image src="/images/iltir-symbol.png" alt="" width={900} height={897} />
           </span>
           <div>
-            <span className="eyebrow">Dâ€™on ve el nom?</span>
-            <h3>IltiÅ•, poble o comunitat.</h3>
+            <span className="eyebrow">D’on ve el nom?</span>
+            <h3>Iltiŕ, poble o comunitat.</h3>
             <p>
-              IltiÅ• Ã©s una paraula dâ€™origen iber. Segons la interpretaciÃ³ que
-              ens va compartir lâ€™Institut dâ€™Estudis Ãbers, podria haver
-              significat Â«pobleÂ» o Â«comunitatÂ»: una manera de posar al centre
+              Iltiŕ és una paraula d’origen iber. Segons la interpretació que
+              ens va compartir l’Institut d’Estudis Íbers, podria haver
+              significat «poble» o «comunitat»: una manera de posar al centre
               les persones i el territori que compartim.
             </p>
           </div>
@@ -166,7 +166,7 @@ export default async function Home() {
       <section className="upcoming section-shell">
         <div className="section-heading">
           <div><span className="eyebrow">Agenda oberta</span><h2>On ens trobem?</h2></div>
-          <Link className="text-link" href="/agenda">Veure tota lâ€™agenda <ArrowIcon /></Link>
+          <Link className="text-link" href="/agenda">Veure tota l’agenda <ArrowIcon /></Link>
         </div>
         <div className="agenda-grid">
           {nextEvents.slice(0, 3).map((event) => <EventCard key={event.id} event={event} />)}
@@ -174,8 +174,8 @@ export default async function Home() {
         {latestDocuments.length > 0 && (
           <div className="latest-documents">
             <div className="latest-documents-heading">
-              <span className="eyebrow">Ãšltimes notÃ­cies</span>
-              <h3>Ãšltimes actes penjades</h3>
+              <span className="eyebrow">Últimes notícies</span>
+              <h3>Últimes actes penjades</h3>
             </div>
             <div className="latest-documents-list">
               {latestDocuments.map((document) => (
@@ -184,7 +184,7 @@ export default async function Home() {
                     <strong>{document.title}</strong>
                     <small>{document.circleName}</small>
                   </span>
-                  <span aria-hidden="true">â†—</span>
+                  <span aria-hidden="true">↗</span>
                 </Link>
               ))}
             </div>
@@ -195,7 +195,7 @@ export default async function Home() {
       <section className="closing-cta">
         <span className="eyebrow light">La xarxa creix quan hi entres</span>
         <h2>Hi ha moltes maneres<br />de fer territori.</h2>
-        <p>Troba el cercle que et mou, consulta quÃ¨ sâ€™hi estÃ  treballant i sumaâ€™t a la conversa.</p>
+        <p>Troba el cercle que et mou, consulta què s’hi està treballant i suma’t a la conversa.</p>
         <Link className="button button-light" href="#arquitectura">Explora els cercles <ArrowIcon /></Link>
       </section>
     </>
