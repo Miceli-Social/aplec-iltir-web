@@ -25,6 +25,7 @@ export default async function Home() {
       "drets-imatge",
       "drets d'imatge",
       "drets imatge",
+      "totes les actes",
     ].some((blocked) => text.includes(blocked));
   };
   const latestDocuments = circles
@@ -44,7 +45,7 @@ export default async function Home() {
     <>
       <section className="hero">
         <div className="hero-copy">
-          <span className="eyebrow hero-places">Cabanelles Â· LladÃ³ Â· Navata</span>
+          <span className="eyebrow hero-places">CABANELLES · LLADÓ · NAVATA</span>
           <h1>Tres pobles,<br />una xarxa viva.</h1>
           <p className="hero-lead">
             Ens organitzem des del territori per guanyar capacitat, autonomia i resiliÃ¨ncia. La governanÃ§a compartida Ã©s el camÃ­ i lâ€™Aplec Ã©s la celebraciÃ³ del procÃ©s.
@@ -181,7 +182,7 @@ export default async function Home() {
                 <Link href={document.url} target="_blank" rel="noreferrer" key={`${document.circleSlug}-${document.url}`}>
                   <span>
                     <strong>{document.title}</strong>
-                    <small>{document.circleName}{document.date ? ` Â· ${document.date}` : ""}</small>
+                    <small>{document.circleName}</small>
                   </span>
                   <span aria-hidden="true">â†—</span>
                 </Link>

@@ -82,7 +82,7 @@ export default async function CirclePage({ params }: { params: Promise<{ slug: s
       <section className="page-section documents-section">
         <div><span className="eyebrow">Transparència</span><h2>Actes i documents</h2><p>Materials públics per seguir el procés i entendre què s’ha treballat.</p></div>
         <div className="documents-list">
-          {circle.documents.length ? circle.documents.map((document) => <a key={document.url} href={document.url} target="_blank" rel="noreferrer"><span>{document.title}{document.date && <small>{document.date}</small>}</span><span>Obrir ↗</span></a>) : <p className="empty-state">Encara no hi ha documents públics en aquest espai.</p>}
+          {circle.documents.length ? circle.documents.map((document) => <a key={document.url} href={document.url} target="_blank" rel="noreferrer"><span>{document.title}</span><span>Obrir ↗</span></a>) : <p className="empty-state">Encara no hi ha documents públics en aquest espai.</p>}
         </div>
       </section>
       {linked.length > 0 && <section className="linked-section"><span className="eyebrow">Una xarxa, dues escales</span><h2>{circle.kind === "local" ? "Connectat amb la mirada territorial." : "Connectat amb cada poble."}</h2><div className="linked-grid">{linked.map((item) => <Link key={item.slug} href={`/cercles/${item.slug}`}>{item.name}<span>→</span></Link>)}</div></section>}

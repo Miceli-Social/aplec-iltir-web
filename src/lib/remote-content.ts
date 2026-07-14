@@ -66,9 +66,82 @@ const normalizeForMatch = (value: string) =>
     .replace(/[\u0300-\u036f]/g, "")
     .toLowerCase();
 
+const allActsTitles: Record<string, string> = {
+  "cabanelles-coordinacio": "Totes les Actes del Consell de Poble de Cabanelles",
+  "llado-coordinacio": "Totes les Actes del Consell de Poble de Lladó",
+  "sectorial-comunicacio": "Totes les Actes de la Sectorial de Comunicació",
+  "sectorial-energia": "Totes les Actes de la Sectorial d’Energia",
+};
+
+const isHiddenPublicDocument = (document: DocumentLink) => {
+  const normalized = normalizeForMatch(`${document.title} ${document.url}`);
+  return [
+    "proteccio-de-dades",
+    "proteccio de dades",
+    "drets-imatge",
+    "drets d'imatge",
+    "drets imatge",
+  ].some((blocked) => normalized.includes(blocked));
+};
+
+const isAllActsDocument = (circleSlug: string, document: DocumentLink) => {
+  const normalized = normalizeForMatch(`${document.title} ${document.url}`);
+  if (normalized.includes("totes les actes")) return true;
+  if (normalized.includes("actes del cercle")) return true;
+  if (normalized.includes("actes del consell")) return true;
+
+  return (
+    ["cabanelles-coordinacio", "llado-coordinacio", "sectorial-energia"].includes(circleSlug) &&
+    normalized.includes("docs.google.com/document")
+  );
+};
+
+const municipalityNameBySlug: Record<string, string> = {
+  cabanelles: "Cabanelles",
+  llado: "Lladó",
+  navata: "Navata",
+};
+
+const sectorialTitleBySlug: Record<string, string> = {
+  "sectorial-comunicacio": "Sectorial de Comunicació",
+  "sectorial-cultura": "Sectorial de Cultura",
+  "sectorial-energia": "Sectorial d’Energia",
+  "sectorial-esports": "Sectorial d’Esports",
+  "sectorial-habitatge": "Sectorial d’Habitatge",
+  "sectorial-territori": "Sectorial de Territori",
+};
+
+const numberedDocumentTitle = (circleSlug: string, number: number) => {
+  if (circleSlug.endsWith("-coordinacio")) {
+    const municipalitySlug = circleSlug.replace("-coordinacio", "");
+    return `Acta #${number} - Consell de Poble de ${municipalityNameBySlug[municipalitySlug] || municipalitySlug}`;
+  }
+
+  const sectorialTitle = sectorialTitleBySlug[circleSlug];
+  if (sectorialTitle) return `Trobada ${number} · ${sectorialTitle}`;
+
+  const circle = fallbackCircles.find((item) => item.slug === circleSlug);
+  return circle ? `Trobada ${number} · ${circle.name}` : `Trobada ${number}`;
+};
+
+const documentSequenceNumber = (circleSlug: string, document: DocumentLink) => {
+  const normalized = normalizeForMatch(`${document.title} ${document.url}`);
+  const sequenceNumber = normalized.match(
+    /(?:trobada|acta|consell-poble-cabanelles|consell-poble-llado|sectorial-energia)[\s#-]*(\d+)/,
+  )?.[1];
+  return sequenceNumber === undefined ? undefined : Number(sequenceNumber);
+};
+
 const polishDocumentTitle = (circleSlug: string, document: DocumentLink): DocumentLink => {
   const title = document.title.trim();
   const normalized = normalizeForMatch(`${title} ${document.url}`);
+
+  if (isAllActsDocument(circleSlug, document) && allActsTitles[circleSlug]) {
+    return {
+      ...document,
+      title: allActsTitles[circleSlug],
+    };
+  }
 
   if (
     circleSlug === "cabanelles-coordinacio" &&
@@ -78,7 +151,14 @@ const polishDocumentTitle = (circleSlug: string, document: DocumentLink): Docume
     return {
       ...document,
       title: "Acta #2 - Consell de Poble de Cabanelles",
-      date: document.date || "4 de juliol de 2026",
+    };
+  }
+
+  const sequenceNumber = documentSequenceNumber(circleSlug, document);
+  if (sequenceNumber !== undefined) {
+    return {
+      ...document,
+      title: numberedDocumentTitle(circleSlug, sequenceNumber),
     };
   }
 
@@ -121,7 +201,6 @@ const polishDocumentTitle = (circleSlug: string, document: DocumentLink): Docume
     return {
       ...document,
       title: "Acta #1 - Consell de Poble de Lladó",
-      date: document.date || "30 de juny de 2026",
     };
   }
 
@@ -135,8 +214,17 @@ const documentOrder = (document: DocumentLink) => {
   const normalized = normalizeForMatch(`${document.title} ${document.url}`);
   if (normalized.includes("totes les actes")) return 1000;
 
-  const actNumber = normalized.match(/acta\s*#?\s*(\d+)/)?.[1];
-  if (actNumber) return 100 - Number(actNumber);
+  const sequenceNumber = documentSequenceNumber("", document);
+  if (sequenceNumber !== undefined) return 100 - sequenceNumber;
+
+  if (
+    normalized.includes("document de treball") ||
+    normalized.includes("objectius") ||
+    normalized.includes("diagnosi") ||
+    normalized.includes("recull")
+  ) {
+    return 700;
+  }
 
   return 500;
 };
@@ -144,6 +232,7 @@ const documentOrder = (document: DocumentLink) => {
 const mergeDocuments = (circleSlug: string, documents: DocumentLink[]) => {
   const seen = new Set<string>();
   return documents
+    .filter((document) => !isHiddenPublicDocument(document))
     .map((document) => polishDocumentTitle(circleSlug, document))
     .filter((document) => {
       const key = document.url.trim();
