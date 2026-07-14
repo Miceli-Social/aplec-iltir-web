@@ -44,18 +44,7 @@ export default async function Home() {
   return (
     <>
       <section className="hero">
-        <div className="hero-copy">
-          <span className="eyebrow hero-places">CABANELLES · LLADÓ · NAVATA</span>
-          <h1>Tres pobles,<br />una xarxa viva.</h1>
-          <p className="hero-lead">
-            Ens organitzem des del territori per guanyar capacitat, autonomia i resiliència. La governança compartida és el camí i l’Aplec és la celebració del procés.
-          </p>
-          <div className="hero-actions">
-            <Link className="button button-primary" href="#arquitectura">Descobreix la xarxa <ArrowIcon /></Link>
-            <Link className="text-link" href="/agenda">Veure les properes trobades <span>↗</span></Link>
-          </div>
-        </div>
-        <div className="hero-visual">
+        <div className="hero-media" aria-hidden="true">
           <video
             className="hero-video"
             poster="/images/video-capcalera-aplec-iltir-poster.jpg"
@@ -63,7 +52,6 @@ export default async function Home() {
             muted
             loop
             playsInline
-            aria-hidden="true"
           >
             <source
               src="/images/video-capcalera-aplec-iltir-web.mp4"
@@ -76,9 +64,20 @@ export default async function Home() {
             src="/images/video-capcalera-aplec-iltir-poster.jpg"
             alt=""
             fill
-            sizes="(max-width: 720px) calc(100vw - 32px), (max-width: 1050px) calc(100vw - 48px), 680px"
+            sizes="100vw"
             priority
           />
+        </div>
+        <div className="hero-copy">
+          <span className="eyebrow hero-places">CABANELLES · LLADÓ · NAVATA</span>
+          <h1>Tres pobles,<br />una xarxa viva.</h1>
+          <p className="hero-lead">
+            Ens organitzem des del territori per guanyar capacitat, autonomia i resiliència. La governança compartida és el camí i l’Aplec és la celebració del procés.
+          </p>
+          <div className="hero-actions">
+            <Link className="button button-primary" href="#arquitectura">Descobreix la xarxa <ArrowIcon /></Link>
+            <Link className="text-link" href="/agenda">Veure les properes trobades <span>↗</span></Link>
+          </div>
         </div>
       </section>
 
