@@ -64,6 +64,9 @@ h1, h2 { font-family: var(--font-display); font-weight: 500; letter-spacing: -.0
 .consent-actions { display:flex; justify-content:space-between; align-items:center; gap:18px; flex-wrap:wrap; margin-top:4px; }
 .hero-visual { min-height: 570px; position: relative; overflow:hidden; border-radius:46% 54% 42% 58% / 34% 38% 62% 66%; box-shadow:var(--shadow); background:radial-gradient(circle at 30% 20%, rgba(200,220,99,.2), transparent 28%), radial-gradient(circle at 75% 72%, rgba(232,121,69,.18), transparent 32%), linear-gradient(135deg,#173a32,#0f2a25); isolation:isolate; }
 .hero-visual::before { content:""; position:absolute; inset:22px; border:1px solid rgba(255,255,255,.3); border-radius:42% 58% 48% 52% / 38% 46% 54% 62%; z-index:2; pointer-events:none; }
+.hero-video, .hero-video-poster { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.hero-video { display:block; z-index:1; }
+.hero-video-poster { display:none; z-index:1; }
 .hero-place-pill { position:absolute; z-index:4; border-radius:999px; padding:8px 14px; background:rgba(251,248,239,.88); color:var(--ink); font-family:var(--font-display); box-shadow:0 12px 28px rgba(10,42,35,.16); }
 .hero-place-cabanelles { right:22%; top:12%; transform:rotate(-8deg); }
 .hero-place-llado { right:8%; top:45%; transform:rotate(7deg); }
@@ -416,6 +419,8 @@ a.event-card:hover { transform:translateY(-3px); box-shadow:var(--shadow); }
   .hero h1 { font-size:4.2rem; }
   .hero-visual { min-height:360px; border-radius:24px; }
   .hero-visual::before { inset:14px; border-radius:22px; }
+  .hero-video { display:none; }
+  .hero-video-poster { display:block; }
   .hero-core { width:132px; box-shadow:0 0 0 12px rgba(244,240,229,.14); }
   .hero-core strong { font-size:2rem; }
   .orbit-one { width:250px; height:250px; }
@@ -499,5 +504,7 @@ a.event-card:hover { transform:translateY(-3px); box-shadow:var(--shadow); }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior:auto; }
   *, *::before, *::after { transition:none !important; }
+  .hero-video { display:none; }
+  .hero-video-poster { display:block; }
   .river-glint, .river-animal { animation:none !important; }
 }
