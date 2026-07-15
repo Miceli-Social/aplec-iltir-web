@@ -34,6 +34,16 @@ h1, h2 { font-family: var(--font-display); font-weight: 500; letter-spacing: -.0
 .site-header nav { display: flex; gap: 30px; font-size: .86rem; }
 .site-header nav a { padding: 10px 0; border-bottom: 1px solid transparent; }
 .site-header nav a:hover, .site-header nav a:focus-visible { border-color: var(--ink); }
+.past-editions-menu { position:relative; }
+.past-editions-menu summary { display:flex; align-items:center; gap:7px; padding:10px 0; border-bottom:1px solid transparent; list-style:none; cursor:pointer; }
+.past-editions-menu summary::-webkit-details-marker { display:none; }
+.past-editions-menu summary::after { content:""; width:6px; height:6px; border-right:1.5px solid currentColor; border-bottom:1.5px solid currentColor; transform:rotate(45deg) translateY(-2px); transition:transform .2s; }
+.past-editions-menu[open] summary::after { transform:rotate(225deg) translateY(-1px); }
+.past-editions-menu summary:hover, .past-editions-menu summary:focus-visible { border-color:var(--ink); outline:none; }
+.past-editions-list { position:absolute; right:0; top:calc(100% + 10px); min-width:210px; padding:8px; border:1px solid var(--line); border-radius:12px; background:rgba(251,248,239,.96); box-shadow:var(--shadow); display:grid; gap:2px; z-index:30; }
+.past-editions-menu:not([open]):not(:hover):not(:focus-within) .past-editions-list { display:none; }
+.past-editions-list a { display:block; padding:10px 12px; border-bottom:0; border-radius:8px; white-space:nowrap; color:var(--ink); }
+.past-editions-list a:hover, .past-editions-list a:focus-visible { border-color:transparent; background:var(--paper-deep); outline:none; }
 .hero { min-height: clamp(620px, calc(100vh - 92px), 780px); width:100%; margin:0; display:flex; align-items:center; overflow:hidden; position:relative; isolation:isolate; padding:0 max(24px,calc((100vw - 1400px)/2)); background:var(--paper-deep); }
 .hero::after { content:""; position:absolute; inset:0; z-index:1; pointer-events:none; background:linear-gradient(90deg,rgba(251,248,239,.9) 0%,rgba(251,248,239,.76) 43%,rgba(251,248,239,.58) 100%); }
 .hero-copy { max-width: 710px; position: relative; z-index: 2; padding: 55px 0 78px; }
@@ -410,8 +420,10 @@ a.event-card:hover { transform:translateY(-3px); box-shadow:var(--shadow); }
 
 @media (max-width: 720px) {
   .site-header { width:calc(100% - 32px); min-height:74px; }
-  .site-header nav a:not(:nth-child(2)) { display:none; }
-  .site-header nav { gap:0; }
+  .site-header nav > a:not(:nth-child(2)) { display:none; }
+  .site-header nav { gap:18px; align-items:center; }
+  .past-editions-menu summary { padding:10px 0; }
+  .past-editions-list { right:0; min-width:190px; }
   .brand-logo { width:62px; height:54px; }
   .brand-symbol { width:28px; height:28px; }
   .section-shell, .inner-page { width:calc(100% - 32px); }
