@@ -268,6 +268,14 @@ a.event-card:hover { transform:translateY(-3px); box-shadow:var(--shadow); }
 .page-intro { padding:85px 0 100px; max-width:950px; }
 .page-intro h1, .circle-hero h1 { font-size:clamp(4.5rem,9vw,9rem); line-height:.86; margin-bottom:35px; }
 .page-intro > p, .circle-hero > div > p { font-size:1.2rem; line-height:1.7; max-width:700px; color:var(--ink-soft); }
+.municipality-hero { position:relative; max-width:none; overflow:hidden; isolation:isolate; background:var(--paper-deep); }
+.municipality-hero::after { content:""; position:absolute; inset:0; z-index:1; pointer-events:none; background:linear-gradient(90deg,rgba(251,248,239,.78) 0%,rgba(251,248,239,.52) 33%,rgba(251,248,239,.18) 66%,rgba(251,248,239,.04) 100%); }
+.municipality-hero-media { position:absolute; inset:0; z-index:0; overflow:hidden; }
+.municipality-hero-video, .municipality-hero-poster { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; }
+.municipality-hero-video { display:block; }
+.municipality-hero-poster { display:none; }
+.municipality-hero-content { position:relative; z-index:2; max-width:950px; }
+.municipality-hero-content p { font-size:1.2rem; line-height:1.7; max-width:700px; color:var(--ink-soft); }
 .breadcrumb { display:flex; gap:9px; font-size:.72rem; color:var(--ink-soft); }
 .breadcrumb a { text-decoration:underline; text-underline-offset:4px; }
 .detail-grid, .detail-columns { display:grid; grid-template-columns:1fr 1fr; gap:7vw; padding:58px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
@@ -431,6 +439,8 @@ a.event-card:hover { transform:translateY(-3px); box-shadow:var(--shadow); }
   .hero h1 { font-size:4.2rem; }
   .hero-video { display:none; }
   .hero-video-poster { display:block; }
+  .municipality-hero-video { display:none; }
+  .municipality-hero-poster { display:block; }
   .hero-core { width:132px; box-shadow:0 0 0 12px rgba(244,240,229,.14); }
   .hero-core strong { font-size:2rem; }
   .orbit-one { width:250px; height:250px; }
@@ -516,5 +526,7 @@ a.event-card:hover { transform:translateY(-3px); box-shadow:var(--shadow); }
   *, *::before, *::after { transition:none !important; }
   .hero-video { display:none; }
   .hero-video-poster { display:block; }
+  .municipality-hero-video { display:none; }
+  .municipality-hero-poster { display:block; }
   .river-glint, .river-animal { animation:none !important; }
 }
