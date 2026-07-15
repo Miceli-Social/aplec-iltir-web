@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CircleLink } from "@/components/circle-link";
@@ -9,6 +10,21 @@ import { upcomingEvents } from "@/lib/event-utils";
 import { getCircles, getEvents } from "@/lib/remote-content";
 
 export const revalidate = 300;
+
+const municipalityHeroMedia: Record<string, { poster: string; video: string }> = {
+  cabanelles: {
+    poster: "/images/cabanelles.jpg",
+    video: "/images/video-cabanelles-web.mp4",
+  },
+  llado: {
+    poster: "/images/llado.jpg",
+    video: "/images/video-llado-web.mp4",
+  },
+  navata: {
+    poster: "/images/navata.jpg",
+    video: "/images/video-navata-web.mp4",
+  },
+};
 
 export function generateStaticParams() {
   return municipalities.map(({ slug }) => ({ slug }));
@@ -26,14 +42,41 @@ export default async function MunicipalityPage({ params }: { params: Promise<{ s
   const [circles, events] = await Promise.all([getCircles(), getEvents()]);
   const localCircles = circles.filter((circle) => circle.municipality === municipality.slug);
   const localEvents = upcomingEvents(events.filter((event) => event.tags.includes(municipality.slug)));
+  const heroMedia = municipalityHeroMedia[municipality.slug];
 
   return (
     <div className={`inner-page municipality-page municipality-${municipality.slug}`}>
       <div className="breadcrumb"><Link href="/">Iltiŕ</Link><span>/</span><span>{municipality.name}</span></div>
-      <header className="page-intro wide">
-        <span className="eyebrow">Consell de Poble</span>
-        <h1>{municipality.name}</h1>
-        <p>{municipality.intro}</p>
+      <header className="page-intro wide municipality-hero">
+        <div className="municipality-hero-media" aria-hidden="true">
+          <video
+            className="municipality-hero-video"
+            poster={heroMedia.poster}
+            autoPlay
+            muted
+            loop
+            playsInline
+          >
+            <source
+              src={heroMedia.video}
+              type="video/mp4"
+              media="(min-width: 721px) and (prefers-reduced-motion: no-preference)"
+            />
+          </video>
+          <Image
+            className="municipality-hero-poster"
+            src={heroMedia.poster}
+            alt=""
+            fill
+            sizes="(max-width: 1240px) calc(100vw - 48px), 1240px"
+            priority
+          />
+        </div>
+        <div className="municipality-hero-content">
+          <span className="eyebrow">Consell de Poble</span>
+          <h1>{municipality.name}</h1>
+          <p>{municipality.intro}</p>
+        </div>
       </header>
       <section className="detail-grid">
         <div><span className="eyebrow">Com s’organitza</span><h2>Un lloc per compartir què passa i treballar plegats.</h2></div>
