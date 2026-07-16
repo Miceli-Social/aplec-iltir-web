@@ -43,6 +43,9 @@ export default async function MunicipalityPage({ params }: { params: Promise<{ s
   const localCircles = circles.filter((circle) => circle.municipality === municipality.slug);
   const localEvents = upcomingEvents(events.filter((event) => event.tags.includes(municipality.slug)));
   const heroMedia = municipalityHeroMedia[municipality.slug];
+  const otherMunicipalities = municipalities.filter(
+    ({ slug }) => slug !== municipality.slug,
+  );
 
   return (
     <div className={`inner-page municipality-page municipality-${municipality.slug}`}>
@@ -90,6 +93,28 @@ export default async function MunicipalityPage({ params }: { params: Promise<{ s
         <div className="section-heading"><div><span className="eyebrow">Properes trobades</span><h2>Agenda de {municipality.name}</h2></div><Link className="text-link" href="/agenda">Agenda completa <ArrowIcon /></Link></div>
         <div className="agenda-grid">
           {localEvents.length ? localEvents.map((event) => <EventCard key={event.id} event={event} />) : <p className="empty-state">Encara no hi ha cap propera trobada publicada.</p>}
+        </div>
+      </section>
+      <section className="page-section municipality-switcher">
+        <div className="section-heading"><div><span className="eyebrow">Altres municipis</span><h2>Continua explorant la xarxa.</h2></div></div>
+        <div className="municipality-switcher-grid">
+          {otherMunicipalities.map(({ slug, name }) => (
+            <Link key={slug} className="municipality-switch-card" href={`/municipis/${slug}`}>
+              <span className="municipality-switch-image">
+                <Image
+                  src={`/images/${slug}.jpg`}
+                  alt={`Paisatge de ${name}`}
+                  fill
+                  sizes="(max-width: 720px) calc(100vw - 32px), 50vw"
+                />
+              </span>
+              <span className="municipality-switch-content">
+                <small>Consell de Poble</small>
+                <strong>{name}</strong>
+                <ArrowIcon />
+              </span>
+            </Link>
+          ))}
         </div>
       </section>
     </div>
