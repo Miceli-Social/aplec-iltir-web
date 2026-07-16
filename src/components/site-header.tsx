@@ -23,9 +23,21 @@ export function SiteHeader() {
         />
       </Link>
       <nav aria-label="Navegació principal">
-        <Link href="/#arquitectura">Com ens organitzem</Link>
+        <Link href="/#arquitectura" className="nav-mobile-hidden">
+          Com ens organitzem
+        </Link>
+        <details className="municipalities-menu">
+          <summary>Municipis</summary>
+          <div className="municipalities-list">
+            <Link href="/municipis/cabanelles">Cabanelles</Link>
+            <Link href="/municipis/llado">Lladó</Link>
+            <Link href="/municipis/navata">Navata</Link>
+          </div>
+        </details>
         <Link href="/agenda">Agenda</Link>
-        <Link href="/#relat">El projecte</Link>
+        <Link href="/#relat" className="nav-mobile-hidden">
+          El projecte
+        </Link>
         <details className="past-editions-menu">
           <summary>Edicions anteriors</summary>
           <div className="past-editions-list">
