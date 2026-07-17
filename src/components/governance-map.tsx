@@ -23,7 +23,7 @@ export function GovernanceMap({ circles }: { circles: Circle[] }) {
       </div>
       <div className="municipality-grid">
         {municipalities.map((municipality) => (
-          <article className="municipality-card" key={municipality.slug}>
+          <article className={`municipality-card municipality-card-${municipality.slug}`} key={municipality.slug}>
             <div className="municipality-photo">
               <Image
                 src={`/images/${municipality.slug}.jpg`}
