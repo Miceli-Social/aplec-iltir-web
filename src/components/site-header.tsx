@@ -38,7 +38,13 @@ export function SiteHeader() {
         <Link href="/#relat" className="nav-mobile-hidden">
           El projecte
         </Link>
-        <Link href="/aplecs">Edicions anteriors</Link>
+        <Link
+          href="/aplecs"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Edicions anteriors
+        </Link>
       </nav>
     </header>
   );
