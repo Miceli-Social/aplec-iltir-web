@@ -82,13 +82,24 @@ export default async function Home() {
       </section>
 
       <section className="aplec-overview">
-        <div className="aplec-overview-main">
+        <Link
+          className="aplec-overview-main aplec-overview-link"
+          href="/aplecs"
+          aria-label="Descobreix els Aplecs Iltiŕ i mira els vídeos de les edicions anteriors"
+        >
           <div className="aplec-overview-heading">
             <span className="eyebrow">Què és l’Aplec?</span>
             <h2>L’Aplec Iltiŕ</h2>
             <p>
               Una trobada per compartir les propostes de resiliència que es treballen des dels pobles, compartir aprenentatges, expressar el vincle amb el territori i celebrar la cultura arrelada al lloc.
             </p>
+            <span className="aplec-overview-cta">
+              <span>
+                <strong>Descobreix els Aplecs</strong>
+                <small>Vídeos 2023 · 2024 · 2025</small>
+              </span>
+              <ArrowIcon />
+            </span>
           </div>
           <div className="aplec-symbol-card" aria-hidden="true">
             <Image
@@ -98,8 +109,9 @@ export default async function Home() {
               height={897}
               sizes="(max-width: 720px) 160px, 260px"
             />
+            <span className="aplec-play-badge" aria-hidden="true" />
           </div>
-        </div>
+        </Link>
         <div className="aplec-principles" aria-label="Principis de l’Aplec Iltiŕ">
           {[
             {
