@@ -1,9 +1,16 @@
 import Link from "next/link";
 import Image from "next/image";
+import { GovernanceMap } from "@/components/governance-map";
 import { ArrowIcon } from "@/components/icons";
 import { ManifestoSlider } from "@/components/manifesto-slider";
+import { getCircles } from "@/lib/remote-content";
 
-export default function Home() {
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
+export default async function Home() {
+  const circles = await getCircles();
+
   return (
     <>
       <section className="hero">
@@ -103,6 +110,10 @@ export default function Home() {
       </section>
 
       <ManifestoSlider />
+
+      <section className="architecture section-shell">
+        <GovernanceMap circles={circles} />
+      </section>
 
       <section className="closing-method">
         <div className="closing-method-inner">
