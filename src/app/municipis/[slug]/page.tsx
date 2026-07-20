@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { AplecParticipation } from "@/components/aplec-participation";
 import { CircleLink } from "@/components/circle-link";
 import { EventCard } from "@/components/event-card";
 import { ArrowIcon } from "@/components/icons";
@@ -94,6 +95,9 @@ export default async function MunicipalityPage({ params }: { params: Promise<{ s
         <div className="agenda-grid">
           {localEvents.length ? localEvents.map((event) => <EventCard key={event.id} event={event} />) : <p className="empty-state">Encara no hi ha cap propera trobada publicada.</p>}
         </div>
+      </section>
+      <section className="page-section municipality-aplec-section">
+        <AplecParticipation circles={circles} />
       </section>
       <section className="page-section municipality-switcher">
         <div className="section-heading"><div><span className="eyebrow">Altres municipis</span><h2>Continua explorant la xarxa.</h2></div></div>
