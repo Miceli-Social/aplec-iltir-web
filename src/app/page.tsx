@@ -4,6 +4,7 @@ import { GovernanceMap } from "@/components/governance-map";
 import { ArrowIcon } from "@/components/icons";
 import { GovernanceExplainer } from "@/components/governance-explainer";
 import { ManifestoSlider } from "@/components/manifesto-slider";
+import { SectorialsHome } from "@/components/sectorials-home";
 import { getCircles } from "@/lib/remote-content";
 
 export const dynamic = "force-dynamic";
@@ -122,6 +123,7 @@ export default async function Home() {
         </div>
         <GovernanceExplainer />
         <GovernanceMap circles={circles} />
+        <SectorialsHome circles={circles} />
       </section>
 
       <section className="principles section-shell">

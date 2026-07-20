@@ -230,6 +230,35 @@ h1, h2 { font-family: var(--font-display); font-weight: 500; letter-spacing: -.0
 .status-label { position:absolute; right:7px; top:-8px; background:var(--orange); color:var(--ink); border-radius:999px; padding:3px 7px; font-size:.5rem; text-transform:uppercase; letter-spacing:.08em; font-weight:700; }
 .sectorial-grid .circle-link strong { font-size:.83rem; }
 .sectorial-grid .circle-arrow { display:none; }
+.sectorials-home { margin-top:54px; }
+.sectorials-home-separator { display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:18px; margin:0 0 18px; color:var(--ink-soft); }
+.sectorials-home-separator::before, .sectorials-home-separator::after { content:""; height:1px; background:linear-gradient(90deg,transparent,rgba(23,58,50,.22)); }
+.sectorials-home-separator::after { background:linear-gradient(90deg,rgba(23,58,50,.22),transparent); }
+.sectorials-home-separator span { display:inline-flex; align-items:center; min-height:28px; padding:0 12px; border:1px solid rgba(23,58,50,.12); border-radius:999px; background:rgba(251,248,239,.62); text-transform:uppercase; letter-spacing:.17em; font-size:.62rem; font-weight:800; white-space:nowrap; }
+.sectorials-home-panel { position:relative; overflow:hidden; isolation:isolate; border-radius:28px; padding:38px; color:white; background:linear-gradient(110deg,rgba(9,39,32,.98) 0%,rgba(9,39,32,.93) 46%,rgba(9,39,32,.82) 100%), url("/images/aplec.jpg") center 54% / cover no-repeat; box-shadow:0 18px 42px rgba(38,54,43,.08); }
+.sectorials-home-panel::after { content:""; position:absolute; inset:0; z-index:-1; background:radial-gradient(circle at 84% 18%,rgba(200,220,99,.16),transparent 28%), linear-gradient(180deg,rgba(255,255,255,.02),rgba(0,0,0,.18)); pointer-events:none; }
+.sectorials-home-copy { display:grid; grid-template-columns:minmax(0,1.05fr) minmax(260px,.85fr); gap:22px 48px; align-items:end; margin-bottom:30px; padding-bottom:28px; border-bottom:1px solid rgba(255,255,255,.16); }
+.sectorials-home-kicker { grid-column:1 / -1; width:max-content; text-transform:uppercase; letter-spacing:.16em; font-size:.62rem; font-weight:800; color:rgba(255,255,255,.66); }
+.sectorials-home-copy h3 { font-family:var(--font-display); font-size:clamp(3rem,5vw,5.2rem); line-height:.95; font-weight:500; letter-spacing:-.045em; margin:0; text-shadow:0 16px 34px rgba(0,0,0,.26); }
+.sectorials-home-copy p { max-width:620px; margin:0; color:rgba(255,255,255,.78); font-size:1rem; line-height:1.7; }
+.sectorials-home-copy strong { grid-column:2; display:block; max-width:520px; color:rgba(255,255,255,.92); font-family:var(--font-display); font-size:1.55rem; line-height:1.15; font-weight:500; letter-spacing:-.02em; }
+.sectorials-home-grid { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:10px; }
+.sectorials-home-card { --sectorials-home-accent:var(--lime); position:relative; min-width:0; min-height:136px; display:grid; grid-template-columns:1fr auto; grid-template-rows:auto 1fr; gap:18px 10px; align-items:start; padding:18px; border:1px solid rgba(255,255,255,.18); border-radius:16px; background:rgba(255,255,255,.1); color:white; backdrop-filter:blur(8px); transition:transform .22s, background .22s, border-color .22s, box-shadow .22s; }
+.sectorials-home-card:hover { transform:translateY(-3px); background:rgba(255,255,255,.15); border-color:rgba(255,255,255,.34); box-shadow:0 18px 34px rgba(0,0,0,.14); }
+.sectorials-home-card:focus-visible { outline:none; transform:translateY(-3px); border-color:rgba(255,255,255,.48); box-shadow:0 18px 34px rgba(0,0,0,.14), 0 0 0 4px color-mix(in srgb, var(--sectorials-home-accent), transparent 52%); }
+.sectorials-home-symbol { width:52px; height:52px; display:grid; place-items:center; border-radius:50%; color:var(--sectorials-home-accent); background:color-mix(in srgb, var(--sectorials-home-accent), transparent 82%); box-shadow:inset 0 0 0 1px color-mix(in srgb, var(--sectorials-home-accent), transparent 52%); }
+.sectorials-home-symbol svg { display:block; width:30px; height:30px; stroke:currentColor; stroke-width:1.65; stroke-linecap:round; stroke-linejoin:round; }
+.sectorials-home-arrow { grid-column:2; grid-row:1; justify-self:end; margin-top:2px; color:rgba(255,255,255,.7); transition:transform .22s, color .22s; }
+.sectorials-home-card:hover .sectorials-home-arrow, .sectorials-home-card:focus-visible .sectorials-home-arrow { transform:translateX(4px); color:white; }
+.sectorials-home-card-text { grid-column:1 / -1; align-self:end; min-width:0; display:flex; flex-direction:column; gap:8px; }
+.sectorials-home-card-text strong { display:block; font-size:1rem; line-height:1.16; overflow-wrap:anywhere; }
+.sectorials-home-card-text small { width:max-content; max-width:100%; padding:4px 8px; border-radius:999px; background:rgba(251,248,239,.13); color:rgba(255,255,255,.74); border:1px solid rgba(255,255,255,.16); text-transform:uppercase; letter-spacing:.08em; font-size:.54rem; font-weight:800; }
+.sectorials-home-theme-energia { --sectorials-home-accent:var(--lime); }
+.sectorials-home-theme-cultura { --sectorials-home-accent:var(--orange); }
+.sectorials-home-theme-comunicacio { --sectorials-home-accent:var(--purple); }
+.sectorials-home-theme-esports { --sectorials-home-accent:#72a46d; }
+.sectorials-home-theme-habitatge { --sectorials-home-accent:var(--blue); }
+.sectorials-home-theme-territori { --sectorials-home-accent:#9a774b; }
 .principles { border-top:1px solid var(--line); padding-top:42px; padding-bottom:42px; }
 .principle-grid { display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
 .principle { padding:28px 26px 34px; border-right:1px solid var(--line); }
@@ -470,6 +499,9 @@ a.event-card:hover { transform:translateY(-3px); box-shadow:var(--shadow); }
   .map-connectors { display:none; }
   .aplec-base { margin-top:20px; }
   .sectorial-grid { grid-template-columns:repeat(3,1fr); }
+  .sectorials-home-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .sectorials-home-copy { grid-template-columns:1fr; align-items:start; }
+  .sectorials-home-copy strong { grid-column:auto; }
   .local-circles { grid-template-columns:1fr; }
   .admin-tools { grid-template-columns:1fr; }
   .admin-editor-layout { grid-template-columns:1fr; }
@@ -546,6 +578,18 @@ a.event-card:hover { transform:translateY(-3px); box-shadow:var(--shadow); }
   .aplec-intro { display:block; }
   .aplec-intro h3 { font-size:2.8rem; margin-bottom:18px; }
   .sectorial-grid { grid-template-columns:1fr 1fr; }
+  .sectorials-home { margin-top:38px; }
+  .sectorials-home-separator { gap:10px; }
+  .sectorials-home-separator span { letter-spacing:.12em; font-size:.56rem; padding:0 9px; }
+  .sectorials-home-panel { border-radius:22px; padding:24px; }
+  .sectorials-home-copy { gap:16px; margin-bottom:22px; padding-bottom:22px; }
+  .sectorials-home-copy h3 { font-size:3rem; }
+  .sectorials-home-copy p { font-size:.92rem; }
+  .sectorials-home-copy strong { font-size:1.28rem; }
+  .sectorials-home-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px; }
+  .sectorials-home-card { min-height:126px; padding:15px; }
+  .sectorials-home-symbol { width:46px; height:46px; }
+  .sectorials-home-symbol svg { width:27px; height:27px; }
   .aplec-pillars { grid-template-columns:1fr; }
   .principle-grid, .agenda-grid, .circle-detail-grid, .linked-grid, .municipality-switcher-grid { grid-template-columns:1fr; }
   .municipality-switcher { padding-top:72px; }
@@ -601,6 +645,13 @@ a.event-card:hover { transform:translateY(-3px); box-shadow:var(--shadow); }
   .admin-form { padding:20px; }
   .admin-form-columns, .admin-split { grid-template-columns:1fr; }
   .admin-circle-picker { grid-template-columns:1fr; }
+}
+
+@media (max-width: 390px) {
+  .sectorials-home-grid { grid-template-columns:1fr; }
+  .sectorials-home-card { min-height:104px; grid-template-columns:auto 1fr auto; grid-template-rows:auto; align-items:center; }
+  .sectorials-home-arrow { grid-column:3; grid-row:1; align-self:center; }
+  .sectorials-home-card-text { grid-column:2; align-self:center; }
 }
 
 @media (prefers-reduced-motion: reduce) {
