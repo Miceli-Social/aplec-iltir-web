@@ -1,45 +1,16 @@
 import Link from "next/link";
 import Image from "next/image";
 import { GovernanceMap } from "@/components/governance-map";
-import { EventCard } from "@/components/event-card";
 import { ArrowIcon } from "@/components/icons";
 import { GovernanceExplainer } from "@/components/governance-explainer";
 import { ManifestoSlider } from "@/components/manifesto-slider";
-import { upcomingEvents } from "@/lib/event-utils";
-import { getCircles, getEvents } from "@/lib/remote-content";
+import { getCircles } from "@/lib/remote-content";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export default async function Home() {
-  const [circles, events] = await Promise.all([getCircles(), getEvents()]);
-  const nextEvents = upcomingEvents(events);
-  const isPublicActa = (title: string, url: string) => {
-    const text = `${title} ${url}`
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .toLowerCase();
-    return ![
-      "proteccio-de-dades",
-      "proteccio de dades",
-      "drets-imatge",
-      "drets d'imatge",
-      "drets imatge",
-      "totes les actes",
-    ].some((blocked) => text.includes(blocked));
-  };
-  const latestDocuments = circles
-    .flatMap((circle) =>
-      circle.documents
-        .filter((document) => isPublicActa(document.title, document.url))
-        .map((document) => ({
-          ...document,
-          circleName: circle.name,
-          circleSlug: circle.slug,
-        })),
-    )
-    .reverse()
-    .slice(0, 4);
+  const circles = await getCircles();
 
   return (
     <>
@@ -172,35 +143,6 @@ export default async function Home() {
             </p>
           </div>
         </aside>
-      </section>
-
-      <section className="upcoming section-shell">
-        <div className="section-heading">
-          <div><span className="eyebrow">Agenda oberta</span><h2>On ens trobem?</h2></div>
-          <Link className="text-link" href="/agenda">Veure tota l’agenda <ArrowIcon /></Link>
-        </div>
-        <div className="agenda-grid">
-          {nextEvents.slice(0, 3).map((event) => <EventCard key={event.id} event={event} />)}
-        </div>
-        {latestDocuments.length > 0 && (
-          <div className="latest-documents">
-            <div className="latest-documents-heading">
-              <span className="eyebrow">Últimes notícies</span>
-              <h3>Últimes actes penjades</h3>
-            </div>
-            <div className="latest-documents-list">
-              {latestDocuments.map((document) => (
-                <Link href={document.url} target="_blank" rel="noreferrer" key={`${document.circleSlug}-${document.url}`}>
-                  <span>
-                    <strong>{document.title}</strong>
-                    <small>{document.circleName}</small>
-                  </span>
-                  <span aria-hidden="true">↗</span>
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
       </section>
 
       <section className="closing-cta">
