@@ -13,6 +13,11 @@ export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://apleciltir.cat"),
   title: { default: siteTitle, template: `%s · ${siteTitle}` },
   description: siteDescription,
+  icons: {
+    icon: "/images/iltir-symbol.png",
+    shortcut: "/images/iltir-symbol.png",
+    apple: "/images/iltir-symbol.png",
+  },
   openGraph: {
     title: siteTitle,
     description: socialDescription,

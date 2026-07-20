@@ -3,6 +3,7 @@ import Image from "next/image";
 import { GovernanceMap } from "@/components/governance-map";
 import { ArrowIcon } from "@/components/icons";
 import { ManifestoSlider } from "@/components/manifesto-slider";
+import { SectorialsHome } from "@/components/sectorials-home";
 import { getCircles } from "@/lib/remote-content";
 
 export const dynamic = "force-dynamic";
@@ -113,6 +114,7 @@ export default async function Home() {
 
       <section className="architecture section-shell">
         <GovernanceMap circles={circles} />
+        <SectorialsHome circles={circles} />
       </section>
 
       <section className="closing-method">
