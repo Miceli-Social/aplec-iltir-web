@@ -2,7 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { GovernanceMap } from "@/components/governance-map";
 import { ArrowIcon } from "@/components/icons";
-import { GovernanceExplainer } from "@/components/governance-explainer";
 import { ManifestoSlider } from "@/components/manifesto-slider";
 import { SectorialsHome } from "@/components/sectorials-home";
 import { getCircles } from "@/lib/remote-content";
@@ -42,18 +41,18 @@ export default async function Home() {
         </div>
         <div className="hero-copy">
           <span className="eyebrow hero-places">CABANELLES · LLADÓ · NAVATA</span>
-          <h1>Tres pobles,<br />una xarxa viva.</h1>
+          <h1>I si fos possible construir el propi destí?</h1>
           <p className="hero-lead">
-            Ens organitzem des del territori per guanyar capacitat, autonomia i resiliència. La governança compartida és el camí i l’Aplec és la celebració del procés.
+            Tres municipis treballem per desenvolupar més sobirania, resiliència i subsidiarietat amb el lloc on habitem. La governança territorial és el camí i l’Aplec, la celebració del procés.
           </p>
           <div className="hero-actions">
-            <Link className="button button-primary" href="#arquitectura">Descobreix la xarxa <ArrowIcon /></Link>
+            <Link className="button button-primary" href="/governanca">Descobreix la governança <ArrowIcon /></Link>
             <Link className="text-link" href="/agenda">Veure les properes trobades <span>↗</span></Link>
           </div>
         </div>
       </section>
 
-      <section className="aplec-overview">
+      <section id="aplec" className="aplec-overview">
         <Link
           className="aplec-overview-main aplec-overview-link"
           href="/aplecs"
@@ -88,7 +87,7 @@ export default async function Home() {
           {[
             {
               number: "01",
-              title: "DEMOCRÀCIA",
+              title: "EVOLUCIÓ DEMOCRÀTICA",
               text: "Crear condicions perquè la comunitat pugui orientar, decidir i assumir responsabilitats sobre allò que afecta la vida del poble.",
             },
             {
@@ -113,45 +112,39 @@ export default async function Home() {
 
       <ManifestoSlider />
 
-      <section id="arquitectura" className="architecture section-shell">
-        <div className="section-heading architecture-heading">
-          <div><span className="eyebrow">Com ens organitzem</span><h2>Una estructura adaptativa per a una realitat complexa</h2></div>
-          <div className="architecture-summary">
-            <span>Una xarxa adaptativa</span>
-            <p>Cada poble treballa els seus propis reptes i es coordina amb els altres quan compartir informació o actuar plegats pot reforçar el procés.</p>
-          </div>
-        </div>
-        <GovernanceExplainer />
+      <section className="architecture section-shell">
         <GovernanceMap circles={circles} />
         <SectorialsHome circles={circles} />
       </section>
 
-      <section className="principles section-shell">
-        <div className="section-heading compact-heading">
-          <div><span className="eyebrow">La manera de fer</span><h2>Arrels locals,<br />mirada bioregional.</h2></div>
-        </div>
-        <aside className="word-origin">
-          <span className="word-origin-mark word-origin-symbol" aria-hidden="true">
-            <Image src="/images/iltir-symbol.png" alt="" width={900} height={897} />
-          </span>
-          <div>
-            <span className="eyebrow">D’on ve el nom?</span>
-            <h3>Iltiŕ, poble o comunitat.</h3>
-            <p>
-              Iltiŕ és una paraula d’origen iber. Segons la interpretació que
-              ens va compartir l’Institut d’Estudis Íbers, podria haver
-              significat «poble» o «comunitat»: una manera de posar al centre
-              les persones i el territori que compartim.
-            </p>
+      <section className="closing-method">
+        <div className="closing-method-inner">
+          <div className="section-heading compact-heading closing-method-heading">
+            <div>
+              <span className="eyebrow">La manera de fer</span>
+              <h2>
+                Arrels locals,
+                <br />
+                mirada bioregional.
+              </h2>
+            </div>
           </div>
-        </aside>
-      </section>
-
-      <section className="closing-cta">
-        <span className="eyebrow light">La xarxa creix quan hi entres</span>
-        <h2>Hi ha moltes maneres<br />de fer territori.</h2>
-        <p>Troba el cercle que et mou, consulta què s’hi està treballant i suma’t a la conversa.</p>
-        <Link className="button button-light" href="#arquitectura">Explora els cercles <ArrowIcon /></Link>
+          <aside className="word-origin closing-word-origin">
+            <span className="word-origin-mark word-origin-symbol" aria-hidden="true">
+              <Image src="/images/iltir-symbol.png" alt="" width={900} height={897} />
+            </span>
+            <div>
+              <span className="eyebrow">D’on ve el nom?</span>
+              <h3>Iltiŕ, poble o comunitat.</h3>
+              <p>
+                Iltiŕ és una paraula d’origen iber. Segons la interpretació que
+                ens va compartir l’Institut d’Estudis Íbers, podria haver
+                significat «poble» o «comunitat»: una manera de posar al centre
+                les persones i el territori que compartim.
+              </p>
+            </div>
+          </aside>
+        </div>
       </section>
     </>
   );
