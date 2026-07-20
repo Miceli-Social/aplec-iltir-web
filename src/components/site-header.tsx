@@ -23,9 +23,6 @@ export function SiteHeader() {
         />
       </Link>
       <nav aria-label="Navegació principal">
-        <Link href="/#arquitectura" className="nav-mobile-hidden">
-          Com ens organitzem
-        </Link>
         <details className="municipalities-menu">
           <summary>Municipis</summary>
           <div className="municipalities-list">
@@ -34,10 +31,9 @@ export function SiteHeader() {
             <Link href="/municipis/navata">Navata</Link>
           </div>
         </details>
-        <Link href="/agenda">Agenda</Link>
-        <Link href="/#relat" className="nav-mobile-hidden">
-          El projecte
-        </Link>
+        <Link href="/governanca">Governança</Link>
+        <Link href="/agenda">Agenda oberta</Link>
+        <Link href="/#aplec">Aplec</Link>
         <Link
           href="/aplecs"
           target="_blank"
