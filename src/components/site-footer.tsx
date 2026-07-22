@@ -72,6 +72,7 @@ export function SiteFooter() {
         <Link href="/agenda">Agenda</Link>
         <Link href="/credits">Crèdits</Link>
         <a href="mailto:contacte@iltir.cat">Contacte</a>
+        <Link href="/admin">Accés intern</Link>
       </nav>
       <section className="footer-partners" aria-label="Impulsat per">
         <div className="footer-partner-group footer-promoted">
