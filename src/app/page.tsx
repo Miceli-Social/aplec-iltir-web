@@ -75,8 +75,8 @@ export default async function Home() {
             </p>
             <span className="aplec-overview-cta">
               <span>
-                <strong>Descobreix l’Aplec 2026</strong>
-                <small>Dates, municipis i edicions anteriors</small>
+                <strong>Descobreix els Aplecs</strong>
+                <small>Vídeos 2023 · 2024 · 2025</small>
               </span>
               <ArrowIcon />
             </span>

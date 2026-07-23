@@ -480,15 +480,15 @@ a.event-card:hover { transform:translateY(-3px); box-shadow:var(--shadow); }
 .aplecs-current-card { position:relative; overflow:hidden; display:grid; grid-template-columns:minmax(0,1fr) minmax(360px,.8fr); gap:72px; padding:64px; border-radius:32px; background:linear-gradient(135deg,var(--ink) 0%,#174b3d 100%); color:white; box-shadow:0 24px 60px rgba(23,58,50,.18); isolation:isolate; }
 .aplecs-current-card::before { content:""; position:absolute; z-index:-1; width:360px; height:360px; right:-100px; top:-150px; border:1px solid rgba(251,248,239,.18); border-radius:44% 56% 63% 37%; transform:rotate(18deg); box-shadow:0 0 0 42px rgba(232,121,69,.08),0 0 0 84px rgba(251,248,239,.035); }
 .aplecs-current-heading { align-self:center; min-width:0; }
-.aplecs-current-label { display:inline-block; margin-bottom:18px; padding:8px 12px; border-radius:999px; background:var(--orange); color:var(--ink); font-size:.65rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; }
+.aplecs-current-label { display:inline-block; margin-bottom:18px; padding:10px 16px; border-radius:999px; background:var(--orange); color:var(--ink); font-size:clamp(.78rem,.85vw,.95rem); font-weight:800; letter-spacing:.14em; text-transform:uppercase; }
 .aplecs-current-heading h2 { margin:0 0 24px; color:var(--cream); font-size:clamp(3.2rem,5vw,5.6rem); line-height:.9; }
 .aplecs-current-heading p { max-width:620px; margin:0; color:rgba(255,255,255,.72); font-size:1rem; line-height:1.65; }
 .aplecs-current-details { min-width:0; align-self:stretch; display:flex; flex-direction:column; justify-content:center; padding:32px 0 32px 48px; border-left:1px solid rgba(251,248,239,.2); }
 .aplecs-current-date { display:flex; flex-direction:column; }
 .aplecs-current-date strong { color:var(--cream); font-family:var(--font-display); font-size:clamp(3.3rem,5.4vw,6rem); font-weight:500; line-height:.82; letter-spacing:-.055em; white-space:nowrap; }
-.aplecs-current-date span { margin-top:14px; color:var(--orange); font-size:.76rem; font-weight:800; letter-spacing:.15em; text-transform:uppercase; }
+.aplecs-current-date span { margin-top:16px; color:var(--orange); font-size:clamp(1rem,1.15vw,1.25rem); font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
 .aplecs-current-municipalities { margin:28px 0 0; color:var(--cream); font-family:var(--font-display); font-size:clamp(1.25rem,2vw,1.75rem); line-height:1.25; }
-.aplecs-current-note { margin:auto 0 0; padding-top:36px; color:rgba(255,255,255,.58); font-size:.75rem; line-height:1.5; }
+.aplecs-current-note { margin:auto 0 0; padding-top:36px; color:rgba(255,255,255,.72); font-size:clamp(.95rem,1vw,1.1rem); line-height:1.5; }
 .aplecs-archive { padding-top:76px; }
 .aplec-edition { display:grid; grid-template-columns:minmax(0,1.08fr) minmax(280px,.92fr); gap:52px; align-items:center; padding:48px 0; border-top:1px solid var(--line); }
 .aplec-edition:last-child { border-bottom:1px solid var(--line); }
