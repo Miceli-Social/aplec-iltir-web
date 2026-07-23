@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { ArrowIcon } from "@/components/icons";
 
 export const metadata: Metadata = {
-  title: "Reviu els Aplecs Iltiŕ",
+  title: "Els Aplecs Iltiŕ",
   description:
-    "Vídeos i informació de les edicions 2023, 2024 i 2025 de l’Aplec Iltiŕ.",
+    "Descobreix l’Aplec Iltiŕ 2026, que se celebrarà el 16, 17 i 18 d’octubre, i l’arxiu de les edicions anteriors.",
 };
 
 const editions = [
@@ -41,16 +41,54 @@ export default function AplecsPage() {
     <main className="aplecs-page">
       <header className="aplecs-hero">
         <div className="aplecs-hero-content">
-          <span className="eyebrow light">Edicions anteriors</span>
-          <h1>Reviu els Aplecs Iltiŕ</h1>
+          <span className="eyebrow light">Aplec Iltiŕ</span>
+          <h1>Els Aplecs Iltiŕ</h1>
           <p>
-            Tres edicions per tornar a veure com els pobles es troben,
-            comparteixen aprenentatges i celebren el territori.
+            Una trobada compartida perquè els pobles es trobin, generin
+            aprenentatges i celebrin el vincle amb el territori.
           </p>
         </div>
       </header>
 
-      <section className="aplecs-archive section-shell">
+      <section
+        className="aplecs-current-section section-shell"
+        aria-labelledby="aplecs-current-title"
+      >
+        <div className="aplecs-current-card">
+          <div className="aplecs-current-heading">
+            <span className="aplecs-current-label">Proper Aplec</span>
+            <h2 id="aplecs-current-title">Aplec Iltiŕ 2026</h2>
+            <p>
+              Tres dies per compartir les propostes treballades des dels pobles,
+              generar nous aprenentatges i celebrar el vincle amb el territori.
+            </p>
+          </div>
+          <div className="aplecs-current-details">
+            <div className="aplecs-current-date">
+              <strong>16 · 17 · 18</strong>
+              <span>octubre de 2026</span>
+            </div>
+            <p className="aplecs-current-municipalities">
+              Cabanelles · Navata · Lladó
+            </p>
+            <p className="aplecs-current-note">
+              Properament, més informació i programa complet.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section
+        className="aplecs-archive section-shell"
+        aria-labelledby="aplecs-archive-title"
+      >
+        <div className="section-heading">
+          <div>
+            <span className="eyebrow">Edicions anteriors</span>
+            <h2 id="aplecs-archive-title">Reviu els Aplecs Iltiŕ</h2>
+          </div>
+          <p>Vídeos i informació de les edicions 2025, 2024 i 2023.</p>
+        </div>
         {editions.map((edition) => {
           const params = new URLSearchParams({ rel: "0" });
           if (edition.start) {
