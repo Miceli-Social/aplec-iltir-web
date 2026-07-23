@@ -56,11 +56,20 @@ export default async function Home() {
         <Link
           className="aplec-overview-main aplec-overview-link"
           href="/aplecs"
-          aria-label="Descobreix els Aplecs Iltiŕ i mira els vídeos de les edicions anteriors"
+          aria-label="Descobreix l’Aplec Iltiŕ 2026 i les edicions anteriors"
         >
           <div className="aplec-overview-heading">
             <span className="eyebrow">Què és l’Aplec?</span>
             <h2>L’Aplec Iltiŕ</h2>
+            <div className="aplec-2026-highlight">
+              <span className="aplec-2026-label">Aplec Iltiŕ 2026</span>
+              <strong className="aplec-2026-date">
+                16, 17 i 18 d’octubre de 2026
+              </strong>
+              <span className="aplec-2026-location">
+                Als municipis de Cabanelles · Navata · Lladó
+              </span>
+            </div>
             <p>
               Una trobada per compartir les propostes de resiliència que es treballen des dels pobles, compartir aprenentatges, expressar el vincle amb el territori i celebrar la cultura arrelada al lloc.
             </p>
