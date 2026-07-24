@@ -1,7 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 
-type LogoVariant = "anigami" | "habitats" | "new-european-bauhaus";
+type LogoVariant =
+  | "anigami"
+  | "habitats"
+  | "new-european-bauhaus"
+  | "generalitat"
+  | "departament-cultura"
+  | "diputacio";
 
 type FooterLogoProps = {
   name: string;
@@ -63,25 +69,28 @@ const collaborators: FooterLogoProps[] = [
 
 const supporters: FooterLogoProps[] = [
   {
+    name: "New European Bauhaus",
+    logo: "/logos/footer/new-european-bauhaus-footer-corrected.png",
+    href: "https://new-european-bauhaus.europa.eu/index_en",
+    variant: "new-european-bauhaus",
+  },
+  {
     name: "Generalitat de Catalunya",
     logo: "/logos/support/generalitat-catalunya-footer-white.png",
     href: "https://web.gencat.cat/",
-  },
-  {
-    name: "Diputació de Girona",
-    logo: "/logos/support/diputacio-girona-footer-white.png",
-    href: "https://www.ddgi.cat/",
+    variant: "generalitat",
   },
   {
     name: "Departament de Cultura",
     logo: "/logos/support/departament-cultura-footer-white.png",
     href: "https://cultura.gencat.cat/",
+    variant: "departament-cultura",
   },
   {
-    name: "New European Bauhaus",
-    logo: "/logos/footer/new-european-bauhaus-footer-corrected.png",
-    href: "https://new-european-bauhaus.europa.eu/index_en",
-    variant: "new-european-bauhaus",
+    name: "Diputació de Girona",
+    logo: "/logos/support/diputacio-girona-footer-white.png",
+    href: "https://www.ddgi.cat/",
+    variant: "diputacio",
   },
 ];
 
