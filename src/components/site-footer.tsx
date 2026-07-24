@@ -155,7 +155,7 @@ export function SiteFooter() {
           </section>
 
           <section className="footer-entity-group footer-cooperatives">
-            <h2>Cooperatives que formen Miceli</h2>
+            <h2>Micelis que nodreixen l’Aplec Iltiŕ</h2>
             <div className="footer-cooperative-grid">
               {cooperatives.map((cooperative) => (
                 <FooterLogo key={cooperative.name} {...cooperative} />
