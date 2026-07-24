@@ -340,7 +340,7 @@ a.footer-entity:hover { opacity:.78; background:rgba(255,255,255,.04); }
 .footer-supporters .footer-entity-image { min-height:36px; }
 .footer-supporters .footer-entity-image img { max-width:130px; max-height:34px; filter:grayscale(1) brightness(1.9); opacity:.84; }
 .footer-supporters .footer-entity--new-european-bauhaus .footer-entity-image img { max-width:145px; max-height:36px; filter:none; opacity:1; }
-.footer-supporters .footer-entity--generalitat .footer-entity-image img { max-width:110px; max-height:28px; }
+.footer-supporters .footer-entity--generalitat .footer-entity-image img { max-width:94px; max-height:24px; }
 .footer-supporters .footer-entity--departament-cultura .footer-entity-image img { max-width:125px; max-height:28px; }
 .footer-supporters .footer-entity--diputacio .footer-entity-image img { max-width:90px; max-height:34px; }
 .inner-page { width:min(1240px, calc(100% - 48px)); margin:0 auto; padding:60px 0 120px; }
