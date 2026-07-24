@@ -64,17 +64,17 @@ const collaborators: FooterLogoProps[] = [
 const supporters: FooterLogoProps[] = [
   {
     name: "Generalitat de Catalunya",
-    logo: "/logos/support/generalitat.svg",
+    logo: "/logos/support/generalitat-catalunya-footer-white.png",
     href: "https://web.gencat.cat/",
   },
   {
     name: "Diputació de Girona",
-    logo: "/logos/support/diputacio-girona.svg",
+    logo: "/logos/support/diputacio-girona-footer-white.png",
     href: "https://www.ddgi.cat/",
   },
   {
     name: "Departament de Cultura",
-    logo: "/logos/support/departament-cultura.svg",
+    logo: "/logos/support/departament-cultura-footer-white.png",
     href: "https://cultura.gencat.cat/",
   },
   {
