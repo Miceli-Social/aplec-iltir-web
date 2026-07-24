@@ -1,33 +1,67 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const promotedBy = [
+type LogoVariant = "anigami" | "habitats" | "new-european-bauhaus";
+
+type FooterLogoProps = {
+  name: string;
+  logo: string;
+  href?: string;
+  variant?: LogoVariant;
+  showName?: boolean;
+};
+
+const cooperatives: FooterLogoProps[] = [
   {
-    name: "Miceli Social",
-    logo: "/logos/miceli.png",
-    href: "#",
+    name: "Resilience.Earth",
+    logo: "/logos/footer/resilience-earth-white.png",
+    href: "https://resilience.earth/",
+  },
+  {
+    name: "Anigami Experiències",
+    logo: "/logos/footer/anigami-dark.jpg",
+    href: "https://www.anigami.cat/",
+    variant: "anigami",
+  },
+  {
+    name: "Chapter #2",
+    logo: "/logos/footer/chapter2-white.png",
+    href: "https://www.chapter2.cat/",
+  },
+  {
+    name: "Hàbitats Col·lectius",
+    logo: "/logos/footer/habitats-collectius.png",
+    variant: "habitats",
+  },
+  {
+    name: "Mixité",
+    logo: "/logos/footer/mixite.png",
+    href: "https://www.mixite.cat/ca/portada/",
   },
 ];
 
-const collaborators = [
+const collaborators: FooterLogoProps[] = [
   {
     name: "Ajuntament de Navata",
     logo: "/logos/ajuntament-navata.png",
     href: "https://www.navata.cat/",
+    showName: true,
   },
   {
     name: "Ajuntament de Lladó",
     logo: "/logos/ajuntament-llado.png",
     href: "https://www.llado.cat/",
+    showName: true,
   },
   {
     name: "Ajuntament de Cabanelles",
     logo: "/logos/ajuntament-cabanelles.png",
     href: "https://www.cabanelles.cat/",
+    showName: true,
   },
 ];
 
-const supporters = [
+const supporters: FooterLogoProps[] = [
   {
     name: "Generalitat de Catalunya",
     logo: "/logos/support/generalitat.svg",
@@ -43,88 +77,114 @@ const supporters = [
     logo: "/logos/support/departament-cultura.svg",
     href: "https://cultura.gencat.cat/",
   },
+  {
+    name: "New European Bauhaus",
+    logo: "/logos/footer/new-european-bauhaus.png",
+    variant: "new-european-bauhaus",
+  },
 ];
+
+function FooterLogo({ name, logo, href, variant, showName = false }: FooterLogoProps) {
+  const className = ["footer-entity", variant && `footer-entity--${variant}`]
+    .filter(Boolean)
+    .join(" ");
+
+  const content = (
+    <>
+      <span className="footer-entity-image">
+        <Image src={logo} alt={name} width={260} height={120} />
+      </span>
+      {showName && <span className="footer-entity-name">{name}</span>}
+    </>
+  );
+
+  if (href) {
+    return (
+      <a className={className} href={href} target="_blank" rel="noopener noreferrer">
+        {content}
+      </a>
+    );
+  }
+
+  return <div className={className}>{content}</div>;
+}
 
 export function SiteFooter() {
   return (
     <footer className="site-footer">
-      <div className="footer-about">
-        <div className="footer-brand">
-          <Image
-            className="footer-logo"
-            src="/images/iltir-logo.png"
-            alt="Iltiŕ"
-            width={3090}
-            height={2699}
-          />
-          <Image
-            className="footer-symbol"
-            src="/images/iltir-symbol.png"
-            alt=""
-            width={900}
-            height={897}
-          />
+      <div className="footer-inner">
+        <div className="footer-top">
+          <div className="footer-about">
+            <div className="footer-brand">
+              <Image
+                className="footer-logo"
+                src="/images/iltir-logo.png"
+                alt="Iltiŕ"
+                width={3090}
+                height={2699}
+              />
+              <Image
+                className="footer-symbol"
+                src="/images/iltir-symbol.png"
+                alt=""
+                width={900}
+                height={897}
+              />
+            </div>
+            <p>
+              Un espai compartit per entendre què passa, participar i col·laborar des del territori.
+            </p>
+          </div>
+
+          <nav className="footer-links" aria-label="Peu de pàgina">
+            <Link href="/#arquitectura">Organització</Link>
+            <Link href="/agenda">Agenda</Link>
+            <Link href="/credits">Crèdits</Link>
+            <a href="mailto:contacte@iltir.cat">Contacte</a>
+            <Link href="/admin">Accés intern</Link>
+          </nav>
         </div>
-        <p>Un espai compartit per entendre què passa, participar i col·laborar des del territori.</p>
+
+        <div className="footer-entities">
+          <div className="footer-miceli-row">
+            <section className="footer-entity-group footer-promoted">
+              <h2>Impulsat per</h2>
+              <FooterLogo
+                name="Miceli"
+                logo="/logos/footer/miceli-white.png"
+                href="https://miceli.social/"
+              />
+            </section>
+
+            <section className="footer-entity-group footer-cooperatives">
+              <h2>Cooperatives que formen Miceli</h2>
+              <div className="footer-cooperative-grid">
+                {cooperatives.map((cooperative) => (
+                  <FooterLogo key={cooperative.name} {...cooperative} />
+                ))}
+              </div>
+            </section>
+          </div>
+
+          <section className="footer-entity-group footer-collaborators">
+            <h2>Amb la col·laboració de</h2>
+            <div className="footer-collaborator-grid">
+              {collaborators.map((collaborator) => (
+                <FooterLogo key={collaborator.name} {...collaborator} />
+              ))}
+            </div>
+          </section>
+
+          <section className="footer-entity-group footer-supporters">
+            <h2>Amb el suport de</h2>
+            <div className="footer-support-grid">
+              {supporters.map((supporter) => (
+                <FooterLogo key={supporter.name} {...supporter} />
+              ))}
+            </div>
+          </section>
+        </div>
       </div>
-      <nav className="footer-links" aria-label="Peu de pàgina">
-        <Link href="/#arquitectura">Organització</Link>
-        <Link href="/agenda">Agenda</Link>
-        <Link href="/credits">Crèdits</Link>
-        <a href="mailto:contacte@iltir.cat">Contacte</a>
-        <Link href="/admin">Accés intern</Link>
-      </nav>
-      <section className="footer-partners" aria-label="Impulsat per">
-        <div className="footer-partner-group footer-promoted">
-          <span>Impulsat per</span>
-          {promotedBy.map((partner) => (
-            <a
-              className="partner-logo"
-              href={partner.href}
-              target={partner.href === "#" ? undefined : "_blank"}
-              rel={partner.href === "#" ? undefined : "noreferrer"}
-              key={partner.name}
-              aria-label={partner.name}
-            >
-              <Image src={partner.logo} alt={partner.name} width={220} height={120} />
-            </a>
-          ))}
-        </div>
-        <div className="footer-partner-group footer-collaborators">
-          <span>Amb la col·laboració de</span>
-          <div>
-            {collaborators.map((partner) => (
-              <a
-                className="partner-logo"
-                href={partner.href}
-                target="_blank"
-                rel="noreferrer"
-                key={partner.name}
-                aria-label={partner.name}
-              >
-                <Image src={partner.logo} alt={partner.name} width={180} height={110} />
-              </a>
-            ))}
-          </div>
-        </div>
-        <div className="footer-partner-group footer-supporters">
-          <span>Amb el suport de</span>
-          <div>
-            {supporters.map((partner) => (
-              <a
-                className="partner-logo"
-                href={partner.href}
-                target="_blank"
-                rel="noreferrer"
-                key={partner.name}
-                aria-label={partner.name}
-              >
-                <Image src={partner.logo} alt={partner.name} width={260} height={90} />
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
     </footer>
   );
 }
