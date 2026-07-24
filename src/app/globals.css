@@ -302,10 +302,9 @@ a.event-card:hover { transform:translateY(-3px); box-shadow:var(--shadow); }
 .closing-method-heading .eyebrow { color:rgba(23,58,50,.72); }
 .closing-method-heading h2 { margin:0; max-width:620px; }
 .closing-word-origin { margin:0; background:rgba(251,248,239,.82); border:1px solid rgba(23,58,50,.12); box-shadow:0 18px 45px rgba(38,54,43,.12); }
-.site-footer { background:#102e28; color:white; padding:64px 24px 72px; overflow:hidden; }
-.footer-inner { width:min(1400px,100%); margin:0 auto; }
-.footer-top { display:grid; grid-template-columns:minmax(260px,1fr) minmax(180px,.42fr); gap:64px; align-items:start; padding-bottom:52px; }
-.footer-about { max-width:430px; }
+.site-footer { background:#102e28; color:white; padding:48px 24px; overflow:hidden; }
+.footer-inner { width:min(1400px,100%); margin:0 auto; display:grid; grid-template-columns:minmax(240px,.8fr) minmax(140px,.38fr) minmax(540px,1.7fr); gap:40px; align-items:start; }
+.footer-about { max-width:360px; }
 .footer-brand { display:flex; align-items:center; gap:10px; min-height:58px; margin-bottom:18px; }
 .footer-logo { display:block; width:76px; height:66px; object-fit:contain; filter:invert(1) brightness(2); }
 .footer-symbol { display:block; width:38px; height:38px; object-fit:contain; filter:invert(1) brightness(2); opacity:.8; }
@@ -314,35 +313,33 @@ a.event-card:hover { transform:translateY(-3px); box-shadow:var(--shadow); }
 .footer-links a { color:rgba(255,255,255,.74); width:max-content; max-width:100%; border-bottom:1px solid transparent; padding-bottom:3px; }
 .footer-links a:hover { color:white; border-color:rgba(255,255,255,.5); }
 .footer-links a:focus-visible, .footer-entity:focus-visible { outline:2px solid var(--lime); outline-offset:5px; border-radius:4px; }
-.footer-entities { border-top:1px solid rgba(255,255,255,.16); }
-.footer-miceli-row { display:grid; grid-template-columns:minmax(190px,.34fr) minmax(0,1fr); gap:56px; padding:44px 0; }
+.footer-entities { min-width:0; display:grid; gap:16px; }
 .footer-entity-group { min-width:0; }
-.footer-entity-group h2 { margin:0 0 22px; color:rgba(255,255,255,.58); font-family:var(--font-sans); font-size:.64rem; font-weight:700; line-height:1.4; letter-spacing:.14em; text-transform:uppercase; }
-.footer-collaborators, .footer-supporters { border-top:1px solid rgba(255,255,255,.12); padding:44px 0; }
-.footer-supporters { padding-bottom:0; }
-.footer-cooperative-grid { display:grid; grid-template-columns:repeat(5,minmax(120px,1fr)); gap:18px; }
-.footer-collaborator-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; max-width:900px; }
-.footer-support-grid { display:flex; flex-wrap:wrap; align-items:stretch; gap:20px; }
-.footer-entity { min-width:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:13px; color:white; }
-a.footer-entity { padding:8px; transition:opacity .2s, background-color .2s; }
+.footer-entity-group + .footer-entity-group { border-top:1px solid rgba(255,255,255,.12); padding-top:16px; }
+.footer-entity-group h2 { margin:0 0 10px; color:rgba(255,255,255,.58); font-family:var(--font-sans); font-size:.62rem; font-weight:700; line-height:1.4; letter-spacing:.14em; text-transform:uppercase; }
+.footer-cooperative-grid { display:grid; grid-template-columns:repeat(5,minmax(76px,1fr)); gap:10px; }
+.footer-collaborator-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; max-width:560px; }
+.footer-support-grid { display:flex; flex-wrap:wrap; align-items:center; gap:10px 16px; }
+.footer-entity { min-width:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; color:white; }
+a.footer-entity { padding:4px; transition:opacity .2s, background-color .2s; }
 a.footer-entity:hover { opacity:.78; background:rgba(255,255,255,.04); }
-.footer-entity-image { width:100%; min-height:76px; display:grid; place-items:center; }
-.footer-entity-image img { display:block; width:auto; height:auto; max-width:100%; max-height:64px; object-fit:contain; }
-.footer-promoted .footer-entity { align-items:flex-start; width:min(190px,100%); }
-.footer-promoted .footer-entity-image { justify-items:start; min-height:76px; }
-.footer-promoted .footer-entity-image img { max-width:180px; max-height:68px; }
-.footer-cooperatives .footer-entity { min-height:104px; }
+.footer-entity-image { width:100%; min-height:42px; display:grid; place-items:center; }
+.footer-entity-image img { display:block; width:auto; height:auto; max-width:100%; max-height:40px; object-fit:contain; }
+.footer-promoted .footer-entity { align-items:flex-start; width:min(150px,100%); }
+.footer-promoted .footer-entity-image { justify-items:start; min-height:46px; }
+.footer-promoted .footer-entity-image img { max-width:145px; max-height:44px; }
+.footer-cooperatives .footer-entity { min-height:48px; }
+.footer-cooperatives .footer-entity-image img { max-height:38px; }
 .footer-entity--anigami .footer-entity-image img { mix-blend-mode:screen; }
 .footer-entity--habitats .footer-entity-image img { filter:invert(1) grayscale(1) brightness(1.7); mix-blend-mode:screen; }
-.footer-collaborators .footer-entity { min-height:150px; padding:16px; text-align:center; }
-.footer-collaborators .footer-entity-image { min-height:76px; }
-.footer-collaborators .footer-entity-image img { max-width:150px; max-height:70px; filter:grayscale(1) brightness(1.9); opacity:.86; }
-.footer-entity-name { max-width:100%; color:rgba(255,255,255,.86); font-size:.78rem; line-height:1.4; overflow-wrap:anywhere; }
-.footer-supporters .footer-entity { min-width:190px; min-height:94px; padding:12px; }
-.footer-supporters .footer-entity-image { min-height:64px; }
-.footer-supporters .footer-entity-image img { max-width:190px; max-height:54px; filter:grayscale(1) brightness(1.9); opacity:.84; }
-.footer-entity--new-european-bauhaus { background:var(--cream); border-radius:10px; padding:8px 12px; }
-.footer-supporters .footer-entity--new-european-bauhaus .footer-entity-image img { max-width:210px; max-height:62px; filter:none; opacity:1; }
+.footer-collaborators .footer-entity { min-height:70px; padding:5px; text-align:center; }
+.footer-collaborators .footer-entity-image { min-height:42px; }
+.footer-collaborators .footer-entity-image img { max-width:105px; max-height:40px; filter:grayscale(1) brightness(1.9); opacity:.86; }
+.footer-entity-name { max-width:100%; color:rgba(255,255,255,.86); font-size:.62rem; line-height:1.3; overflow-wrap:anywhere; }
+.footer-supporters .footer-entity { flex:0 1 130px; min-height:40px; padding:4px; }
+.footer-supporters .footer-entity-image { min-height:36px; }
+.footer-supporters .footer-entity-image img { max-width:130px; max-height:34px; filter:grayscale(1) brightness(1.9); opacity:.84; }
+.footer-supporters .footer-entity--new-european-bauhaus .footer-entity-image img { max-width:145px; max-height:38px; filter:none; opacity:1; }
 .inner-page { width:min(1240px, calc(100% - 48px)); margin:0 auto; padding:60px 0 120px; }
 .page-intro { padding:85px 0 100px; max-width:950px; }
 .page-intro h1, .circle-hero h1 { font-size:clamp(4.5rem,9vw,9rem); line-height:.86; margin-bottom:35px; }
@@ -563,10 +560,11 @@ a.footer-entity:hover { opacity:.78; background:rgba(255,255,255,.04); }
   .aplecs-current-details { padding:36px 0 0; border-left:0; border-top:1px solid rgba(251,248,239,.2); }
   .aplecs-current-note { margin-top:36px; }
   .closing-method-inner { grid-template-columns:1fr; gap:36px; }
-  .footer-top { grid-template-columns:1fr; gap:32px; }
-  .footer-miceli-row { grid-template-columns:1fr; gap:38px; }
-  .footer-cooperative-grid { grid-template-columns:repeat(3,minmax(120px,1fr)); }
-  .footer-collaborator-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .footer-inner { grid-template-columns:minmax(240px,.65fr) minmax(0,1.35fr); gap:36px; }
+  .footer-about, .footer-links { grid-column:1; }
+  .footer-links { margin-top:-16px; }
+  .footer-entities { grid-column:2; grid-row:1 / span 2; }
+  .footer-cooperative-grid { grid-template-columns:repeat(3,minmax(76px,1fr)); }
 }
 
 @media (max-width: 720px) {
@@ -667,17 +665,14 @@ a.footer-entity:hover { opacity:.78; background:rgba(255,255,255,.04); }
   .closing-method-inner { gap:28px; }
   .closing-method-heading h2 { font-size:3.2rem; }
   .closing-word-origin { padding:28px 22px; grid-template-columns:1fr; gap:20px; }
-  .site-footer { padding:54px 16px 60px; }
-  .footer-top { padding-bottom:40px; }
-  .footer-links { flex-direction:column; }
-  .footer-miceli-row, .footer-collaborators, .footer-supporters { padding:36px 0; }
-  .footer-supporters { padding-bottom:0; }
+  .site-footer { padding:42px 16px; }
+  .footer-inner { grid-template-columns:1fr; gap:28px; }
+  .footer-about, .footer-links, .footer-entities { grid-column:1; grid-row:auto; }
+  .footer-links { margin-top:0; flex-direction:column; }
   .footer-cooperative-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
-  .footer-collaborator-grid { grid-template-columns:1fr; gap:12px; }
-  .footer-collaborators .footer-entity { min-height:140px; }
+  .footer-collaborator-grid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; }
   .footer-support-grid { gap:12px; }
-  .footer-supporters .footer-entity { flex:1 1 160px; min-width:0; }
-  .footer-entity--new-european-bauhaus { flex-basis:220px; }
+  .footer-supporters .footer-entity { flex:1 1 110px; min-width:0; }
   .aplecs-hero { width:calc(100% - 32px); min-height:420px; margin-top:22px; border-radius:24px; }
   .aplecs-hero-content { padding:36px 24px; }
   .aplecs-hero h1 { font-size:3.55rem; }

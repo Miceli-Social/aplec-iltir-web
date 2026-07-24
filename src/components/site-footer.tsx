@@ -35,7 +35,7 @@ const cooperatives: FooterLogoProps[] = [
   },
   {
     name: "Mixité",
-    logo: "/logos/footer/mixite.png",
+    logo: "/logos/footer/mixite-footer-white.png",
     href: "https://www.mixite.cat/ca/portada/",
   },
 ];
@@ -79,7 +79,8 @@ const supporters: FooterLogoProps[] = [
   },
   {
     name: "New European Bauhaus",
-    logo: "/logos/footer/new-european-bauhaus.png",
+    logo: "/logos/footer/new-european-bauhaus-footer-corrected.png",
+    href: "https://new-european-bauhaus.europa.eu/index_en",
     variant: "new-european-bauhaus",
   },
 ];
@@ -113,58 +114,54 @@ export function SiteFooter() {
   return (
     <footer className="site-footer">
       <div className="footer-inner">
-        <div className="footer-top">
-          <div className="footer-about">
-            <div className="footer-brand">
-              <Image
-                className="footer-logo"
-                src="/images/iltir-logo.png"
-                alt="Iltiŕ"
-                width={3090}
-                height={2699}
-              />
-              <Image
-                className="footer-symbol"
-                src="/images/iltir-symbol.png"
-                alt=""
-                width={900}
-                height={897}
-              />
-            </div>
-            <p>
-              Un espai compartit per entendre què passa, participar i col·laborar des del territori.
-            </p>
+        <div className="footer-about">
+          <div className="footer-brand">
+            <Image
+              className="footer-logo"
+              src="/images/iltir-logo.png"
+              alt="Iltiŕ"
+              width={3090}
+              height={2699}
+            />
+            <Image
+              className="footer-symbol"
+              src="/images/iltir-symbol.png"
+              alt=""
+              width={900}
+              height={897}
+            />
           </div>
-
-          <nav className="footer-links" aria-label="Peu de pàgina">
-            <Link href="/#arquitectura">Organització</Link>
-            <Link href="/agenda">Agenda</Link>
-            <Link href="/credits">Crèdits</Link>
-            <a href="mailto:contacte@iltir.cat">Contacte</a>
-            <Link href="/admin">Accés intern</Link>
-          </nav>
+          <p>
+            Un espai compartit per entendre què passa, participar i col·laborar des del territori.
+          </p>
         </div>
 
-        <div className="footer-entities">
-          <div className="footer-miceli-row">
-            <section className="footer-entity-group footer-promoted">
-              <h2>Impulsat per</h2>
-              <FooterLogo
-                name="Miceli"
-                logo="/logos/footer/miceli-white.png"
-                href="https://miceli.social/"
-              />
-            </section>
+        <nav className="footer-links" aria-label="Peu de pàgina">
+          <Link href="/#arquitectura">Organització</Link>
+          <Link href="/agenda">Agenda</Link>
+          <Link href="/credits">Crèdits</Link>
+          <a href="mailto:contacte@iltir.cat">Contacte</a>
+          <Link href="/admin">Accés intern</Link>
+        </nav>
 
-            <section className="footer-entity-group footer-cooperatives">
-              <h2>Cooperatives que formen Miceli</h2>
-              <div className="footer-cooperative-grid">
-                {cooperatives.map((cooperative) => (
-                  <FooterLogo key={cooperative.name} {...cooperative} />
-                ))}
-              </div>
-            </section>
-          </div>
+        <div className="footer-entities">
+          <section className="footer-entity-group footer-promoted">
+            <h2>Impulsat per</h2>
+            <FooterLogo
+              name="Miceli"
+              logo="/logos/footer/miceli-white.png"
+              href="https://miceli.social/"
+            />
+          </section>
+
+          <section className="footer-entity-group footer-cooperatives">
+            <h2>Cooperatives que formen Miceli</h2>
+            <div className="footer-cooperative-grid">
+              {cooperatives.map((cooperative) => (
+                <FooterLogo key={cooperative.name} {...cooperative} />
+              ))}
+            </div>
+          </section>
 
           <section className="footer-entity-group footer-collaborators">
             <h2>Amb la col·laboració de</h2>
