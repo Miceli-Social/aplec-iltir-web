@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { CookieSettingsButton } from "@/components/cookie-settings-button";
 
 type LogoVariant =
   | "anigami"
@@ -166,7 +167,9 @@ export function SiteFooter() {
           <Link href="/#arquitectura">Organització</Link>
           <Link href="/agenda">Agenda</Link>
           <Link href="/credits">Crèdits</Link>
-          <a href="mailto:contacte@iltir.cat">Contacte</a>
+          <Link href="/cookies">Política de cookies</Link>
+          <CookieSettingsButton className="cookie-footer-button" />
+          <a href="mailto:info@miceli.social">Contacte</a>
           <Link href="/admin">Accés intern</Link>
         </nav>
 

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ArrowIcon } from "@/components/icons";
+import { ConsentYoutubeEmbed } from "@/components/consent-youtube-embed";
 
 export const metadata: Metadata = {
   title: "Els Aplecs Iltiŕ",
@@ -90,21 +91,13 @@ export default function AplecsPage() {
           <p>Vídeos i informació de les edicions 2025, 2024 i 2023.</p>
         </div>
         {editions.map((edition) => {
-          const params = new URLSearchParams({ rel: "0" });
-          if (edition.start) {
-            params.set("start", String(edition.start));
-          }
-
           return (
             <article className="aplec-edition" id={edition.id} key={edition.id}>
               <div className="aplec-video-frame">
-                <iframe
-                  src={`https://www.youtube-nocookie.com/embed/${edition.youtubeId}?${params.toString()}`}
+                <ConsentYoutubeEmbed
+                  videoId={edition.youtubeId}
                   title={edition.title}
-                  loading="lazy"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  allowFullScreen
+                  start={edition.start}
                 />
               </div>
               <div className="aplec-edition-copy">
