@@ -342,6 +342,8 @@ a.footer-entity:hover { opacity:.78; background:rgba(255,255,255,.04); }
 .footer-supporters .footer-entity--new-european-bauhaus .footer-entity-image img { max-width:145px; max-height:36px; filter:none; opacity:1; }
 .footer-supporters .footer-entity--generalitat .footer-entity-image img { max-width:94px; max-height:24px; }
 .footer-supporters .footer-entity--departament-cultura .footer-entity-image img { max-width:125px; max-height:28px; }
+.footer-supporters .footer-entity--departament-empresa-treball .footer-entity-image img { max-width:135px; max-height:24px; filter:none; opacity:1; }
+.footer-supporters .footer-entity--escola-administracio-publica .footer-entity-image img { max-width:135px; max-height:26px; filter:none; opacity:1; }
 .footer-supporters .footer-entity--diputacio .footer-entity-image img { max-width:90px; max-height:34px; }
 .inner-page { width:min(1240px, calc(100% - 48px)); margin:0 auto; padding:60px 0 120px; }
 .page-intro { padding:85px 0 100px; max-width:950px; }

@@ -7,6 +7,8 @@ type LogoVariant =
   | "new-european-bauhaus"
   | "generalitat"
   | "departament-cultura"
+  | "departament-empresa-treball"
+  | "escola-administracio-publica"
   | "diputacio";
 
 type FooterLogoProps = {
@@ -85,6 +87,18 @@ const supporters: FooterLogoProps[] = [
     logo: "/logos/support/departament-cultura-footer-white.png",
     href: "https://cultura.gencat.cat/",
     variant: "departament-cultura",
+  },
+  {
+    name: "Departament d’Empresa i Treball",
+    logo: "/logos/support/departament-empresa-treball-footer-white.png",
+    href: "https://empresa.gencat.cat/ca/inici",
+    variant: "departament-empresa-treball",
+  },
+  {
+    name: "Escola d’Administració Pública de Catalunya",
+    logo: "/logos/support/escola-administracio-publica-footer-white.png",
+    href: "https://eapc.gencat.cat/ca/escola",
+    variant: "escola-administracio-publica",
   },
   {
     name: "Diputació de Girona",
