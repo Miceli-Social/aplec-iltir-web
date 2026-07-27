@@ -69,7 +69,7 @@ const collaborators: FooterLogoProps[] = [
   },
 ];
 
-const supporters: FooterLogoProps[] = [
+const primarySupporters: FooterLogoProps[] = [
   {
     name: "New European Bauhaus",
     logo: "/logos/footer/new-european-bauhaus-footer-corrected.png",
@@ -89,6 +89,15 @@ const supporters: FooterLogoProps[] = [
     variant: "departament-cultura",
   },
   {
+    name: "Diputació de Girona",
+    logo: "/logos/support/diputacio-girona-footer-white.png",
+    href: "https://www.ddgi.cat/",
+    variant: "diputacio",
+  },
+];
+
+const secondarySupporters: FooterLogoProps[] = [
+  {
     name: "Departament d’Empresa i Treball",
     logo: "/logos/support/departament-empresa-treball-footer-white.png",
     href: "https://empresa.gencat.cat/ca/inici",
@@ -99,12 +108,6 @@ const supporters: FooterLogoProps[] = [
     logo: "/logos/support/escola-administracio-publica-footer-white.png",
     href: "https://eapc.gencat.cat/ca/escola",
     variant: "escola-administracio-publica",
-  },
-  {
-    name: "Diputació de Girona",
-    logo: "/logos/support/diputacio-girona-footer-white.png",
-    href: "https://www.ddgi.cat/",
-    variant: "diputacio",
   },
 ];
 
@@ -198,9 +201,17 @@ export function SiteFooter() {
           <section className="footer-entity-group footer-supporters">
             <h2>Amb el suport de</h2>
             <div className="footer-support-grid">
-              {supporters.map((supporter) => (
-                <FooterLogo key={supporter.name} {...supporter} />
-              ))}
+              <div className="footer-support-row footer-support-row--primary">
+                {primarySupporters.map((supporter) => (
+                  <FooterLogo key={supporter.name} {...supporter} />
+                ))}
+              </div>
+
+              <div className="footer-support-row footer-support-row--secondary">
+                {secondarySupporters.map((supporter) => (
+                  <FooterLogo key={supporter.name} {...supporter} />
+                ))}
+              </div>
             </div>
           </section>
         </div>
