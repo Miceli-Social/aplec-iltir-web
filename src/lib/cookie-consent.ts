@@ -16,7 +16,7 @@ export type CookieConsentSelection = Pick<
   "analytics" | "externalMedia"
 >;
 
-const isValidDate = (value: unknown) =>
+const isValidDate = (value: unknown): value is string =>
   typeof value === "string" && !Number.isNaN(Date.parse(value));
 
 export function readCookieConsent(): CookieConsentPreferences | null {
