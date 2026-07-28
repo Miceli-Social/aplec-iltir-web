@@ -10,7 +10,7 @@ import {
 
 declare global {
   interface Window {
-    dataLayer?: unknown[][];
+    dataLayer?: unknown[];
     gtag?: (...args: unknown[]) => void;
     [key: `ga-disable-${string}`]: boolean | undefined;
   }
@@ -85,8 +85,8 @@ export function GoogleAnalytics() {
 
     window[disableKey] = false;
     window.dataLayer = window.dataLayer || [];
-    window.gtag = window.gtag || function gtag(...args: unknown[]) {
-      window.dataLayer?.push(args);
+    window.gtag = window.gtag || function gtag() {
+      window.dataLayer?.push(arguments);
     };
     window.gtag("consent", "default", {
       ad_storage: "denied",
