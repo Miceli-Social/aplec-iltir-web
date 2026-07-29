@@ -5,10 +5,8 @@ import { CookieSettingsButton } from "@/components/cookie-settings-button";
 type LogoVariant =
   | "anigami"
   | "habitats"
-  | "new-european-bauhaus"
+  | "eu-cofunded"
   | "generalitat"
-  | "departament-cultura"
-  | "departament-empresa-treball"
   | "escola-administracio-publica"
   | "diputacio";
 
@@ -70,39 +68,26 @@ const collaborators: FooterLogoProps[] = [
   },
 ];
 
-const primarySupporters: FooterLogoProps[] = [
-  {
-    name: "New European Bauhaus",
-    logo: "/logos/footer/new-european-bauhaus-footer-corrected.png",
-    href: "https://new-european-bauhaus.europa.eu/index_en",
-    variant: "new-european-bauhaus",
-  },
-  {
-    name: "Generalitat de Catalunya",
-    logo: "/logos/support/generalitat-catalunya-footer-white.png",
-    href: "https://web.gencat.cat/",
-    variant: "generalitat",
-  },
-  {
-    name: "Departament de Cultura",
-    logo: "/logos/support/departament-cultura-footer-white.png",
-    href: "https://cultura.gencat.cat/",
-    variant: "departament-cultura",
-  },
+const europeanSupporter: FooterLogoProps = {
+  name: "Cofinançat per la Unió Europea",
+  logo: "/logos/support/eu-cofunded-footer.png",
+  href: "https://new-european-bauhaus.europa.eu/index_en",
+  variant: "eu-cofunded",
+};
+
+const generalitatSupporter: FooterLogoProps = {
+  name: "Generalitat de Catalunya",
+  logo: "/logos/support/generalitat-catalunya-footer-white.png",
+  href: "https://web.gencat.cat/",
+  variant: "generalitat",
+};
+
+const sharedSupporters: FooterLogoProps[] = [
   {
     name: "Diputació de Girona",
     logo: "/logos/support/diputacio-girona-footer-white.png",
     href: "https://www.ddgi.cat/",
     variant: "diputacio",
-  },
-];
-
-const secondarySupporters: FooterLogoProps[] = [
-  {
-    name: "Departament d’Empresa i Treball",
-    logo: "/logos/support/departament-empresa-treball-footer-white.png",
-    href: "https://empresa.gencat.cat/ca/inici",
-    variant: "departament-empresa-treball",
   },
   {
     name: "Escola d’Administració Pública de Catalunya",
@@ -201,19 +186,25 @@ export function SiteFooter() {
             </div>
           </section>
 
-          <section className="footer-entity-group footer-supporters">
-            <h2>Amb el suport de</h2>
+          <section className="footer-entity-group footer-supporters" aria-label="Suports institucionals">
             <div className="footer-support-grid">
-              <div className="footer-support-row footer-support-row--primary">
-                {primarySupporters.map((supporter) => (
-                  <FooterLogo key={supporter.name} {...supporter} />
-                ))}
+              <div className="footer-support-block footer-support-block--eu">
+                <p>Cofinançat per la Unió Europea</p>
+                <FooterLogo {...europeanSupporter} />
               </div>
 
-              <div className="footer-support-row footer-support-row--secondary">
-                {secondarySupporters.map((supporter) => (
-                  <FooterLogo key={supporter.name} {...supporter} />
-                ))}
+              <div className="footer-support-block footer-support-block--generalitat">
+                <p>Amb el suport de la Generalitat de Catalunya</p>
+                <FooterLogo {...generalitatSupporter} />
+              </div>
+
+              <div className="footer-support-block footer-support-block--shared">
+                <p>Amb el suport de</p>
+                <div className="footer-support-logos">
+                  {sharedSupporters.map((supporter) => (
+                    <FooterLogo key={supporter.name} {...supporter} />
+                  ))}
+                </div>
               </div>
             </div>
           </section>
