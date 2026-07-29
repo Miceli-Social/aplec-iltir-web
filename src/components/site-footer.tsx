@@ -49,6 +49,12 @@ const cooperatives: FooterLogoProps[] = [
 
 const collaborators: FooterLogoProps[] = [
   {
+    name: "Ajuntament de Cabanelles",
+    logo: "/logos/ajuntament-cabanelles.png",
+    href: "https://www.cabanelles.cat/",
+    showName: true,
+  },
+  {
     name: "Ajuntament de Navata",
     logo: "/logos/ajuntament-navata.png",
     href: "https://www.navata.cat/",
@@ -58,12 +64,6 @@ const collaborators: FooterLogoProps[] = [
     name: "Ajuntament de Lladó",
     logo: "/logos/ajuntament-llado.png",
     href: "https://www.llado.cat/",
-    showName: true,
-  },
-  {
-    name: "Ajuntament de Cabanelles",
-    logo: "/logos/ajuntament-cabanelles.png",
-    href: "https://www.cabanelles.cat/",
     showName: true,
   },
 ];
@@ -160,7 +160,7 @@ export function SiteFooter() {
 
         <div className="footer-entities">
           <section className="footer-entity-group footer-promoted">
-            <h2>Impulsat per</h2>
+            <h2>Impulsat per Miceli i els consells de poble de Cabanelles, Navata i Lladó</h2>
             <FooterLogo
               name="Miceli"
               logo="/logos/footer/miceli-white.png"
