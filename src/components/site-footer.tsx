@@ -160,7 +160,7 @@ export function SiteFooter() {
 
         <div className="footer-entities">
           <section className="footer-entity-group footer-promoted">
-            <h2>Impulsat per</h2>
+            <h2>Impulsat per Miceli i els consells de poble de Cabanelles, Navata i Lladó</h2>
             <FooterLogo
               name="Miceli"
               logo="/logos/footer/miceli-white.png"
