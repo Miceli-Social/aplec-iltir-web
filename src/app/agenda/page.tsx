@@ -51,12 +51,6 @@ export default async function AgendaPage() {
 
       <AgendaFilter events={events} />
 
-      {!process.env.GOOGLE_CALENDAR_ICS_URL && (
-        <p className="demo-note">
-          Agenda de mostra. Connecteu `GOOGLE_CALENDAR_ICS_URL` per publicar les dates reals.
-        </p>
-      )}
-
       {latestDocuments.length > 0 && (
         <section className="latest-documents">
           <div className="latest-documents-heading">
