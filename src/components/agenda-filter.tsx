@@ -2,14 +2,15 @@
 
 import { useMemo, useState } from "react";
 import { EventCard } from "@/components/event-card";
+import { MonthlyCalendar } from "@/components/monthly-calendar";
 import { pastEvents, upcomingEvents } from "@/lib/event-utils";
 import type { CalendarEvent } from "@/lib/types";
 
 const filters = [
   ["tots", "Tot"],
   ["cabanelles", "Cabanelles"],
-  ["llado", "Lladó"],
   ["navata", "Navata"],
+  ["llado", "Lladó"],
   ["sectorial", "Sectorials"],
 ] as const;
 
@@ -29,6 +30,8 @@ export function AgendaFilter({ events }: { events: CalendarEvent[] }) {
           <button key={value} className={filter === value ? "active" : ""} onClick={() => setFilter(value)}>{label}</button>
         ))}
       </div>
+
+      <MonthlyCalendar events={visible} />
 
       <section className="agenda-block">
         <div className="section-heading compact-heading">
