@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { GovernanceExplainer } from "@/components/governance-explainer";
 import { GovernanceMap } from "@/components/governance-map";
+import { SectorialsHome } from "@/components/sectorials-home";
 import { getCircles } from "@/lib/remote-content";
 
 export const metadata: Metadata = {
@@ -32,6 +33,7 @@ export default async function GovernancePage() {
 
       <GovernanceExplainer />
       <GovernanceMap circles={circles} />
+      <SectorialsHome circles={circles} />
     </main>
   );
 }
