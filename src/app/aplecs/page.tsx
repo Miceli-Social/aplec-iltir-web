@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { ArrowIcon } from "@/components/icons";
 import { ConsentYoutubeEmbed } from "@/components/consent-youtube-embed";
 
@@ -75,6 +76,10 @@ export default function AplecsPage() {
             <p className="aplecs-current-note">
               Properament, més informació i programa complet.
             </p>
+            <Link className="button button-light aplecs-current-link" href="/aplecs/2026">
+              Descobreix l’Aplec 2026
+              <ArrowIcon />
+            </Link>
           </div>
         </div>
       </section>

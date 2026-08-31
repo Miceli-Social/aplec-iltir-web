@@ -55,8 +55,8 @@ export default async function Home() {
       <section id="aplec" className="aplec-overview">
         <Link
           className="aplec-overview-main aplec-overview-link"
-          href="/aplecs"
-          aria-label="Descobreix l’Aplec Iltiŕ 2026 i les edicions anteriors"
+          href="/aplecs/2026"
+          aria-label="Descobreix l’Aplec Iltiŕ 2026"
         >
           <div className="aplec-overview-heading">
             <span className="eyebrow">Què és l’Aplec?</span>
@@ -75,8 +75,8 @@ export default async function Home() {
             </p>
             <span className="aplec-overview-cta">
               <span>
-                <strong>Descobreix els Aplecs</strong>
-                <small>Vídeos 2023 · 2024 · 2025</small>
+                <strong>Descobreix l’Aplec 2026</strong>
+                <small>16 · 17 · 18 d’octubre</small>
               </span>
               <ArrowIcon />
             </span>
