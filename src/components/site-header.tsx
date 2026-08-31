@@ -33,7 +33,7 @@ export function SiteHeader() {
         </details>
         <Link href="/governanca">Governança</Link>
         <Link href="/agenda">Agenda oberta</Link>
-        <Link href="/#aplec">Aplec</Link>
+        <Link href="/aplecs/2026">Aplec 2026</Link>
         <Link
           href="/aplecs"
           target="_blank"
