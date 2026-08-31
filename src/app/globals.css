@@ -592,7 +592,7 @@ a.footer-entity:hover { opacity:.78; background:rgba(255,255,255,.04); }
 .aplec-2026-poster-mark i { position:absolute; inset:0; border:1px solid var(--ink); border-radius:50%; opacity:.16; }
 .aplec-2026-poster-mark i:nth-child(2) { transform:translate(28%,18%); border-color:var(--orange); opacity:.6; }
 .aplec-2026-poster-mark i:nth-child(3) { transform:translate(56%,36%); border-color:var(--teal); opacity:.6; }
-.aplec-2026-poster-frame p { position:relative; margin:0 0 14px; font-family:var(--font-display); font-size:clamp(3.2rem,6vw,6rem); line-height:.85; letter-spacing:-.05em; }
+.aplec-2026-poster-frame p { position:relative; margin:0 0 32px; font-family:var(--font-display); font-size:clamp(3.2rem,6vw,6rem); line-height:.92; letter-spacing:-.05em; }
 .aplec-2026-poster-frame > span { position:relative; max-width:310px; color:var(--ink-soft); font-size:.82rem; line-height:1.5; }
 .aplec-2026-program { padding:clamp(78px,10vw,140px) max(24px,calc((100vw - 1400px)/2)); background:var(--ink); color:var(--cream); }
 .aplec-2026-program-inner { width:100%; }
@@ -833,7 +833,7 @@ a.footer-entity:hover { opacity:.78; background:rgba(255,255,255,.04); }
   .aplec-2026-section-heading { position:static; }
   .aplec-2026-section-heading h2 { font-size:3.6rem; }
   .aplec-2026-poster-frame { width:100%; justify-self:stretch; border-radius:22px; }
-  .aplec-2026-poster-frame p { font-size:3.4rem; }
+  .aplec-2026-poster-frame p { margin-bottom:26px; font-size:3.4rem; }
   .aplec-2026-program { padding:72px 16px; }
   .aplec-2026-program-heading { display:block; padding-bottom:36px; }
   .aplec-2026-program-heading .eyebrow { margin-bottom:22px; }
