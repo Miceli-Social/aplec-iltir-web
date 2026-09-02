@@ -282,8 +282,19 @@ const parseDocuments = (value?: string): DocumentLink[] =>
     return title && /^https:\/\//.test(url || "") ? [{ title, url }] : [];
   });
 
-const safeWhatsappUrl = (value?: string) =>
-  value && /^https:\/\/(chat\.whatsapp\.com|wa\.me)\//.test(value) ? value : undefined;
+export const safeWhatsappUrl = (value?: string) => {
+  if (!value) return undefined;
+  try {
+    const parsed = new URL(value);
+    const validOrigin =
+      parsed.origin === "https://chat.whatsapp.com" || parsed.origin === "https://wa.me";
+    return validOrigin && !parsed.username && !parsed.password && parsed.pathname.length > 1
+      ? value
+      : undefined;
+  } catch {
+    return undefined;
+  }
+};
 
 const mergeCircleRows = (csv: string): Circle[] => {
   const lines = csv.replace(/\r/g, "").split("\n").filter(Boolean);
@@ -419,7 +430,15 @@ export async function getCircles(options?: {
         ...circle.documents,
         ...(state.documents[circle.slug] || []),
       ]),
-    }));
+    }))
+    .map((circle) => {
+      const whatsappUrl = safeWhatsappUrl(circle.whatsappUrl);
+      return {
+        ...circle,
+        whatsappUrl,
+        whatsappActive: Boolean(circle.whatsappActive && whatsappUrl),
+      };
+    });
 }
 
 export async function getEvents(options?: {

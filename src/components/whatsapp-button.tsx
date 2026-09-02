@@ -19,6 +19,7 @@ export function WhatsappButton({
   const [accepted, setAccepted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const [whatsappUrl, setWhatsappUrl] = useState("");
 
   if (active && !url) {
     return (
@@ -39,6 +40,7 @@ export function WhatsappButton({
     event.preventDefault();
     setSubmitting(true);
     setError("");
+    setWhatsappUrl("");
     try {
       const response = await fetch("/api/whatsapp-consent", {
         method: "POST",
@@ -50,15 +52,21 @@ export function WhatsappButton({
           accepted,
         }),
       });
-      const result = await response.json();
-      if (!response.ok || !result.ok || !result.url) {
-        throw new Error(result.error || "No s’ha pogut registrar l’acceptació.");
+      const result = await response.json().catch(() => undefined) as
+        | { ok?: boolean; url?: string; error?: string }
+        | undefined;
+      if (!response.ok || !result?.ok || !result.url) {
+        throw new Error(result?.error || "No s’ha pogut registrar l’acceptació. Torna-ho a provar.");
       }
-      window.location.assign(result.url);
-      setOpen(false);
-      setName("");
-      setDni("");
-      setAccepted(false);
+
+      setWhatsappUrl(result.url);
+      window.requestAnimationFrame(() => {
+        try {
+          window.location.assign(result.url!);
+        } catch {
+          // L’enllaç manual ja és visible per als navegadors que bloquegen la navegació externa.
+        }
+      });
     } catch (caught) {
       setError(caught instanceof Error ? caught.message : "No s’ha pogut registrar l’acceptació.");
     } finally {
@@ -90,23 +98,36 @@ export function WhatsappButton({
                 Descarregar el full complet de protecció de dades ↗
               </a>
             </div>
-            <label>Nom i cognoms
-              <input value={name} onChange={(event) => setName(event.target.value)} required autoComplete="name" />
-            </label>
-            <label>DNI/NIE
-              <input value={dni} onChange={(event) => setDni(event.target.value)} required autoComplete="off" />
-            </label>
-            <label className="check-label consent-check">
-              <input checked={accepted} onChange={(event) => setAccepted(event.target.checked)} type="checkbox" required />
-              Confirmo que he llegit i accepto el full de protecció de dades i drets d’imatge.
-            </label>
-            {error && <p className="form-error">{error}</p>}
-            <div className="consent-actions">
-              <button className="text-link" type="button" onClick={() => setOpen(false)}>Cancel·lar</button>
-              <button className="button button-primary" type="submit" disabled={submitting}>
-                {submitting ? "Registrant..." : "Acceptar i obrir WhatsApp"}
-              </button>
-            </div>
+            {whatsappUrl ? (
+              <div className="consent-success" role="status">
+                <p>L’acceptació s’ha registrat correctament.</p>
+                <p>Si WhatsApp no s’ha obert automàticament, pots obrir-lo amb aquest enllaç:</p>
+                <a className="button button-whatsapp" href={whatsappUrl}>
+                  Obrir WhatsApp <span aria-hidden="true">↗</span>
+                </a>
+                <button className="text-link" type="button" onClick={() => setOpen(false)}>Tancar</button>
+              </div>
+            ) : (
+              <>
+                <label>Nom i cognoms
+                  <input value={name} onChange={(event) => setName(event.target.value)} required autoComplete="name" />
+                </label>
+                <label>DNI/NIE
+                  <input value={dni} onChange={(event) => setDni(event.target.value)} required autoComplete="off" />
+                </label>
+                <label className="check-label consent-check">
+                  <input checked={accepted} onChange={(event) => setAccepted(event.target.checked)} type="checkbox" required />
+                  Confirmo que he llegit i accepto el full de protecció de dades i drets d’imatge.
+                </label>
+                {error && <p className="form-error">{error}</p>}
+                <div className="consent-actions">
+                  <button className="text-link" type="button" onClick={() => setOpen(false)}>Cancel·lar</button>
+                  <button className="button button-primary" type="submit" disabled={submitting}>
+                    {submitting ? "Registrant..." : "Acceptar i obrir WhatsApp"}
+                  </button>
+                </div>
+              </>
+            )}
           </form>
         </div>
       )}
