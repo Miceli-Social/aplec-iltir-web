@@ -2,7 +2,7 @@ import { createCipheriv, createDecipheriv, createHash, randomBytes } from "crypt
 import { put } from "@vercel/blob";
 import type { WhatsappConsent } from "@/lib/types";
 
-const CONSENT_PATH = "iltir/private/whatsapp-consents.enc.json";
+const CONSENT_PATH = "iltir/private/whatsapp-consents-v2.enc.json";
 
 type EncryptedPayload = {
   version: 1;
@@ -34,9 +34,9 @@ const getConsentUrl = () => {
 };
 
 const getEncryptionKey = () => {
-  const secret = process.env.CONSENT_ENCRYPTION_SECRET || process.env.ADMIN_SESSION_SECRET;
+  const secret = process.env.CONSENT_ENCRYPTION_SECRET;
   if (!secret) {
-    throw new Error("Falta configurar CONSENT_ENCRYPTION_SECRET o ADMIN_SESSION_SECRET.");
+    throw new Error("Falta configurar CONSENT_ENCRYPTION_SECRET.");
   }
   return createHash("sha256").update(secret).digest();
 };
@@ -71,7 +71,7 @@ const decryptConsents = (payload: EncryptedPayload): WhatsappConsent[] => {
 };
 
 export const hasConsentStore = () =>
-  Boolean(process.env.BLOB_READ_WRITE_TOKEN && (process.env.CONSENT_ENCRYPTION_SECRET || process.env.ADMIN_SESSION_SECRET));
+  Boolean(process.env.BLOB_READ_WRITE_TOKEN && process.env.CONSENT_ENCRYPTION_SECRET);
 
 export async function getWhatsappConsents(options?: {
   failOnUnreadable?: boolean;

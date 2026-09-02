@@ -3,6 +3,7 @@ import { revalidatePath } from "next/cache";
 import { syncConsentToDrive } from "@/lib/consent-drive";
 import {
   getWhatsappConsents,
+  hasConsentStore,
   isConsentDecryptionError,
   saveWhatsappConsents,
 } from "@/lib/consent-store";
@@ -44,6 +45,16 @@ export async function POST(request: Request) {
     return NextResponse.json(
       { ok: false, error: "Aquest grup no està disponible." },
       { status: 404 },
+    );
+  }
+
+  if (!hasConsentStore()) {
+    console.error(
+      "El registre v2 de consentiments de WhatsApp no està configurat. Cal BLOB_READ_WRITE_TOKEN i CONSENT_ENCRYPTION_SECRET.",
+    );
+    return NextResponse.json(
+      { ok: false, error: "Ara mateix no podem registrar l’acceptació. Torna-ho a provar més tard." },
+      { status: 503 },
     );
   }
 
