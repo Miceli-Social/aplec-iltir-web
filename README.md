@@ -41,7 +41,9 @@ Variables imprescindibles:
 
 Variables importants si feu servir el registre legal de WhatsApp:
 
-- `CONSENT_ENCRYPTION_SECRET`: secret propi per xifrar els consentiments. No el canvieu si ja hi ha registres creats.
+- `CONSENT_ENCRYPTION_SECRET`: secret estable i exclusiu per xifrar el registre v2 de consentiments a `iltir/private/whatsapp-consents-v2.enc.json`. No el canvieu si ja hi ha registres creats.
+
+El registre anterior `iltir/private/whatsapp-consents.enc.json` és legacy i queda reservat exclusivament per a una possible migració offline futura. El funcionament normal no l’ha de llegir, escriure ni eliminar.
 - `CONSENT_GOOGLE_SCRIPT_URL`: webhook opcional per copiar els registres a Google Drive/Sheets.
 - `CONSENT_GOOGLE_SCRIPT_SECRET`: secret opcional compartit amb el webhook.
 
