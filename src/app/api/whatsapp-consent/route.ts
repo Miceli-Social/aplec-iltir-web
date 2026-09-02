@@ -6,7 +6,7 @@ import {
   isConsentDecryptionError,
   saveWhatsappConsents,
 } from "@/lib/consent-store";
-import { getCircles } from "@/lib/remote-content";
+import { getCircles, safeWhatsappUrl } from "@/lib/remote-content";
 
 const CONSENT_VERSION = "MIC-2025-drets-imatge-proteccio-dades";
 const CONSENT_ENTITY = "Miceli Rural Coop, SCCL (Miceli Social) · NIF F10983864";
@@ -39,7 +39,8 @@ export async function POST(request: Request) {
 
   const circles = await getCircles({ freshEditorial: true });
   const circle = circles.find((item) => item.slug === circleSlug);
-  if (!circle || !circle.whatsappActive || !circle.whatsappUrl) {
+  const whatsappUrl = safeWhatsappUrl(circle?.whatsappUrl);
+  if (!circle || !circle.whatsappActive || !whatsappUrl) {
     return NextResponse.json(
       { ok: false, error: "Aquest grup no està disponible." },
       { status: 404 },
@@ -55,7 +56,7 @@ export async function POST(request: Request) {
         {
           ok: false,
           error:
-            "El registre de protecció de dades necessita recuperar el secret de xifrat antic abans de poder afegir nous consentiments.",
+            "Ara mateix no podem registrar l’acceptació. Torna-ho a provar més tard.",
         },
         { status: 503 },
       );
@@ -101,8 +102,16 @@ export async function POST(request: Request) {
     consents.push(storedConsent);
   }
 
-  await saveWhatsappConsents(consents);
+  try {
+    await saveWhatsappConsents(consents);
+  } catch (error) {
+    console.error("No s’ha pogut desar el consentiment de WhatsApp.", error);
+    return NextResponse.json(
+      { ok: false, error: "Ara mateix no podem registrar l’acceptació. Torna-ho a provar més tard." },
+      { status: 503 },
+    );
+  }
   revalidatePath("/admin");
 
-  return NextResponse.json({ ok: true, url: circle.whatsappUrl });
+  return NextResponse.json({ ok: true, url: whatsappUrl });
 }
