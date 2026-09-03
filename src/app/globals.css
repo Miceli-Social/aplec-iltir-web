@@ -342,6 +342,7 @@ a.footer-entity:hover { opacity:.78; background:rgba(255,255,255,.04); }
 .footer-promoted .footer-entity-image img { max-width:145px; max-height:44px; }
 .footer-cooperatives .footer-entity { min-height:48px; }
 .footer-cooperatives .footer-entity-image img { max-height:38px; }
+.footer-cooperatives .footer-entity--xyz-trac .footer-entity-image img { max-height:60px; filter:brightness(0) invert(1); }
 .footer-entity--anigami .footer-entity-image img { mix-blend-mode:screen; }
 .footer-entity--habitats .footer-entity-image img { filter:invert(1) grayscale(1) brightness(1.7); mix-blend-mode:screen; }
 .footer-collaborators .footer-entity { min-height:70px; padding:5px; text-align:center; }

@@ -8,7 +8,8 @@ type LogoVariant =
   | "eu-cofunded"
   | "generalitat"
   | "escola-administracio-publica"
-  | "diputacio";
+  | "diputacio"
+  | "xyz-trac";
 
 type FooterLogoProps = {
   name: string;
@@ -47,7 +48,8 @@ const cooperatives: FooterLogoProps[] = [
   },
   {
     name: "Trac",
-    logo: "/logos/footer/trac.png",
+    logo: "/logos/footer/Logo xyz-trac.png",
+    variant: "xyz-trac",
   },
 ];
 
