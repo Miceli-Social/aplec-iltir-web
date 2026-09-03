@@ -45,6 +45,10 @@ const cooperatives: FooterLogoProps[] = [
     logo: "/logos/footer/mixite-footer-white.png",
     href: "https://www.mixite.cat/ca/portada/",
   },
+  {
+    name: "Trac",
+    logo: "/logos/footer/trac.png",
+  },
 ];
 
 const collaborators: FooterLogoProps[] = [
