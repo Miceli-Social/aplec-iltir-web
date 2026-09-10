@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { CookieSettingsButton } from "@/components/cookie-settings-button";
+import { SocialLinks } from "@/components/social-links";
 
 type LogoVariant =
   | "anigami"
@@ -152,6 +153,7 @@ export function SiteFooter() {
           <p>
             Un espai compartit per entendre què passa, participar i col·laborar des del territori.
           </p>
+          <SocialLinks location="footer" />
         </div>
 
         <nav className="footer-links" aria-label="Peu de pàgina">

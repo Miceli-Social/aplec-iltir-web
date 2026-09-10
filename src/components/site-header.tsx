@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { SocialLinks } from "@/components/social-links";
 
 export function SiteHeader() {
   return (
@@ -22,26 +23,25 @@ export function SiteHeader() {
           priority
         />
       </Link>
-      <nav aria-label="Navegació principal">
-        <details className="municipalities-menu">
-          <summary>Municipis</summary>
-          <div className="municipalities-list">
-            <Link href="/municipis/cabanelles">Cabanelles</Link>
-            <Link href="/municipis/llado">Lladó</Link>
-            <Link href="/municipis/navata">Navata</Link>
-          </div>
-        </details>
-        <Link href="/governanca">Governança</Link>
-        <Link href="/agenda">Agenda oberta</Link>
-        <Link href="/aplecs/2026">Aplec 2026</Link>
-        <Link
-          href="/aplecs"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Edicions anteriors
-        </Link>
-      </nav>
+      <div className="header-actions">
+        <nav className="main-navigation" aria-label="Navegació principal">
+          <details className="municipalities-menu">
+            <summary>Municipis</summary>
+            <div className="municipalities-list">
+              <Link href="/municipis/cabanelles">Cabanelles</Link>
+              <Link href="/municipis/llado">Lladó</Link>
+              <Link href="/municipis/navata">Navata</Link>
+            </div>
+          </details>
+          <Link href="/governanca">Governança</Link>
+          <Link href="/agenda">Agenda oberta</Link>
+          <Link href="/aplecs/2026">Aplec 2026</Link>
+          <Link href="/aplecs" target="_blank" rel="noopener noreferrer">
+            Edicions anteriors
+          </Link>
+        </nav>
+        <SocialLinks location="header" />
+      </div>
     </header>
   );
 }
