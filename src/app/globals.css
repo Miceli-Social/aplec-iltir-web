@@ -31,9 +31,15 @@ h1, h2 { font-family: var(--font-display); font-weight: 500; letter-spacing: -.0
 .brand { display:inline-flex; align-items:center; gap:8px; }
 .brand-logo { display:block; width:76px; height:66px; object-fit:contain; }
 .brand-symbol { display:block; width:34px; height:34px; object-fit:contain; opacity:.82; }
-.site-header nav { display: flex; flex-wrap:wrap; justify-content:flex-end; align-items:center; gap:12px 24px; font-size: .82rem; }
-.site-header nav a { padding: 10px 0; border-bottom: 1px solid transparent; }
-.site-header nav a:hover, .site-header nav a:focus-visible { border-color: var(--ink); }
+.header-actions { display:flex; align-items:center; justify-content:flex-end; gap:12px; min-width:0; }
+.main-navigation { display: flex; flex-wrap:wrap; justify-content:flex-end; align-items:center; gap:12px 24px; font-size: .82rem; }
+.main-navigation a { padding: 10px 0; border-bottom: 1px solid transparent; }
+.main-navigation a:hover, .main-navigation a:focus-visible { border-color: var(--ink); }
+.social-links { display:flex; align-items:center; gap:2px; }
+.social-links a { flex:0 0 auto; display:grid; place-items:center; width:42px; height:42px; border:1px solid transparent; border-radius:50%; transition:background-color .2s, border-color .2s, transform .2s; }
+.social-links svg { display:block; width:21px; height:21px; }
+.social-links a:hover { background:rgba(23,58,50,.08); border-color:var(--line); transform:translateY(-1px); }
+.social-links a:focus-visible { outline:2px solid var(--ink); outline-offset:2px; background:rgba(23,58,50,.08); transform:translateY(-1px); }
 .municipalities-menu { position:relative; }
 .municipalities-menu summary { display:flex; align-items:center; gap:7px; padding:10px 0; border-bottom:1px solid transparent; list-style:none; cursor:pointer; }
 .municipalities-menu summary::-webkit-details-marker { display:none; }
@@ -311,6 +317,11 @@ a.event-card:hover { transform:translateY(-3px); box-shadow:var(--shadow); }
 .footer-logo { display:block; width:76px; height:66px; object-fit:contain; filter:invert(1) brightness(2); }
 .footer-symbol { display:block; width:38px; height:38px; object-fit:contain; filter:invert(1) brightness(2); opacity:.8; }
 .footer-about p { color:rgba(255,255,255,.66); line-height:1.62; margin:0; }
+.social-links--footer { margin-top:14px; gap:4px; }
+.social-links--footer a { width:44px; height:44px; color:rgba(255,255,255,.82); }
+.social-links--footer svg { width:24px; height:24px; }
+.social-links--footer a:hover { color:white; background:rgba(255,255,255,.1); border-color:rgba(255,255,255,.25); }
+.social-links--footer a:focus-visible { color:white; outline-color:var(--lime); background:rgba(255,255,255,.1); }
 .footer-links { display:flex; flex-direction:column; align-items:flex-start; gap:12px; font-size:.84rem; }
 .footer-links a { color:rgba(255,255,255,.74); width:max-content; max-width:100%; border-bottom:1px solid transparent; padding-bottom:3px; }
 .footer-links a:hover { color:white; border-color:rgba(255,255,255,.5); }
@@ -655,7 +666,8 @@ a.footer-entity:hover { opacity:.78; background:rgba(255,255,255,.04); }
   .hero-copy { padding:70px 0; }
   .hero h1 { font-size:5.2rem; }
   .site-header { align-items:flex-start; padding:14px 0; }
-  .site-header nav { padding-top:6px; gap:8px 18px; }
+  .header-actions { align-items:flex-start; }
+  .main-navigation { padding-top:6px; gap:8px 18px; }
   .manifesto { grid-template-columns:60px 1fr; }
   .aplec-overview-main { grid-template-columns:1fr; gap:28px; align-items:start; min-height:auto; padding:42px; background-position:center; }
   .aplec-symbol-card { justify-self:center; width:220px; transform:none; }
@@ -706,8 +718,10 @@ a.footer-entity:hover { opacity:.78; background:rgba(255,255,255,.04); }
 }
 
 @media (max-width: 720px) {
-  .site-header { width:calc(100% - 32px); min-height:74px; display:grid; grid-template-columns:auto 1fr; gap:10px 14px; align-items:start; }
-  .site-header nav { grid-column:1 / -1; justify-content:flex-start; gap:4px 13px; align-items:center; font-size:.72rem; line-height:1.2; }
+  .site-header { width:calc(100% - 32px); min-height:74px; display:grid; grid-template-columns:auto 1fr; gap:8px 10px; align-items:start; padding:14px 0 10px; }
+  .header-actions { display:contents; }
+  .main-navigation { grid-column:1 / -1; grid-row:2; justify-content:flex-start; gap:4px 13px; align-items:center; padding-top:4px; font-size:.72rem; line-height:1.2; }
+  .social-links--header { grid-column:2; grid-row:1; justify-self:end; align-self:start; }
   .municipalities-menu summary { padding:10px 0; }
   .municipalities-list { left:0; right:auto; min-width:165px; }
   .brand { gap:6px; }
