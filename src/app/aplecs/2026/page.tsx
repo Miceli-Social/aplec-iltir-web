@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Aplec Iltiŕ 2026",
@@ -37,15 +38,21 @@ export default function Aplec2026Page() {
           <span className="eyebrow">01 · Imatge de l’edició</span>
           <h2 id="aplec-2026-poster-title">Cartell oficial</h2>
         </div>
-        <div className="aplec-2026-poster-frame" aria-label="Cartell oficial, properament">
-          <div className="aplec-2026-poster-mark" aria-hidden="true">
-            <i />
-            <i />
-            <i />
-          </div>
-          <p>Properament</p>
-          <span>El cartell de l’Aplec Iltiŕ 2026 es publicarà aquí.</span>
-        </div>
+        <a
+          className="aplec-2026-poster-frame"
+          href="/images/aplec-iltir-2026-cartell.png"
+          aria-label="Obre el cartell oficial de l’Aplec Iltiŕ 2026 a mida completa"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Image
+            src="/images/aplec-iltir-2026-cartell.png"
+            alt="Cartell oficial de l’Aplec Iltiŕ 2026, del 16 al 18 d’octubre a Cabanelles, Navata i Lladó"
+            width={1080}
+            height={1350}
+            sizes="(max-width: 720px) calc(100vw - 32px), (max-width: 1050px) calc((100vw - 98px) * 0.675), (max-width: 1240px) calc((91vw - 48px) * 0.64), 620px"
+          />
+        </a>
       </section>
 
       <section
