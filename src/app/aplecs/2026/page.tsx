@@ -1,5 +1,19 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { aplec2026Program, aplec2026OtherActivities, volunteerRegistration, type ProgramRegistration } from "@/lib/aplec-2026-program";
+
+function RegistrationNotice({ registration }: { registration: ProgramRegistration }) {
+  return (
+    <div className="aplec-2026-registration">
+      {registration.url ? (
+        <a href={registration.url}>{registration.label}</a>
+      ) : (
+        <strong>{registration.label}</strong>
+      )}
+      <p>{registration.information}</p>
+    </div>
+  );
+}
 
 export const metadata: Metadata = {
   title: "Aplec Iltiŕ 2026",
@@ -64,18 +78,56 @@ export default function Aplec2026Page() {
             <span className="eyebrow light">02 · Tres dies de trobada</span>
             <h2 id="aplec-2026-program-title">Programa de l’Aplec</h2>
           </div>
-          <div className="aplec-2026-program-state">
-            <span className="aplec-2026-coming">Properament</span>
-            <p>
-              Estem acabant de preparar el programa dels tres dies. Ben aviat
-              podràs consultar aquí totes les activitats.
-            </p>
-          </div>
-          <div className="aplec-2026-days" aria-label="Dies del programa">
-            <div><span>Divendres</span><strong>16</strong></div>
-            <div><span>Dissabte</span><strong>17</strong></div>
-            <div><span>Diumenge</span><strong>18</strong></div>
-          </div>
+          <nav className="aplec-2026-day-links" aria-label="Dies del programa">
+            {aplec2026Program.map((day) => (
+              <a key={day.id} href={`#${day.id}`}>{day.heading}</a>
+            ))}
+          </nav>
+          {aplec2026Program.map((day) => (
+            <section className="aplec-2026-day" key={day.id} aria-labelledby={day.id}>
+              <h3 id={day.id}>{day.heading}</h3>
+              <ol className="aplec-2026-activities">
+                {day.activities.map((activity) => (
+                  <li className="aplec-2026-activity" key={`${activity.time}-${activity.title}`}>
+                    <p className="aplec-2026-activity-time">{activity.time}</p>
+                    <div className="aplec-2026-activity-body">
+                      <h4>{activity.title}</h4>
+                      {activity.location && <p className="aplec-2026-activity-location">{activity.location}</p>}
+                      {activity.information && <p className="aplec-2026-activity-copy">{activity.information}</p>}
+                      {activity.status && <p className="aplec-2026-activity-status">{activity.status}</p>}
+                      {activity.moreInfo && (
+                        <details className="aplec-2026-details">
+                          <summary aria-label={`Més informació sobre ${activity.title}`}>Més informació</summary>
+                          <p className="aplec-2026-activity-copy">{activity.moreInfo}</p>
+                        </details>
+                      )}
+                      {activity.registration && <RegistrationNotice registration={activity.registration} />}
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </section>
+          ))}
+          <section className="aplec-2026-other-activities" aria-labelledby="aplec-2026-other-title">
+            <h3 id="aplec-2026-other-title">Altres activitats…</h3>
+            {aplec2026OtherActivities.map(activity => (
+              <article key={activity.title}>
+                <p><strong>{activity.date} · {activity.time}</strong></p>
+                <h4>{activity.title}</h4>
+                <p>{activity.location}</p>
+              </article>
+            ))}
+          </section>
+        </div>
+      </section>
+      <section className="aplec-2026-volunteer section-shell" aria-labelledby="aplec-2026-volunteer-title">
+        <div className="aplec-2026-section-heading">
+          <span className="eyebrow">03 · Fem l’Aplec plegats</span>
+          <h2 id="aplec-2026-volunteer-title">Suma’t al voluntariat</h2>
+        </div>
+        <div>
+          <p>Necessitem persones voluntàries els dies 16, 17 i 18 d’octubre a Lladó, Navata i Cabanelles. Ajuda’ns a fer possible la trobada dels pobles.</p>
+          <RegistrationNotice registration={volunteerRegistration} />
         </div>
       </section>
     </article>
