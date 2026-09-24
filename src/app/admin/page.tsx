@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import Link from "next/link";
+import { RegistrationAdmin } from "@/components/aplec-2026-registration-admin";
 import {
   addDocumentLink,
   addEvent,
@@ -49,6 +50,7 @@ export default async function AdminPage({
     edit?: string;
     event?: string;
     documents?: string;
+    registrations?: string;
   }>;
 }) {
   const configured = isAdminConfigured();
@@ -121,8 +123,11 @@ export default async function AdminPage({
         <a href="#agenda-admin">Agenda</a>
         <a href="#actes-admin">Actes</a>
         <a href="#dades-admin">Protecció de dades</a>
+        <a href="#inscripcions-aplec">Aplec 2026 · Inscripcions</a>
         <Link href="/" target="_blank">Veure la web ↗</Link>
       </nav>
+
+      <RegistrationAdmin result={params.registrations} />
 
       <section id="continguts" className="admin-editor-section">
         <div className="admin-section-heading">
