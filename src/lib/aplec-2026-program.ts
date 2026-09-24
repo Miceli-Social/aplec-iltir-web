@@ -55,8 +55,7 @@ Amb les alcaldies i Consells de Poble del territori i municipis propers. Amb l'e
     heading: "Dissabte 17 d’octubre · Navata",
     activities: [
       { time: "09.30 h", title: "Repic de campanes amb l’Albert Cuevas", location: "Església" },
-      { time: "09.30 h", title: "Cap a un paisatge agroforestal resilient", location: "Plaça de la Vila", moreInfo: `Escoltar amb més profunditat el metabolisme del territori, la funció dels diversos agents que ens hi relacionem i els processos de producció i economia pot ser clau per augmentar la resiliència del lloc. En parlem?
-A Navata hi ha caldera a l'escola, qui fa els manteniments, són ITEL una empresa de Banyoles.` },
+      { time: "09.30 h", title: "Cap a un paisatge agroforestal resilient", location: "Plaça de la Vila", moreInfo: `Escoltar amb més profunditat el metabolisme del territori, la funció dels diversos agents que ens hi relacionem i els processos de producció i economia pot ser clau per augmentar la resiliència del lloc. En parlem?` },
       { time: "10.30 h", title: "Exposició sobre Poesia Cinètica, de Rafel Ortiz", location: "Sala 1 d’Octubre", moreInfo: "A l'espai 1 d'octubre de Navata. Pot incloure una presentació i/o xerrada o taller" },
       { time: "10.30 h", title: "Exposició sobre Poesia Cinètica amb Albert Cuevas", location: "espai públic de Lladó", moreInfo: "a l'espai públic de Lladó. Pot incloure una presentació i/o xerrada o taller" },
       { time: "11.00 h", title: "Futbol Navata. Presentació dels equips i la temporada", location: "Camp de Futbol" },
@@ -66,9 +65,7 @@ A Navata hi ha caldera a l'escola, qui fa els manteniments, són ITEL una empres
       { time: "12.30 h", title: "Concert amb Mini-Stress", location: "Plaça Era de l’Obra", information: "amb el repartori del cançoner de Navata-Lladó" },
       { time: "14.00 h", title: "Dinar", location: "Plaça Era de l’Obra", information: "a càrrec del Sindicat de Navata", status: "Pendent de confirmació." },
       { time: "16.00 h", title: "Futbol Navata. Primer partit del primer equip de Navata", location: "Camp de Futbol" },
-      { time: "16.00 h", title: "Transició energètica des del territori", location: "Plaça de la Vila", moreInfo: `El Cercle de Transició Energètica treballa per entendre els consums locals, diversificar l'estratègia de producció energètica elèctrica (solar i eòlica), biogàs i biomassa, tenir la informació real i generar propostes. Durant la tarda ens presentarà allò amb què està treballant i com seguir teixint una proposta real des del lloc. Ens acompanyarà l'Oficina de Transició Energètica de l'Empordà i la comunitat energètica local Navata Sostenible.
-
-Els municipis explicar què hi ha a Navata, Lladó, Cabenelles, què avestim, què està a disponibilitat de la gent, què emmagatzemen les bateries... km zero i Agrienergia` },
+      { time: "16.00 h", title: "Transició energètica des del territori", location: "Plaça de la Vila", moreInfo: `El Cercle de Transició Energètica treballa per entendre els consums locals, diversificar l'estratègia de producció energètica elèctrica (solar i eòlica), biogàs i biomassa, tenir la informació real i generar propostes. Durant la tarda ens presentarà allò amb què està treballant i com seguir teixint una proposta real des del lloc. Ens acompanyarà l'Oficina de Transició Energètica de l'Empordà i la comunitat energètica local Navata Sostenible.` },
       { time: "16.00 h", title: "Exposició sobre Poesia Cinètica, de Rafel Ortiz", location: "Sala 1 d’Octubre", moreInfo: "A l'espai 1 d'octubre de Navata. Pot incloure una presentació i/o xerrada o taller" },
       { time: "16.00 h", title: "Exposició sobre Poesia Cinètica amb Albert Cuevas", location: "espai públic de Lladó", moreInfo: "a l'espai públic de Lladó. Pot incloure una presentació i/o xerrada o taller" },
       { time: "16.30 h", title: "Joc-taller “Casa meva, el meu poble”", location: "davant de l’església", information: "Amb Esther Roca i Alícia Vázquez" },
