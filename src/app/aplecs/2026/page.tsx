@@ -32,12 +32,11 @@ export default function Aplec2026Page() {
             <p>16 · 17 · 18</p>
             <span>d’octubre de 2026</span>
           </div>
-          <p className="aplec-2026-where">Cabanelles · Navata · Lladó</p>
+          <p className="aplec-2026-where">
+  <strong>Ca</strong>banelles · <strong>Na</strong>vata · <strong>Lla</strong>dó
+</p>
 
 <div className="aplec-2026-canalla">
-  <p>
-    <strong>Ca</strong>banelles, <strong>Na</strong>vata i <strong>Lla</strong>dó
-  </p>
   <p className="aplec-2026-canalla-title">
     <strong>CANALLA</strong>, un territori compartit
   </p>
