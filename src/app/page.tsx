@@ -77,7 +77,7 @@ export default async function Home() {
   <ArrowIcon />
 </Link>
 <Link className="aplec-overview-cta aplec-2026-volunteer-link" href="/aplecs/2026/voluntariat">
-  Participa com a voluntari/ària <ArrowIcon />
+Vols donar un cop de mà? <ArrowIcon />
 </Link>
           </div>
           <div className="aplec-symbol-card" aria-hidden="true">
