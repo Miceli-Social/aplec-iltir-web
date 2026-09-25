@@ -17,6 +17,18 @@ export default async function Home() {
   const activityDate = new Intl.DateTimeFormat("ca-ES", {
     day: "numeric", month: "long", year: "numeric", timeZone: "Europe/Madrid",
   });
+  const todayParts = new Intl.DateTimeFormat("en-GB", {
+    year: "numeric", month: "2-digit", day: "2-digit", timeZone: "Europe/Madrid",
+  }).formatToParts(new Date());
+  const datePart = (type: string) => todayParts.find((part) => part.type === type)!.value;
+  const today = `${datePart("year")}-${datePart("month")}-${datePart("day")}`;
+  // Advance the local calendar date, not 24 hours across a daylight-saving change.
+  const tomorrowDate = new Date(`${today}T12:00:00Z`);
+  tomorrowDate.setUTCDate(tomorrowDate.getUTCDate() + 1);
+  const tomorrow = tomorrowDate.toISOString().slice(0, 10);
+  const formatActivityDate = (date: string) => date === today ? "Avui"
+    : date === tomorrow ? "Demà"
+    : activityDate.format(new Date(`${date}T12:00:00Z`));
 
   return (
     <>
@@ -133,7 +145,7 @@ Vols donar un cop de mà? <ArrowIcon />
               <li className="aplec-upcoming-slot" key={slot.startsAt}>
                 <span className="eyebrow">{slotLabels[index]}</span>
                 <p className="aplec-upcoming-date">
-                  <time dateTime={slot.date}>{activityDate.format(new Date(`${slot.date}T12:00:00Z`))}</time>
+                  <time dateTime={slot.date}>{formatActivityDate(slot.date)}</time>
                 </p>
                 <ul className="aplec-upcoming-activities">
                   {slot.activities.map((activity) => (
