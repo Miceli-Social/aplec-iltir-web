@@ -36,7 +36,7 @@ export default function Aplec2026Page() {
 
 <div className="aplec-2026-canalla">
   <p>
-    La <strong>Ca</strong> de Cabanelles, la <strong>Na</strong> de Navata i la <strong>Lla</strong> de Lladó
+    <strong>Ca</strong>banelles, <strong>Na</strong>vata i <strong>Lla</strong>dó
   </p>
   <p className="aplec-2026-canalla-title">
     <strong>CANALLA</strong>, un territori compartit
