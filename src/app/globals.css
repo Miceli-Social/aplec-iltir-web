@@ -614,6 +614,69 @@ a.footer-entity:hover { opacity:.78; background:rgba(255,255,255,.04); }
 .aplec-2026-program-heading { position:static; display:grid; grid-template-columns:minmax(0,1fr) minmax(280px,.7fr); gap:48px; align-items:end; padding-bottom:58px; border-bottom:1px solid rgba(251,248,239,.2); }
 .aplec-2026-program-heading .eyebrow { grid-column:1 / -1; margin-bottom:0; color:var(--lime); }
 .aplec-2026-program-heading h2 { color:var(--cream); }
+.aplec-2026-signups {
+  margin:0 0 34px;
+  padding:30px;
+  border:1px solid rgba(251,248,239,.22);
+  border-radius:24px;
+  background:rgba(251,248,239,.07);
+}
+
+.aplec-2026-signups-heading {
+  max-width:720px;
+  margin-bottom:24px;
+}
+
+.aplec-2026-signups-heading h3 {
+  margin:8px 0 10px;
+  color:var(--cream);
+  font-family:var(--font-display);
+  font-size:clamp(2rem,4vw,3.4rem);
+  line-height:1;
+}
+
+.aplec-2026-signups-heading p {
+  margin:0;
+  color:rgba(251,248,239,.76);
+  line-height:1.6;
+}
+
+.aplec-2026-signups-grid {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
+}
+
+.aplec-2026-signups-grid a {
+  min-height:150px;
+  padding:22px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  gap:24px;
+  border-radius:18px;
+  background:var(--lime);
+  color:var(--ink);
+  text-decoration:none;
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+
+.aplec-2026-signups-grid a:hover {
+  transform:translateY(-3px);
+  box-shadow:0 14px 36px rgba(0,0,0,.18);
+}
+
+.aplec-2026-signups-grid span {
+  font-family:var(--font-display);
+  font-size:1.45rem;
+  line-height:1.1;
+}
+
+.aplec-2026-signups-grid strong {
+  font-size:.88rem;
+  text-decoration:underline;
+  text-underline-offset:4px;
+}
 .aplec-2026-day-links { display:flex; flex-wrap:wrap; gap:12px; padding:32px 0; }
 .aplec-2026-day-links a { padding:12px 18px; border:1px solid rgba(251,248,239,.4); border-radius:24px; color:var(--cream); font-size:.9rem; text-decoration:none; }
 .aplec-2026-day-links a:hover { background:var(--cream); color:var(--ink); }
@@ -672,9 +735,37 @@ a.footer-entity:hover { opacity:.78; background:rgba(255,255,255,.04); }
   .aplec-2026-privacy { padding:18px; }
 }
 .aplec-2026-day-links a:focus-visible, .aplec-2026-details summary:focus-visible, .aplec-2026-registration a:focus-visible { outline:3px solid var(--orange); outline-offset:5px; }
-.aplec-2026-registration { margin-top:20px; padding:18px 20px; border-left:3px solid var(--orange); background:rgba(251,248,239,.07); line-height:1.6; }
-.aplec-2026-registration p { margin:8px 0 0; font-size:.95rem; }
-.aplec-2026-registration a { color:inherit; font-weight:800; text-underline-offset:4px; }
+.aplec-2026-registration {
+  margin-top:22px;
+  padding:20px 22px;
+  border:2px solid var(--orange);
+  border-radius:16px;
+  background:var(--orange);
+  color:var(--ink);
+  line-height:1.55;
+}
+
+.aplec-2026-registration p {
+  margin:10px 0 0;
+  font-size:.95rem;
+  font-weight:600;
+}
+
+.aplec-2026-registration a {
+  display:inline-block;
+  padding:11px 16px;
+  border-radius:999px;
+  background:var(--ink);
+  color:var(--cream);
+  font-size:1rem;
+  font-weight:900;
+  text-decoration:none;
+}
+
+.aplec-2026-registration a:hover {
+  background:var(--cream);
+  color:var(--ink);
+}
 .aplec-2026-volunteer { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:60px; align-items:start; }
 .aplec-2026-volunteer .aplec-2026-section-heading { position:static; }
 .aplec-2026-volunteer h2 { font-size:clamp(3rem,5vw,5rem); }
@@ -685,6 +776,22 @@ a.footer-entity:hover { opacity:.78; background:rgba(255,255,255,.04); }
   .aplec-2026-day-links { flex-direction:column; align-items:flex-start; }
   .aplec-2026-day-links a { max-width:100%; }
   .aplec-2026-volunteer { grid-template-columns:1fr; gap:28px; }
+
+  .aplec-2026-signups {
+    padding:22px 18px;
+  }
+
+  .aplec-2026-signups-grid {
+    grid-template-columns:1fr;
+  }
+
+  .aplec-2026-signups-grid a {
+    min-height:120px;
+  }
+
+  .aplec-2026-day-note {
+    margin-top:-8px;
+  }
 }
 .aplec-2026-program-state { display:grid; grid-template-columns:minmax(260px,.8fr) minmax(300px,1.2fr); gap:clamp(40px,8vw,120px); align-items:start; padding:58px 0 76px; }
 .aplec-2026-coming { color:var(--orange); font-family:var(--font-display); font-size:clamp(3rem,6vw,6.2rem); line-height:.86; letter-spacing:-.045em; }
