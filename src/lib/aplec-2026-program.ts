@@ -81,7 +81,7 @@ Amb les alcaldies i Consells de Poble del territori i municipis propers. Amb l'e
     id: "diumenge",
     heading: "Diumenge 18 d’octubre · Cabanelles",
     activities: [
-      { time: "10.00 h", title: "Caminada popular sobre biodiversitat i plantes aromàtiques del territori", moreInfo: "moreInfo: `Una proposta per explorar una altra manera de relacionar-nos amb el paisatge, les plantes i els llocs que habitem.
+      { time: "10.00 h", title: "Caminada popular sobre biodiversitat i plantes aromàtiques del territori", moreInfo: `Una proposta per explorar una altra manera de relacionar-nos amb el paisatge, les plantes i els llocs que habitem.
 
 En petits grups, buscarem un espai dins de l’entorn natural on situar-nos. A partir d’un centrament individual, observarem el lloc, la planta i el paisatge que l’envolta. Mirarem, dibuixarem, escriurem, compartirem i crearem per posar en relació les diferents mirades.
 
@@ -91,11 +91,11 @@ Cal portar calçat per caminar pel camp, barret o gorra, llibreta —millor sens
 
 Lloc de trobada: La Sala de Cabanelles.
 
-La proposta està pensada com una experiència oberta, sense una resposta tancada: crear les condicions perquè alguna cosa pugui aparèixer i preguntar-nos què s’ha obert al final del recorregut.`,", registration: {
-        label: "Inscripció prèvia",
-        information: "Cal inscripció prèvia online.",
-        url: "/aplecs/2026/caminada",
-      } },
+La proposta està pensada com una experiència oberta, sense una resposta tancada: crear les condicions perquè alguna cosa pugui aparèixer i preguntar-nos què s’ha obert al final del recorregut.`, registration: {
+  label: "Inscripció prèvia",
+  information: "Cal inscripció prèvia online.",
+  url: "/aplecs/2026/caminada",
+} },
       { time: "11.00 h", title: "Taller-espectacle “Trementinaires”", location: "exterior de la Sala de Cabanelles", information: "amb la companyia Tramuntana" },
       { time: "11.00 h", title: "Territori, alimentació i salut", location: "Plaça del Poble", moreInfo: `Observar les interseccions entre consum, territori, pagesia, ramaderia, salut, distribució, coneixement i comunitat, alhora que escoltar els reptes i les propostes que ja estan sobre la taula és clau pel futur. Ens assentarem amb persones del territori i de fora per abordar aquesta qüestió.
 
