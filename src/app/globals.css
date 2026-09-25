@@ -1138,3 +1138,27 @@ a.footer-entity:hover { opacity:.78; background:rgba(255,255,255,.04); }
   .municipality-hero-poster { display:block; }
   .river-glint, .river-animal { animation:none !important; }
 }
+
+/* Properes franges de l’Aplec: jerarquia i colors de la portada. */
+.aplec-upcoming { padding-top:64px; padding-bottom:64px; }
+.aplec-upcoming h2 { font-size:clamp(2rem,4vw,3.3rem); margin:12px 0 28px; }
+.aplec-upcoming-grid { display:grid; grid-template-columns:1.25fr 1fr .9fr; gap:18px; list-style:none; padding:0; margin:0; align-items:start; }
+.aplec-upcoming-slot { min-width:0; padding:26px; border:1px solid var(--line); border-radius:var(--radius); background:var(--cream); }
+.aplec-upcoming-slot:first-child { background:var(--ink); color:var(--cream); box-shadow:var(--shadow); }
+.aplec-upcoming-slot:first-child > .eyebrow { color:var(--lime); }
+.aplec-upcoming-slot:last-child:not(:first-child) { background:transparent; }
+.aplec-upcoming-date { margin:14px 0 22px; font-size:.85rem; }
+.aplec-upcoming-activities { list-style:none; margin:0; padding:0; }
+.aplec-upcoming-activities > li + li { margin-top:22px; padding-top:22px; border-top:1px solid var(--line); }
+.aplec-upcoming-slot:first-child .aplec-upcoming-activities > li + li { border-color:rgba(251,248,239,.25); }
+.aplec-upcoming-time { font-weight:800; margin-bottom:8px; }
+.aplec-upcoming-activities h3 { font-family:var(--font-display); font-size:1.35rem; line-height:1.25; font-weight:500; margin-bottom:12px; overflow-wrap:anywhere; }
+.aplec-upcoming-slot:first-child h3 { font-size:1.75rem; }
+.aplec-upcoming-slot:last-child:not(:first-child) h3 { font-size:1.2rem; }
+.aplec-upcoming-place { font-size:.85rem; line-height:1.6; margin-bottom:0; }
+.aplec-upcoming-actions { display:flex; flex-wrap:wrap; align-items:center; gap:20px 32px; margin-top:28px; }
+@media (max-width: 900px) {
+  .aplec-upcoming-grid { grid-template-columns:1fr; }
+  .aplec-upcoming-slot { padding:24px; }
+  .aplec-upcoming { padding-top:40px; padding-bottom:40px; }
+}

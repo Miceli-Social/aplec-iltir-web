@@ -5,12 +5,18 @@ import { ArrowIcon } from "@/components/icons";
 import { ManifestoSlider } from "@/components/manifesto-slider";
 import { SectorialsHome } from "@/components/sectorials-home";
 import { getCircles } from "@/lib/remote-content";
+import { getUpcomingAplecActivities } from "@/lib/aplec-2026-upcoming";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export default async function Home() {
   const circles = await getCircles();
+  const upcoming = getUpcomingAplecActivities();
+  const slotLabels = ["LA PROPERA ACTIVITAT", "A CONTINUACIÓ", "TOT SEGUIT"];
+  const activityDate = new Intl.DateTimeFormat("ca-ES", {
+    day: "numeric", month: "long", year: "numeric", timeZone: "Europe/Madrid",
+  });
 
   return (
     <>
@@ -115,6 +121,38 @@ Vols donar un cop de mà? <ArrowIcon />
               <p>{text}</p>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section className="aplec-upcoming section-shell" aria-labelledby="aplec-upcoming-title">
+        <span className="eyebrow">Aplec Iltiŕ 2026</span>
+        <h2 id="aplec-upcoming-title">{upcoming.finished ? "Gràcies per ser-hi" : "Properes activitats"}</h2>
+        {upcoming.slots.length ? (
+          <ol className="aplec-upcoming-grid">
+            {upcoming.slots.map((slot, index) => (
+              <li className="aplec-upcoming-slot" key={slot.startsAt}>
+                <span className="eyebrow">{slotLabels[index]}</span>
+                <p className="aplec-upcoming-date">
+                  <time dateTime={slot.date}>{activityDate.format(new Date(`${slot.date}T12:00:00Z`))}</time>
+                </p>
+                <ul className="aplec-upcoming-activities">
+                  {slot.activities.map((activity) => (
+                    <li key={`${activity.time}-${activity.title}`}>
+                      <p className="aplec-upcoming-time">{activity.time}</p>
+                      <h3>{activity.title}</h3>
+                      <p className="aplec-upcoming-place"><strong>{activity.municipality}</strong> · {activity.location}</p>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ol>
+        ) : (
+          <p>{upcoming.finished ? "L’Aplec Iltiŕ 2026 ha finalitzat. Gràcies per compartir-lo!" : "Ja han començat totes les activitats programades. Gaudim de la cloenda!"}</p>
+        )}
+        <div className="aplec-upcoming-actions">
+          <Link className="text-link" href="/aplecs/2026">Consulta aquí la resta de la programació <ArrowIcon /></Link>
+          <a className="button button-primary" href="/programa-aplec-iltir-2026.pdf" download="programa-aplec-iltir-2026.pdf">Descarrega el programa <ArrowIcon /></a>
         </div>
       </section>
 
