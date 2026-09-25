@@ -122,10 +122,10 @@ h1, h2 { font-family: var(--font-display); font-weight: 500; letter-spacing: -.0
 .aplec-2026-date { color:white; font-family:var(--font-display); font-size:clamp(1.45rem,2.2vw,2rem); font-weight:500; line-height:1.05; letter-spacing:-.02em; }
 .aplec-2026-location { color:rgba(255,255,255,.76); font-size:.75rem; line-height:1.4; }
 .aplec-overview-heading > p { max-width:900px; margin:0; color:rgba(255,255,255,.78); font-family:var(--font-display); font-size:clamp(1.42rem,2vw,2.1rem); line-height:1.2; letter-spacing:-.025em; text-wrap:balance; }
-.aplec-overview-cta { width:max-content; max-width:100%; margin-top:30px; display:inline-flex; align-items:center; gap:16px; padding:13px 16px 13px 18px; border:1px solid rgba(251,248,239,.38); border-radius:999px; background:rgba(251,248,239,.12); color:white; box-shadow:0 12px 30px rgba(6,30,25,.14); }
-.aplec-overview-cta span { display:flex; flex-direction:column; gap:3px; }
-.aplec-overview-cta strong { font-size:.82rem; line-height:1; }
-.aplec-overview-cta small { color:rgba(255,255,255,.68); font-size:.68rem; line-height:1; }
+.aplec-overview-cta { width:max-content; max-width:100%; min-height:62px; margin-top:30px; display:inline-flex; align-items:center; gap:20px; padding:17px 22px 17px 24px; border:1px solid rgba(251,248,239,.38); border-radius:999px; background:rgba(251,248,239,.12); color:white; box-shadow:0 12px 30px rgba(6,30,25,.14); }
+.aplec-overview-cta span { display:flex; flex-direction:column; gap:5px; }
+.aplec-overview-cta strong { font-size:1rem; line-height:1.1; }
+.aplec-overview-cta small { color:rgba(255,255,255,.72); font-size:.76rem; line-height:1.15; }
 .aplec-overview-cta svg { flex:0 0 auto; transition:transform .22s; }
 .aplec-symbol-card { width:min(250px,100%); aspect-ratio:1; display:grid; place-items:center; justify-self:center; align-self:center; transform:translateX(-16px); border-radius:38% 62% 55% 45% / 45% 38% 62% 55%; background:radial-gradient(circle,rgba(251,248,239,.92),rgba(251,248,239,.52)); box-shadow:0 18px 42px rgba(6,30,25,.18); }
 .aplec-symbol-card img { position:relative; z-index:1; width:74%; height:74%; object-fit:contain; opacity:.78; filter:contrast(1.18); }
@@ -594,6 +594,12 @@ a.footer-entity:hover { opacity:.78; background:rgba(255,255,255,.04); }
 .aplec-2026-when p { margin:0; color:var(--cream); font-family:var(--font-display); font-size:clamp(2.3rem,4.6vw,5rem); line-height:.85; letter-spacing:-.045em; }
 .aplec-2026-when span { color:var(--orange); font-size:clamp(.78rem,1vw,1rem); font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
 .aplec-2026-where { margin:18px 0 0; font-family:var(--font-display); font-size:clamp(1.25rem,2vw,1.85rem); }
+.aplec-2026-where strong { color:var(--lime); font-weight:900; }
+.aplec-2026-canalla { margin-top:16px; display:grid; gap:4px; color:rgba(255,255,255,.82); }
+.aplec-2026-canalla p { margin:0; font-size:.9rem; line-height:1.4; }
+.aplec-2026-canalla p:first-child strong { color:var(--lime); font-weight:900; }
+.aplec-2026-canalla-title { font-family:var(--font-display); font-size:clamp(1.2rem,1.8vw,1.6rem) !important; color:white; }
+.aplec-2026-canalla-title strong { color:var(--lime); letter-spacing:.04em; }
 .aplec-2026-intro { align-self:end; position:relative; padding:32px 0 6px; border-top:1px solid rgba(251,248,239,.22); }
 .aplec-2026-intro > span { display:block; margin-bottom:24px; color:var(--lime); font-family:var(--font-display); font-size:1.15rem; }
 .aplec-2026-intro p { margin:0; color:rgba(255,255,255,.76); font-family:var(--font-display); font-size:clamp(1.35rem,2vw,1.85rem); line-height:1.28; letter-spacing:-.02em; }
@@ -628,7 +634,8 @@ a.footer-entity:hover { opacity:.78; background:rgba(255,255,255,.04); }
 .aplec-2026-other-activities { margin-top:48px; padding-top:32px; border-top:1px solid rgba(251,248,239,.22); }
 .aplec-2026-other-activities h3 { color:var(--lime); font-family:var(--font-display); font-size:clamp(1.8rem,3vw,3rem); }
 .aplec-2026-other-activities h4 { color:var(--cream); font-family:var(--font-display); font-size:1.5rem; margin:16px 0; }
-.aplec-2026-volunteer-link { margin-left:12px; color:var(--ink); background:var(--lime); font-weight:700; font-size:.85rem; }
+.aplec-2026-volunteer-link { margin-left:12px; color:var(--ink); background:var(--lime); font-weight:800; font-size:1rem; }
+.aplec-2026-program-link { background:rgba(251,248,239,.2); border-color:rgba(251,248,239,.65); }
 .aplec-overview-cta:focus-visible { outline:3px solid var(--lime); outline-offset:5px; }
 .aplec-2026-form-page { max-width:960px; }
 .aplec-2026-form-page header { margin:36px 0; }
@@ -909,6 +916,9 @@ a.footer-entity:hover { opacity:.78; background:rgba(255,255,255,.04); }
   .aplec-2026-when { gap:10px 14px; padding-top:20px; }
   .aplec-2026-when p { font-size:clamp(2.25rem,12vw,3.5rem); }
   .aplec-2026-where { font-size:1.18rem; line-height:1.3; }
+.aplec-2026-canalla { margin-top:14px; }
+.aplec-2026-canalla p { font-size:.82rem; }
+.aplec-2026-canalla-title { font-size:1.25rem !important; }
   .aplec-2026-intro { padding-top:24px; }
   .aplec-2026-intro > span { margin-bottom:16px; }
   .aplec-2026-intro p { font-size:1.3rem; }
