@@ -33,6 +33,15 @@ export default function Aplec2026Page() {
             <span>d’octubre de 2026</span>
           </div>
           <p className="aplec-2026-where">Cabanelles · Navata · Lladó</p>
+
+<div className="aplec-2026-canalla">
+  <p>
+    La <strong>Ca</strong> de Cabanelles, la <strong>Na</strong> de Navata i la <strong>Lla</strong> de Lladó
+  </p>
+  <p className="aplec-2026-canalla-title">
+    <strong>CANALLA</strong>, un territori compartit
+  </p>
+</div>
         </div>
         <div className="aplec-2026-intro">
           <span aria-hidden="true">Iltiŕ</span>

@@ -69,14 +69,16 @@ export default async function Home() {
             <p>
               Una trobada per compartir les propostes de resiliència que es treballen des dels pobles, compartir aprenentatges, expressar el vincle amb el territori i celebrar la cultura arrelada al lloc.
             </p>
-            <Link className="aplec-overview-cta" href="/aplecs/2026">
-              <span>
-                <strong>Descobreix l’Aplec 2026</strong>
-                <small>16 · 17 · 18 d’octubre</small>
-              </span>
-              <ArrowIcon />
-            </Link>
-            <Link className="aplec-overview-cta aplec-2026-volunteer-link" href="/aplecs/2026/voluntariat">Participa com a voluntari/ària <ArrowIcon /></Link>
+            <Link className="aplec-overview-cta aplec-2026-program-link" href="/aplecs/2026">
+  <span>
+    <strong>Consulta la programació</strong>
+    <small>Programa complet · 16, 17 i 18 d’octubre</small>
+  </span>
+  <ArrowIcon />
+</Link>
+<Link className="aplec-overview-cta aplec-2026-volunteer-link" href="/aplecs/2026/voluntariat">
+  Participa com a voluntari/ària <ArrowIcon />
+</Link>
           </div>
           <div className="aplec-symbol-card" aria-hidden="true">
             <Image
