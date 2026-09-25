@@ -6,6 +6,7 @@ export type ProgramRegistration = {
 
 export type ProgramActivity = {
   time: string;
+  nextDay?: boolean;
   title: string;
   location?: string;
   information?: string;
@@ -17,6 +18,8 @@ export type ProgramActivity = {
 export type ProgramDay = {
   id: string;
   heading: string;
+  dateISO: string;
+  municipality: string;
   note?: string;
   activities: ProgramActivity[];
 };
@@ -31,6 +34,8 @@ export const volunteerRegistration: ProgramRegistration = {
 export const aplec2026Program: ProgramDay[] = [
   {
     id: "divendres",
+    dateISO: "2026-10-16",
+    municipality: "Lladó",
     heading: "Divendres 16 d’octubre · Lladó",
     note:
       "En cas de pluja els concerts es faran al Teatre-Sindicat i els diàlegs a la sala Sant Joan.",
@@ -75,7 +80,8 @@ export const aplec2026Program: ProgramDay[] = [
       },
       {
         time: "21.00 h",
-        title: "Concert · Konunpar, grup de versions",
+        title: "Könunpar",
+        moreInfo: "Un bon concert no es mesura per la mida de l’escenari. Es mesura pel que passa entre la cançó i la gent.",
         location: "Plaça Major",
       },
       {
@@ -89,19 +95,22 @@ export const aplec2026Program: ProgramDay[] = [
         location: "Plaça Major",
       },
       {
-        time: "24.00 h",
+        time: "00.00 h",
+        nextDay: true,
         title: "Txaranga Bufant Fort",
         location: "Punt d’inici a la Plaça Major",
       },
       {
-        time: "01.00 h",
-        title: "DJ Ivanolo",
+        time: "Tot seguit",
+        title: "DJ Ivanote",
         location: "Plaça Major",
       },
     ],
   },
   {
     id: "dissabte",
+    dateISO: "2026-10-17",
+    municipality: "Navata",
     heading: "Dissabte 17 d’octubre · Navata",
     note:
       "En cas de pluja els concerts i les xerrades es faran al Sindicat de Navata.",
@@ -121,6 +130,7 @@ export const aplec2026Program: ProgramDay[] = [
       {
         time: "10.30 h",
         title: "Exposició de Poesia Cinètica · Rafel Ortiz",
+        moreInfo: "Una experiència immersiva on la poesia deixa de ser llenguatge literari i es converteix en fenomen físic.",
         location: "Sala 1 d’Octubre",
       },
       {
@@ -148,6 +158,7 @@ export const aplec2026Program: ProgramDay[] = [
       {
         time: "12.30 h",
         title: "Concert · Mini-Stress · Cançoner de Navata-Lladó",
+        moreInfo: "Concert de cançons tradicionals del nostre país recollides a l’Alt Empordà.",
         location: "Plaça de l’Era de l’Obra",
       },
       {
@@ -175,6 +186,7 @@ export const aplec2026Program: ProgramDay[] = [
       {
         time: "16.00 h",
         title: "Exposició de Poesia Cinètica · Rafel Ortiz",
+        moreInfo: "Una experiència immersiva on la poesia deixa de ser llenguatge literari i es converteix en fenomen físic.",
         location: "Sala 1 d’Octubre",
       },
       {
@@ -190,27 +202,32 @@ export const aplec2026Program: ProgramDay[] = [
       {
         time: "17.00–18.00 h",
         title:
-          "Concert · Wave Ensemble sobre plantes, amb Frances Bartlett",
+          "Somia'm verd / Dream Me Green · Wave Ensemble",
+        moreInfo: "Concert ritual amb aromes. Cançons d'art de Frances Bartlett, violoncel i veu, Jordi Rallo percussió.",
         location: "Església de Sant Pere",
       },
       {
         time: "17.15 h",
-        title: "Espectacle / concert infantil · Jordi Tonietti",
+        title: "Ara t'ho explico · Jordi Tonietti",
+        moreInfo: "Amb música en directe, cançons originals, contes que fan volar la imaginació i molta participació. Els nostres espectacles són una festa pensada per a fer gaudir a tothom que tingui ganes de riure, cantar i passar-ho molt bé!",
         location: "Era de l’Obra",
       },
       {
         time: "18.00 h",
         title: "Concert · Coral de Lladó",
+        moreInfo: "La Coral de Lladó és un espai de trobada a través del cant col·lectiu que fomenta els vincles comunitaris i manté viva la cultura musical del territori.",
         location: "Església de Sant Pere",
       },
       {
         time: "18.30 h",
         title: "Concert · Coral de Cabanelles",
+        moreInfo: "La Corral Rural de Cabanelles som una Coral Reivindicativa, és un espai de trobada, és xarxa i comunitat que, des de la diversitat i la cura dels processos individuals i col·lectius, reivindica una societat més justa i digna. Cantem per portar els valors de la lluita al carrers, a les places i als cors.",
         location: "Plaça de davant de l’Església",
       },
       {
         time: "19.00–20.00 h",
-        title: "Concert · LaDinamo",
+        title: "Music on Cycles · LaDinamo",
+        moreInfo: "LaDinamo és funk en moviment, és música en bicicletes. Una formació única de músics sobre rodes que trenca esquemes amb un concert itinerant d’alt voltatge i una festa de carrer trepidant a ritme de Funk.",
         location: "De l’Era de l’Obra al Camp de rugbi",
       },
       {
@@ -222,6 +239,8 @@ export const aplec2026Program: ProgramDay[] = [
   },
   {
     id: "diumenge",
+    dateISO: "2026-10-18",
+    municipality: "Cabanelles",
     heading: "Diumenge 18 d’octubre · Cabanelles",
     note:
       "En cas de pluja les activitats es desenvoluparan a la Sala de Cabanelles.",
@@ -251,7 +270,8 @@ La proposta està pensada com una experiència oberta, sense una resposta tancad
       {
         time: "11.00 h",
         title:
-          "Taller-espectacle · Trementinaires · Companyia Tramuntana",
+          "Històries d'una petita trementinaire · Companyia Tramuntana",
+        moreInfo: "Espectacle sobre la apassionant i tendre història de les trementinaires. Dirigit a tots els públics.",
         location: "Exterior de la Sala",
       },
       {
@@ -299,7 +319,8 @@ La proposta està pensada com una experiència oberta, sense una resposta tancad
       {
         time: "17.00 h",
         title:
-          "Taller de plantes aromàtiques i aromateràpia · Essències.cat",
+          "Geni del lloc, geni de la planta · Essències.cat",
+        moreInfo: "Vols descobrir què entenem per geni del lloc i geni de la planta? T'oferim un espai per explorar-ho, experimentar-ho i trobar-hi la teva pròpia resposta.",
         location: "Exterior de la Sala",
       },
       {
@@ -314,6 +335,8 @@ La proposta està pensada com una experiència oberta, sense una resposta tancad
 export const aplec2026OtherActivities = [
   {
     date: "8 d’octubre",
+    dateISO: "2026-10-08",
+    municipality: "Lladó",
     time: "19.30 h",
     title: "Jornada informativa d’habitatge",
     location: "Sindicat de Lladó",

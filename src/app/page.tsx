@@ -5,12 +5,30 @@ import { ArrowIcon } from "@/components/icons";
 import { ManifestoSlider } from "@/components/manifesto-slider";
 import { SectorialsHome } from "@/components/sectorials-home";
 import { getCircles } from "@/lib/remote-content";
+import { getUpcomingAplecActivities } from "@/lib/aplec-2026-upcoming";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export default async function Home() {
   const circles = await getCircles();
+  const upcoming = getUpcomingAplecActivities();
+  const slotLabels = ["LA PROPERA ACTIVITAT", "A CONTINUACIÓ", "TOT SEGUIT"];
+  const activityDate = new Intl.DateTimeFormat("ca-ES", {
+    day: "numeric", month: "long", year: "numeric", timeZone: "Europe/Madrid",
+  });
+  const todayParts = new Intl.DateTimeFormat("en-GB", {
+    year: "numeric", month: "2-digit", day: "2-digit", timeZone: "Europe/Madrid",
+  }).formatToParts(new Date());
+  const datePart = (type: string) => todayParts.find((part) => part.type === type)!.value;
+  const today = `${datePart("year")}-${datePart("month")}-${datePart("day")}`;
+  // Advance the local calendar date, not 24 hours across a daylight-saving change.
+  const tomorrowDate = new Date(`${today}T12:00:00Z`);
+  tomorrowDate.setUTCDate(tomorrowDate.getUTCDate() + 1);
+  const tomorrow = tomorrowDate.toISOString().slice(0, 10);
+  const formatActivityDate = (date: string) => date === today ? "Avui"
+    : date === tomorrow ? "Demà"
+    : activityDate.format(new Date(`${date}T12:00:00Z`));
 
   return (
     <>
@@ -115,6 +133,38 @@ Vols donar un cop de mà? <ArrowIcon />
               <p>{text}</p>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section className="aplec-upcoming section-shell" aria-labelledby="aplec-upcoming-title">
+        <span className="eyebrow">Aplec Iltiŕ 2026</span>
+        <h2 id="aplec-upcoming-title">{upcoming.finished ? "Gràcies per ser-hi" : "Properes activitats"}</h2>
+        {upcoming.slots.length ? (
+          <ol className="aplec-upcoming-grid">
+            {upcoming.slots.map((slot, index) => (
+              <li className="aplec-upcoming-slot" key={slot.startsAt}>
+                <span className="eyebrow">{slotLabels[index]}</span>
+                <p className="aplec-upcoming-date">
+                  <time dateTime={slot.date}>{formatActivityDate(slot.date)}</time>
+                </p>
+                <ul className="aplec-upcoming-activities">
+                  {slot.activities.map((activity) => (
+                    <li key={`${activity.time}-${activity.title}`}>
+                      <p className="aplec-upcoming-time">{activity.time}</p>
+                      <h3>{activity.title}</h3>
+                      <p className="aplec-upcoming-place"><strong>{activity.municipality}</strong> · {activity.location}</p>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ol>
+        ) : (
+          <p>{upcoming.finished ? "L’Aplec Iltiŕ 2026 ha finalitzat. Gràcies per compartir-lo!" : "Ja han començat totes les activitats programades. Gaudim de la cloenda!"}</p>
+        )}
+        <div className="aplec-upcoming-actions">
+          <Link className="text-link" href="/aplecs/2026">Consulta aquí la resta de la programació <ArrowIcon /></Link>
+          <a className="button button-primary" href="/programa-aplec-iltir-2026.pdf" download="programa-aplec-iltir-2026.pdf">Descarrega el programa <ArrowIcon /></a>
         </div>
       </section>
 
