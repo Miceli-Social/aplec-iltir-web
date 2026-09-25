@@ -1,8 +1,17 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { aplec2026Program, aplec2026OtherActivities, volunteerRegistration, type ProgramRegistration } from "@/lib/aplec-2026-program";
+import {
+  aplec2026Program,
+  aplec2026OtherActivities,
+  volunteerRegistration,
+  type ProgramRegistration,
+} from "@/lib/aplec-2026-program";
 
-function RegistrationNotice({ registration }: { registration: ProgramRegistration }) {
+function RegistrationNotice({
+  registration,
+}: {
+  registration: ProgramRegistration;
+}) {
   return (
     <div className="aplec-2026-registration">
       {registration.url ? (
@@ -27,21 +36,27 @@ export default function Aplec2026Page() {
       <header className="aplec-2026-hero">
         <div className="aplec-2026-hero-copy">
           <span className="eyebrow light">La trobada dels pobles</span>
-          <h1>Aplec Iltiŕ <em>2026</em></h1>
+          <h1>
+            Aplec Iltiŕ <em>2026</em>
+          </h1>
+
           <div className="aplec-2026-when">
             <p>16 · 17 · 18</p>
             <span>d’octubre de 2026</span>
           </div>
-          <p className="aplec-2026-where">
-  <strong>Ca</strong>banelles · <strong>Na</strong>vata · <strong>Lla</strong>dó
-</p>
 
-<div className="aplec-2026-canalla">
-  <p className="aplec-2026-canalla-title">
-    <strong>CANALLA</strong>, un territori compartit
-  </p>
-</div>
+          <p className="aplec-2026-where">
+            <strong>Ca</strong>banelles · <strong>Na</strong>vata ·{" "}
+            <strong>Lla</strong>dó
+          </p>
+
+          <div className="aplec-2026-canalla">
+            <p className="aplec-2026-canalla-title">
+              <strong>CANALLA</strong>, un territori compartit
+            </p>
+          </div>
         </div>
+
         <div className="aplec-2026-intro">
           <span aria-hidden="true">Iltiŕ</span>
           <p>
@@ -60,6 +75,7 @@ export default function Aplec2026Page() {
           <span className="eyebrow">01 · Imatge de l’edició</span>
           <h2 id="aplec-2026-poster-title">Cartell oficial</h2>
         </div>
+
         <a
           className="aplec-2026-poster-frame"
           href="/images/aplec-iltir-2026-cartell.png"
@@ -86,41 +102,125 @@ export default function Aplec2026Page() {
             <span className="eyebrow light">02 · Tres dies de trobada</span>
             <h2 id="aplec-2026-program-title">Programa de l’Aplec</h2>
           </div>
+
+          <section
+            className="aplec-2026-signups"
+            aria-labelledby="aplec-2026-signups-title"
+          >
+            <div className="aplec-2026-signups-heading">
+              <span className="eyebrow light">Inscripcions obertes</span>
+              <h3 id="aplec-2026-signups-title">Reserva i participa</h3>
+              <p>
+                Algunes activitats de l’Aplec requereixen inscripció o reserva
+                prèvia. Pots fer-ho directament des d’aquí.
+              </p>
+            </div>
+
+            <div className="aplec-2026-signups-grid">
+              <a href="/aplecs/2026/caminada">
+                <span>Caminada popular</span>
+                <strong>Inscriu-t’hi</strong>
+              </a>
+
+              <a href="/aplecs/2026/dinar">
+                <span>Dinar de germanor ILTIŔ</span>
+                <strong>Reserva el dinar</strong>
+              </a>
+
+              <a href="/aplecs/2026/voluntariat">
+                <span>Vols donar un cop de mà?</span>
+                <strong>Comparteix la teva disponibilitat</strong>
+              </a>
+            </div>
+          </section>
+
           <nav className="aplec-2026-day-links" aria-label="Dies del programa">
             {aplec2026Program.map((day) => (
-              <a key={day.id} href={`#${day.id}`}>{day.heading}</a>
+              <a key={day.id} href={`#${day.id}`}>
+                {day.heading}
+              </a>
             ))}
           </nav>
+
           {aplec2026Program.map((day) => (
-            <section className="aplec-2026-day" key={day.id} aria-labelledby={day.id}>
+            <section
+              className="aplec-2026-day"
+              key={day.id}
+              aria-labelledby={day.id}
+            >
               <h3 id={day.id}>{day.heading}</h3>
+
+              {day.note && (
+                <p className="aplec-2026-day-note">{day.note}</p>
+              )}
+
               <ol className="aplec-2026-activities">
                 {day.activities.map((activity) => (
-                  <li className="aplec-2026-activity" key={`${activity.time}-${activity.title}`}>
+                  <li
+                    className="aplec-2026-activity"
+                    key={`${activity.time}-${activity.title}`}
+                  >
                     <p className="aplec-2026-activity-time">{activity.time}</p>
+
                     <div className="aplec-2026-activity-body">
                       <h4>{activity.title}</h4>
-                      {activity.location && <p className="aplec-2026-activity-location">{activity.location}</p>}
-                      {activity.information && <p className="aplec-2026-activity-copy">{activity.information}</p>}
-                      {activity.status && <p className="aplec-2026-activity-status">{activity.status}</p>}
+
+                      {activity.location && (
+                        <p className="aplec-2026-activity-location">
+                          {activity.location}
+                        </p>
+                      )}
+
+                      {activity.information && (
+                        <p className="aplec-2026-activity-copy">
+                          {activity.information}
+                        </p>
+                      )}
+
+                      {activity.status && (
+                        <p className="aplec-2026-activity-status">
+                          {activity.status}
+                        </p>
+                      )}
+
                       {activity.moreInfo && (
                         <details className="aplec-2026-details">
-                          <summary aria-label={`Més informació sobre ${activity.title}`}>Més informació</summary>
-                          <p className="aplec-2026-activity-copy">{activity.moreInfo}</p>
+                          <summary
+                            aria-label={`Més informació sobre ${activity.title}`}
+                          >
+                            Més informació
+                          </summary>
+                          <p className="aplec-2026-activity-copy">
+                            {activity.moreInfo}
+                          </p>
                         </details>
                       )}
-                      {activity.registration && <RegistrationNotice registration={activity.registration} />}
+
+                      {activity.registration && (
+                        <RegistrationNotice
+                          registration={activity.registration}
+                        />
+                      )}
                     </div>
                   </li>
                 ))}
               </ol>
             </section>
           ))}
-          <section className="aplec-2026-other-activities" aria-labelledby="aplec-2026-other-title">
+
+          <section
+            className="aplec-2026-other-activities"
+            aria-labelledby="aplec-2026-other-title"
+          >
             <h3 id="aplec-2026-other-title">Altres activitats…</h3>
-            {aplec2026OtherActivities.map(activity => (
+
+            {aplec2026OtherActivities.map((activity) => (
               <article key={activity.title}>
-                <p><strong>{activity.date} · {activity.time}</strong></p>
+                <p>
+                  <strong>
+                    {activity.date} · {activity.time}
+                  </strong>
+                </p>
                 <h4>{activity.title}</h4>
                 <p>{activity.location}</p>
               </article>
@@ -128,13 +228,24 @@ export default function Aplec2026Page() {
           </section>
         </div>
       </section>
-      <section className="aplec-2026-volunteer section-shell" aria-labelledby="aplec-2026-volunteer-title">
+
+      <section
+        className="aplec-2026-volunteer section-shell"
+        aria-labelledby="aplec-2026-volunteer-title"
+      >
         <div className="aplec-2026-section-heading">
           <span className="eyebrow">03 · Fem l’Aplec plegats</span>
-          <h2 id="aplec-2026-volunteer-title">Suma’t al voluntariat</h2>
+          <h2 id="aplec-2026-volunteer-title">Vols donar un cop de mà?</h2>
         </div>
+
         <div>
-          <p>Necessitem persones voluntàries els dies 16, 17 i 18 d’octubre a Lladó, Navata i Cabanelles. Ajuda’ns a fer possible la trobada dels pobles.</p>
+          <p>
+            Si ets de Navata, Lladó, Cabanelles o de qualsevol altre territori
+            i tens ganes de donar un cop de mà els dies 16, 17 i 18 d’octubre a
+            Lladó, Navata i Cabanelles. Comparteix la teva disponibilitat i
+            l’organització es posarà en contacte amb tu!
+          </p>
+
           <RegistrationNotice registration={volunteerRegistration} />
         </div>
       </section>
