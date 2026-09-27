@@ -32,7 +32,12 @@ export async function notifyRegistration(record: RegistrationRecord) {
     ? `Hem rebut la teva reserva, ${fullName}.\n${detail}${(record.status ?? "pending") === "pending" ? `\n\n${pendingPaymentNotice}` : ""}\n\nTiquet privat (no comparteixis aquest enllaç):\n${base}${ticketLink(record)}`
     : record.kind === "walk" ? `Hola, ${fullName}.\nHem rebut correctament la teva inscripció a la caminada de l’Aplec Iltiŕ 2026.\n${detail}` : `Hola, ${fullName}.\nHem rebut la teva disponibilitat per fer voluntariat a l’Aplec Iltiŕ 2026. L’organització es posarà en contacte amb tu. Encara no tens cap torn assignat.\n${detail}`;
   const notifications = { ...record.notifications };
-  const recipient = record.kind === "walk" ? process.env.REGISTRATION_WALK_NOTIFY_EMAIL || "lluis.arambilet@gmail.com" : process.env.REGISTRATION_NOTIFY_EMAIL || "carla@resilience.earth";
+  const recipient =
+  record.kind === "walk"
+    ? process.env.REGISTRATION_WALK_NOTIFY_EMAIL || "lluis.arambilet@gmail.com"
+    : record.kind === "lunch"
+      ? process.env.REGISTRATION_LUNCH_NOTIFY_EMAIL || "kombillay@resilience.earth"
+      : process.env.REGISTRATION_NOTIFY_EMAIL || "carla@resilience.earth";
   if (notifications.organization !== "sent") notifications.organization = await send(recipient, title, `${fullName}\nCorreu: ${record.email}\nTelèfon: ${record.phone}\n${detail}\n\nAdministració: ${base}/admin#inscripcions-aplec`, `${record.id}-organization`);
   if (notifications.participant !== "sent") notifications.participant = await send(record.email, title, participantText, `${record.id}-participant`);
   try { await updateNotifications(record.kind, record.id, notifications); return true; } catch {
