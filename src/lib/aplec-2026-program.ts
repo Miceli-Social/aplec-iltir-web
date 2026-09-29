@@ -246,27 +246,47 @@ export const aplec2026Program: ProgramDay[] = [
       "En cas de pluja les activitats es desenvoluparan a la Sala de Cabanelles.",
     activities: [
       {
-        time: "10.00 h",
-        title:
-          "Caminada popular · Biodiversitat i plantes aromàtiques del territori",
-        location: "Sortida de la Sala",
-        moreInfo: `Una proposta per explorar una altra manera de relacionar-nos amb el paisatge, les plantes i els llocs que habitem.
+  time: "10.00–13.30 h",
+  title:
+    "Geni del lloc, geni de la planta · Mòdul 1: El lloc (caminada)",
+  location: "La Sala de Cabanelles",
+  moreInfo: `Vols descobrir què entenem per geni del lloc i geni de la planta?
 
-En petits grups, buscarem un espai dins de l’entorn natural on situar-nos. A partir d’un centrament individual, observarem el lloc, la planta i el paisatge que l’envolta. Mirarem, dibuixarem, escriurem, compartirem i crearem per posar en relació les diferents mirades.
+Per respondre a aquesta pregunta, s’ofereix un espai d’exploració i creació compartida en petits grups per relacionar-se d’una altra manera amb el paisatge i les plantes, a partir de la percepció, l’experiència i la connexió amb l’entorn natural com a part activa del procés.
 
-La proposta combina aquesta experiència en entorn natural amb una sessió d’olfacció a partir d’olis essencials, observant què passa, què canvia i què apareix quan introduïm l’olor.
+L’objectiu és explorar una altra manera de relacionar-nos amb les plantes i amb els llocs on viuen. No només volem saber coses sobre una planta, sinó entrar en relació amb ella i amb el seu entorn. Passar de preguntar-nos: Què sé d'aquesta planta? a preguntar-nos: Què puc descobrir d'aquesta planta si entro en relació amb ella? Què em revela el lloc sobre la planta? Què em revela la planta sobre el lloc?
 
-Cal portar calçat per caminar pel camp, barret o gorra, llibreta —millor sense pauta—, llapis, bolígraf o retolador.
+No partim d'una resposta tancada, sinó que creem les condicions perquè alguna cosa pugui aparèixer.
 
-Lloc de trobada: La Sala de Cabanelles.
+Com ho farem?
+El taller es desenvolupa en dues grans experiències:
 
-La proposta està pensada com una experiència oberta, sense una resposta tancada: crear les condicions perquè alguna cosa pugui aparèixer i preguntar-nos què s’ha obert al final del recorregut.`,
-        registration: {
-          label: "Inscripció prèvia",
-          information: "Cal inscripció prèvia online.",
-          url: "/aplecs/2026/caminada",
-        },
-      },
+1. El lloc (caminada al matí). 10h a 13:30h
+En petits grups, buscarem un lloc dins de l'entorn natural on vulguem situar-nos.
+Cada participant farà un centrament individual i, des d'aquí, observarà el lloc, la planta i el paisatge que l'envolta. Després:
+
+mirarem → dibuixarem → escriurem → compartirem → crearem
+
+El dibuix ens permet entrar en l'espai a través de la mirada.  L'escriptura pot ser una manera de descobrir, una possibilitat de deixar que l'espai es mostri mentre escrivim.  Després, el grup posarà en relació les diferents mirades i crearà una presentació breu del seu lloc per compartir-la amb la resta.
+
+2. La planta i la seva olor (taller a la tarda). 16:30h a 18:00h
+A la tarda treballarem amb les olors a partir d'un o més olis essencials.
+Abans de començar, farem un centrament senzill: postura, contacte amb el terra i amb el seient, respiració i percepció de l'estat present. Després introduirem una única variable: l'olor
+
+*Si no és possible participar en l'experiència completa, existeix també la possibilitat de fer un dels dos mòduls per separat.*
+
+Que cal portar
+Calçat per caminar pel camp, pantaló llar, barret o gorra pel sol.
+Llibreta -millor sense pauta-, llapis, boligraf, retolador…
+
+Lloc de trobada
+La Sala de Cabanelles`,
+  registration: {
+    label: "Inscripció prèvia",
+    information: "Cal inscripció prèvia online.",
+    url: "/aplecs/2026/caminada",
+  },
+},
       {
         time: "11.00 h",
         title:
@@ -317,12 +337,42 @@ La proposta està pensada com una experiència oberta, sense una resposta tancad
         location: "A la Sala",
       },
       {
-        time: "17.00 h",
-        title:
-          "Geni del lloc, geni de la planta · Essències.cat",
-        moreInfo: "Vols descobrir què entenem per geni del lloc i geni de la planta? T'oferim un espai per explorar-ho, experimentar-ho i trobar-hi la teva pròpia resposta.",
-        location: "Exterior de la Sala",
-      },
+  time: "16.30–18.00 h",
+  title:
+    "Geni del lloc, geni de la planta · Mòdul 2: La planta i la seva olor · Essències.cat",
+  moreInfo: `Vols descobrir què entenem per geni del lloc i geni de la planta?
+
+Per respondre a aquesta pregunta, s’ofereix un espai d’exploració i creació compartida en petits grups per relacionar-se d’una altra manera amb el paisatge i les plantes, a partir de la percepció, l’experiència i la connexió amb l’entorn natural com a part activa del procés.
+
+L’objectiu és explorar una altra manera de relacionar-nos amb les plantes i amb els llocs on viuen. No només volem saber coses sobre una planta, sinó entrar en relació amb ella i amb el seu entorn. Passar de preguntar-nos: Què sé d'aquesta planta? a preguntar-nos: Què puc descobrir d'aquesta planta si entro en relació amb ella? Què em revela el lloc sobre la planta? Què em revela la planta sobre el lloc?
+
+No partim d'una resposta tancada, sinó que creem les condicions perquè alguna cosa pugui aparèixer.
+
+Com ho farem?
+El taller es desenvolupa en dues grans experiències:
+
+1. El lloc (caminada al matí). 10h a 13:30h
+En petits grups, buscarem un lloc dins de l'entorn natural on vulguem situar-nos.
+Cada participant farà un centrament individual i, des d'aquí, observarà el lloc, la planta i el paisatge que l'envolta. Després:
+
+mirarem → dibuixarem → escriurem → compartirem → crearem
+
+El dibuix ens permet entrar en l'espai a través de la mirada.  L'escriptura pot ser una manera de descobrir, una possibilitat de deixar que l'espai es mostri mentre escrivim.  Després, el grup posarà en relació les diferents mirades i crearà una presentació breu del seu lloc per compartir-la amb la resta.
+
+2. La planta i la seva olor (taller a la tarda). 16:30h a 18:00h
+A la tarda treballarem amb les olors a partir d'un o més olis essencials.
+Abans de començar, farem un centrament senzill: postura, contacte amb el terra i amb el seient, respiració i percepció de l'estat present. Després introduirem una única variable: l'olor
+
+*Si no és possible participar en l'experiència completa, existeix també la possibilitat de fer un dels dos mòduls per separat.*
+
+Que cal portar
+Calçat per caminar pel camp, pantaló llar, barret o gorra pel sol.
+Llibreta -millor sense pauta-, llapis, boligraf, retolador…
+
+Lloc de trobada
+La Sala de Cabanelles`,
+  location: "La Sala de Cabanelles",
+},
       {
         time: "19.00 h",
         title: "Cloenda",
