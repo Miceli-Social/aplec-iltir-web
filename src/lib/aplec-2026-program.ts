@@ -40,7 +40,14 @@ export const aplec2026Program: ProgramDay[] = [
     note:
       "En cas de pluja els concerts es faran al Teatre-Sindicat i els diàlegs a la sala Sant Joan.",
     activities: [
-     {
+{
+  time: "11.00–13.00 h",
+  title: "Exposició de Poesia Cinètica · Rafel Ortiz",
+  moreInfo:
+    "Una experiència immersiva on la poesia deixa de ser llenguatge literari i es converteix en fenomen físic.",
+  location: "Sala 1 d’Octubre",
+},    
+ {
   time: "15.00 h",
   title: "Xerrada sobre un territori abraçat pel Mont",
   moreInfo: "Parlem del patrimoni històric, cultural i natural d'uns pobles abraçats pel Mont. Amb Joaquim Tremoleda, Arqueòleg i historiador de Lladó; i Joan Nogué, geògraf català i director de l'Observatori del Paisatge de Catalunya fins al 2017.",
@@ -64,7 +71,14 @@ export const aplec2026Program: ProgramDay[] = [
           "Berenar popular i ballada amb la companyia de faràndules del territori",
         location: "Plaça Major",
       },
-      {
+{
+  time: "18.00–21.00 h",
+  title: "Exposició de Poesia Cinètica · Rafel Ortiz",
+  moreInfo:
+    "Una experiència immersiva on la poesia deixa de ser llenguatge literari i es converteix en fenomen físic.",
+  location: "Sala 1 d’Octubre",
+}, 
+     {
   time: "18.00 h",
   title:
     "Espai de Diàleg · Com la governança comunitària pot revitalitzar tot un poble",
@@ -131,17 +145,18 @@ export const aplec2026Program: ProgramDay[] = [
         moreInfo:
           "Escoltar amb més profunditat el metabolisme del territori, la funció dels diversos agents que ens hi relacionem i els processos de producció i economia pot ser clau per augmentar la resiliència del lloc. En parlem?",
       },
-      {
-        time: "10.30 h",
-        title: "Exposició de Poesia Cinètica · Rafel Ortiz",
-        moreInfo: "Una experiència immersiva on la poesia deixa de ser llenguatge literari i es converteix en fenomen físic.",
-        location: "Sala 1 d’Octubre",
-      },
-      {
+{
         time: "10.30 h",
         title: "Exposició · Albert Cuevas",
         location: "Can Miró/Sala QArts",
-      },
+      },  
+    {
+  time: "11.00–13.00 h",
+  title: "Exposició de Poesia Cinètica · Rafel Ortiz",
+  moreInfo:
+    "Una experiència immersiva on la poesia deixa de ser llenguatge literari i es converteix en fenomen físic.",
+  location: "Sala 1 d’Octubre",
+},
       {
   time: "11.00 h",
   title:
@@ -191,13 +206,7 @@ export const aplec2026Program: ProgramDay[] = [
         moreInfo:
           "El Cercle de Transició Energètica treballa per entendre els consums locals, diversificar l’estratègia de producció energètica elèctrica (solar i eòlica), biogàs i biomassa, tenir la informació real i generar propostes. Durant la tarda ens presentarà allò amb què està treballant i com seguir teixint una proposta real des del lloc. Ens acompanyarà l’Oficina de Transició Energètica de l’Empordà i la comunitat energètica local Navata Sostenible.",
       },
-      {
-        time: "16.00 h",
-        title: "Exposició de Poesia Cinètica · Rafel Ortiz",
-        moreInfo: "Una experiència immersiva on la poesia deixa de ser llenguatge literari i es converteix en fenomen físic.",
-        location: "Sala 1 d’Octubre",
-      },
-      {
+           {
         time: "16.00 h",
         title: "Exposició · Albert Cuevas",
         location: "Can Miró/Sala QArts",
@@ -221,7 +230,14 @@ moreInfo: "Concert ritual amb aromes. Cançons d'art de Frances Bartlett, violon
         moreInfo: "Amb música en directe, cançons originals, contes que fan volar la imaginació i molta participació. Els nostres espectacles són una festa pensada per a fer gaudir a tothom que tingui ganes de riure, cantar i passar-ho molt bé!",
         location: "Era de l’Obra",
       },
-      {
+ {
+  time: "18.00–21.00 h",
+  title: "Exposició de Poesia Cinètica · Rafel Ortiz",
+  moreInfo:
+    "Una experiència immersiva on la poesia deixa de ser llenguatge literari i es converteix en fenomen físic.",
+  location: "Sala 1 d’Octubre",
+}, 
+     {
         time: "18.00 h",
         title: "Concert · Coral de Lladó",
         moreInfo: "La Coral de Lladó és un espai de trobada a través del cant col·lectiu que fomenta els vincles comunitaris i manté viva la cultura musical del territori.",
@@ -295,6 +311,13 @@ La Sala de Cabanelles`,
     information: "Cal inscripció prèvia online.",
     url: "/aplecs/2026/caminada",
   },
+},
+{
+  time: "11.00–13.00 h",
+  title: "Exposició de Poesia Cinètica · Rafel Ortiz",
+  moreInfo:
+    "Una experiència immersiva on la poesia deixa de ser llenguatge literari i es converteix en fenomen físic.",
+  location: "Sala 1 d’Octubre",
 },
       {
   time: "11.00 h",
@@ -385,7 +408,14 @@ Lloc de trobada
 La Sala de Cabanelles`,
   location: "La Sala de Cabanelles",
 },
-      {
+{
+  time: "18.00–21.00 h",
+  title: "Exposició de Poesia Cinètica · Rafel Ortiz",
+  moreInfo:
+    "Una experiència immersiva on la poesia deixa de ser llenguatge literari i es converteix en fenomen físic.",
+  location: "Sala 1 d’Octubre",
+}, 
+     {
         time: "19.00 h",
         title: "Cloenda",
         location: "A la Sala",
