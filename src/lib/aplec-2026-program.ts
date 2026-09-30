@@ -297,12 +297,13 @@ La Sala de Cabanelles`,
   },
 },
       {
-        time: "11.00 h",
-        title:
-          "Històries d'una petita trementinaire · Companyia Tramuntana",
-        moreInfo: "Espectacle sobre la apassionant i tendre història de les trementinaires. Dirigit a tots els públics.",
-        location: "Exterior de la Sala",
-      },
+  time: "11.00 h",
+  title:
+    "Històries d'una petita trementinaire · Companyia Tramuntana",
+  moreInfo:
+    "Espectacle sobre la apassionant i tendre història de les trementinaires. Dirigit a tots els públics. A càrrec de la companyia Tramuntana.",
+  location: "Plaça de l'església",
+},
       {
         time: "11.00 h",
         title: "Diàleg · Territori, alimentació i salut",
@@ -340,11 +341,13 @@ La Sala de Cabanelles`,
           url: "/aplecs/2026/dinar",
         },
       },
-      {
-        time: "17.00 h",
-        title: "Taller de circ · Companyia Tramuntana",
-        location: "A la Sala",
-      },
+     {
+  time: "17.00 h",
+  title: "Taller de circ · Companyia Tramuntana",
+  moreInfo:
+    "Amb la companyia Tramuntana de Cabanelles. Vine a descobrir el circ aeri a la Sala de Cabanelles! Un espai per experimentar amb el moviment, l’equilibri i l’expressió corporal, jugar amb la gravetat i gaudir del circ en un ambient participatiu.",
+  location: "A la Sala",
+},
       {
   time: "16.30–18.00 h",
   title:
