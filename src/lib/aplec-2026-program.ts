@@ -143,11 +143,13 @@ export const aplec2026Program: ProgramDay[] = [
         location: "Can Miró/Sala QArts",
       },
       {
-        time: "11.00 h",
-        title:
-          "Somnis Territorials amb el Consell d’Infants de l’Escola de Navata i els gegants",
-        location: "Plaça de l’Era de l’Obra",
-      },
+  time: "11.00 h",
+  title:
+    "Somnis territorials amb el Consell d’Infants de l’Escola de Navata Joaquim Vallmajó i els gegants del municipi",
+  moreInfo:
+    "Els infants i alumnes expliquen els seus desitjos pel poble presentant el graffiti que han fet, acompanyats de la faràndula i músics del territori i de l'AMPA.",
+  location: "Plaça de l’Era de l’Obra",
+},
       {
         time: "11.30 h",
         title:
@@ -155,10 +157,12 @@ export const aplec2026Program: ProgramDay[] = [
         location: "Plaça de la Vila",
       },
       {
-        time: "12.00 h",
-        title: "Taller de pintura amb música · Lola Ventura",
-        location: "Plaça de l’Era de l’Obra",
-      },
+  time: "12.00 h",
+  title: "Pinta les teves sensacions",
+  moreInfo:
+    "Taller d'aquarel·les a càrrec de Lola Ventós i Quero.",
+  location: "Plaça de l’Era de l’Obra",
+},
       {
         time: "12.30 h",
         title: "Concert · Mini-Stress · Cançoner de Navata-Lladó",
@@ -198,11 +202,12 @@ export const aplec2026Program: ProgramDay[] = [
         title: "Exposició · Albert Cuevas",
         location: "Can Miró/Sala QArts",
       },
-      {
-        time: "16.30 h",
-        title: 'Joc-taller “Casa meva el meu poble”',
-        location: "Davant de l’Església",
-      },
+     {
+  time: "16.30 h",
+  title: "Joc-taller 'Casa meva, el meu poble'",
+  moreInfo: "Amb Esther Roca i Alícia Vázquez",
+  location: "Davant de l'església",
+},
       {
         time: "17.00–18.00 h",
         title:
