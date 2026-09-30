@@ -203,7 +203,7 @@ export const aplec2026Program: ProgramDay[] = [
         time: "17.00–18.00 h",
         title:
           "Somia'm verd / Dream Me Green · Wave Ensemble",
-        moreInfo: "Concert ritual amb aromes. Cançons d'art de Frances Bartlett, violoncel i veu, Jordi Rallo percussió.",
+moreInfo: "Concert ritual amb aromes. Cançons d'art de Frances Bartlett, violoncel i veu, Jordi Rallo percussió. Es convida el públic a viure el concert amb calma i comoditat: podeu portar estores, màrfegues o coixins per seure o estirar-vos, així com llibreta i estris de dibuix si us ve de gust deixar-vos inspirar per l’experiència.",
         location: "Església de Sant Pere",
       },
       {
