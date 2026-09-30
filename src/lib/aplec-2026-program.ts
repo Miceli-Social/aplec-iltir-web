@@ -40,11 +40,12 @@ export const aplec2026Program: ProgramDay[] = [
     note:
       "En cas de pluja els concerts es faran al Teatre-Sindicat i els diàlegs a la sala Sant Joan.",
     activities: [
-      {
-        time: "15.00 h",
-        title: "Xerrada sobre un territori abraçat pel Mont",
-        location: "Placeta del Priorat",
-      },
+     {
+  time: "15.00 h",
+  title: "Xerrada sobre un territori abraçat pel Mont",
+  moreInfo: "Parlem del patrimoni històric, cultural i natural d'uns pobles abraçats pel Mont. Amb Joaquim Tremoleda, Arqueòleg i historiador de Lladó; i Joan Nogué, geògraf català i director de l'Observatori del Paisatge de Catalunya fins al 2017.",
+  location: "Placeta del Priorat",
+},
       {
         time: "16.30 h",
         title: "Repic de campanes · Goigs del Mont",
