@@ -105,7 +105,7 @@ export const aplec2026Program: ProgramDay[] = [
       {
         time: "22.00 h",
         title: "Botifarrada popular",
-        location: "Plaça Major",
+        location: "Camp de futbol de Lladó",
       },
       {
         time: "22.00 h",
@@ -116,7 +116,7 @@ export const aplec2026Program: ProgramDay[] = [
         time: "00.00 h",
         nextDay: true,
         title: "Txaranga Bufant Fort",
-        location: "Punt d’inici a la Plaça Major",
+location: "Sortida del Camp de futbol de Lladó i recorregut pel poble fins a la Plaça Major",
       },
       {
         time: "Tot seguit",
@@ -146,10 +146,10 @@ export const aplec2026Program: ProgramDay[] = [
           "Escoltar amb més profunditat el metabolisme del territori, la funció dels diversos agents que ens hi relacionem i els processos de producció i economia pot ser clau per augmentar la resiliència del lloc. En parlem?",
       },
 {
-        time: "10.30 h",
-        title: "Exposició · Albert Cuevas",
-        location: "Can Miró/Sala QArts",
-      },  
+  time: "10.30 h",
+  title: "Músic en directe i la matemàtica en la natura · Albert Cuebas",
+  location: "Can Miró/Sala QArts",
+}, 
     {
   time: "11.00–13.00 h",
   title: "Exposició de Poesia Cinètica · Rafel Ortiz",
@@ -245,7 +245,7 @@ moreInfo: "Concert ritual amb aromes. Cançons d'art de Frances Bartlett, violon
       },
       {
         time: "18.30 h",
-        title: "Concert · Coral de Cabanelles",
+        title: "Concert · Corral de Cabanelles",
         moreInfo: "La Corral Rural de Cabanelles som una Coral Reivindicativa, és un espai de trobada, és xarxa i comunitat que, des de la diversitat i la cura dels processos individuals i col·lectius, reivindica una societat més justa i digna. Cantem per portar els valors de la lluita al carrers, a les places i als cors.",
         location: "Plaça de davant de l’Església",
       },
@@ -342,7 +342,7 @@ La Sala de Cabanelles`,
       {
         time: "13.00 h",
         title: "Concert de Jazz · Grup d’Espinavessa/Cabanelles",
-        location: "Plaça Major",
+location: "Plaça de l'Església",
       },
       {
         time: "13.00 h",
