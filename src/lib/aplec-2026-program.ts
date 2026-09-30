@@ -51,12 +51,13 @@ export const aplec2026Program: ProgramDay[] = [
         title: "Repic de campanes · Goigs del Mont",
         location: "Església Santa Maria de Lladó",
       },
-      {
-        time: "17.00 h",
-        title:
-          "Cerimònia d’obertura i Somnis Territorials amb els infants de l’Escola de Lladó",
-        location: "Placeta del Priorat",
-      },
+     {
+  time: "17.00 h",
+  title:
+    "Cerimònia d’obertura i Somnis Territorials amb els infants d'infantil i alumnes de primària de L'Escola de Lladó Montserrat Vayreda i Trullol",
+  moreInfo: "Tot seguit, les alcaldies de Cabanelles, Navata i Lladó, acompanyades del Consell de Poble de Lladó i de Cabanelles i d'en Miquel Reverter, diputat delegat de Assistència als Micropobles i Arxiu de la Diputació de Girona, faran una obertura de l'aplec i les companyes del Collsacabra que van acollir l'aplec l'any passat faran entrega del \"relleu Iltiŕ\".",
+  location: "Placeta del Priorat",
+},
       {
         time: "17.30 h",
         title:
@@ -64,11 +65,13 @@ export const aplec2026Program: ProgramDay[] = [
         location: "Plaça Major",
       },
       {
-        time: "18.00 h",
-        title:
-          "Espai de Diàleg · Com la governança comunitària pot revitalitzar tot un poble, amb el Teatre-Sindicat de Lladó, Consells de Poble i alcaldies que treballen en aquesta direcció",
-        location: "Placeta del Priorat",
-      },
+  time: "18.00 h",
+  title:
+    "Espai de Diàleg · Com la governança comunitària pot revitalitzar tot un poble",
+  moreInfo:
+    "Amb el Teatre-Sindicat de Lladó, els Consells de Poble i les alcaldies que treballen en aquesta direcció.",
+  location: "Placeta del Priorat",
+},
       {
         time: "20.00 h",
         title: "Torneig de Futbol ILTIŔ",
@@ -76,7 +79,7 @@ export const aplec2026Program: ProgramDay[] = [
       },
       {
         time: "20.00 h",
-        title: 'Mostra de cuina “el meu plat estrella”',
+        title: "Mostra de cuina · El meu plat estrella",
         location: "Sala Sindicat de Navata",
       },
       {
