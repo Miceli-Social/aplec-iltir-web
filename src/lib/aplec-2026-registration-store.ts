@@ -1,5 +1,5 @@
 import "server-only";
-import { get, put, BlobPreconditionFailedError } from "@vercel/blob";
+import { get, head, put, BlobPreconditionFailedError } from "@vercel/blob";
 import { randomBytes, timingSafeEqual } from "node:crypto";
 import { CONSENT_VERSION, consentText, LUNCH_CAPACITY, LUNCH_DEADLINE, type RegistrationInput, type RegistrationKind, type RegistrationRecord, type LunchStatus, type Notifications } from "./aplec-2026-registration";
 
@@ -20,8 +20,10 @@ async function read(kind: RegistrationKind): Promise<{ ledger: Ledger; etag?: st
   if (!result) return { ledger: { version: 1, records: [] } };
   if (result.statusCode !== 200) throw new Error("Registration storage unavailable");
   const ledger = await new Response(result.stream).json() as Ledger;
-  if (ledger.version !== 1 || !Array.isArray(ledger.records)) throw new Error("Invalid registration storage");
-  return { ledger, etag: result.blob.etag };
+if (ledger.version !== 1 || !Array.isArray(ledger.records)) throw new Error("Invalid registration storage");
+
+const metadata = await head(path(kind), { token: token() });
+return { ledger, etag: metadata.etag };
 }
 
 // One private ledger per collection: record + capacity + idempotency are committed
