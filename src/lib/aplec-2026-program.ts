@@ -99,10 +99,15 @@ export const aplec2026Program: ProgramDay[] = [
   location: "Placeta del Priorat",
 },
       {
-        time: "20.00 h",
-        title: "Torneig de Futbol ILTIŔ",
-        location: "Camp de futbol de Lladó",
-      },
+  time: "20.00 h",
+  title: "Torneig de Futbol ILTIŔ",
+  location: "Camp de futbol de Lladó",
+  registration: {
+    label: "Inscripcions pel Torneig de Futbol ILTIŔ",
+    information: "Inscripció individual per jugador.",
+    url: "/aplecs/2026/futbol",
+  },
+},
       {
   time: "20.00 h",
   title: "Mostra de cuina · El meu plat estrella",
@@ -130,6 +135,13 @@ export const aplec2026Program: ProgramDay[] = [
         title: "Concert · No-Name · Blues, Rock i Ska",
         location: "Plaça Major",
       },
+      {
+  time: "23.00 h",
+  title: "Concert a càrrec de Carlota Giró",
+  location: "Al costat del camp de futbol",
+  moreInfo:
+    "Carlota Giró és una cantautora de 24 anys nascuda a Figueres. Fa uns anys va descobrir que escriure cançons li permetia posar en paraules tot allò que anava vivint. La nostàlgia, la sinceritat i l’amor per les petites coses són els pilars del seu univers creatiu. Amb el seu projecte propi, busca compartir les seves cançons i connectar amb aquelles persones que s’hi puguin sentir identificades.",
+},
       {
         time: "00.00 h",
         nextDay: true,

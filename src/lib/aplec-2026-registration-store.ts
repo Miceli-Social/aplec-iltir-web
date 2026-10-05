@@ -63,7 +63,16 @@ export async function getLunchAvailability() {
 
 export async function createRegistration(kind: RegistrationKind, input: RegistrationInput) {
   // Generate once outside retry loop. These values never depend on personal data.
-  const id = kind === "lunch" ? `ILTIR-DINAR-${randomBytes(6).toString("hex").toUpperCase()}` : `ILTIR-${kind === "walk" ? "CAMINADA" : "VOL"}-${randomBytes(12).toString("hex")}`;
+  const id =
+  kind === "lunch"
+    ? `ILTIR-DINAR-${randomBytes(6).toString("hex").toUpperCase()}`
+    : `ILTIR-${
+        kind === "walk"
+          ? "CAMINADA"
+          : kind === "football"
+            ? "FUTBOL"
+            : "VOL"
+      }-${randomBytes(12).toString("hex")}`;
   const ticketToken = kind === "lunch" ? randomBytes(32).toString("hex") : undefined;
   return mutate(kind, ledger => {
     const existing = ledger.records.find(r => r.requestId === input.requestId);

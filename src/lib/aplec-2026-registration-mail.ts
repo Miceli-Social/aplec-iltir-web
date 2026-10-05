@@ -24,20 +24,43 @@ export async function notifyRegistration(record: RegistrationRecord) {
   if (record.status === "cancelled") return false;
   const base = (process.env.NEXT_PUBLIC_SITE_URL || "https://apleciltir.cat").replace(/\/$/, "");
   const fullName = `${record.firstName} ${record.lastName}`;
-  const detail = record.kind === "lunch"
+  const detail =
+  record.kind === "lunch"
     ? `${record.id}\nPersones: ${record.people}\nMenús vegetarians: ${record.vegetarian}\n${ticketHeadings[record.status ?? "pending"]}`
-    : record.kind === "walk" ? "Caminada popular sobre biodiversitat i plantes aromàtiques del territori. Diumenge 18 d’octubre · 10.00 h." : `Dies: ${record.days?.join(", ")}`;
-  const title = record.kind === "lunch" ? "Reserva del dinar · Aplec Iltiŕ 2026" : record.kind === "walk" ? "Inscripció a la caminada · Aplec Iltiŕ 2026" : "Inscripció de voluntariat · Aplec Iltiŕ 2026";
-  const participantText = record.kind === "lunch"
+    : record.kind === "walk"
+      ? "Caminada popular sobre biodiversitat i plantes aromàtiques del territori. Diumenge 18 d’octubre · 10.00 h."
+      : record.kind === "football"
+        ? `Torneig de Futbol ILTIŔ\nDivendres 16 d’octubre · 20.00 h\nEdat: ${record.age}\nMunicipi: ${record.municipality}\nDNI / document identificatiu: ${record.dni}`
+        : `Dies: ${record.days?.join(", ")}`;
+
+const title =
+  record.kind === "lunch"
+    ? "Reserva del dinar · Aplec Iltiŕ 2026"
+    : record.kind === "walk"
+      ? "Inscripció a la caminada · Aplec Iltiŕ 2026"
+      : record.kind === "football"
+        ? "Inscripció al Torneig de Futbol ILTIŔ · Aplec Iltiŕ 2026"
+        : "Inscripció de voluntariat · Aplec Iltiŕ 2026";
+
+const participantText =
+  record.kind === "lunch"
     ? `Hem rebut la teva reserva, ${fullName}.\n${detail}${(record.status ?? "pending") === "pending" ? `\n\n${pendingPaymentNotice}` : ""}\n\nTiquet privat (no comparteixis aquest enllaç):\n${base}${ticketLink(record)}`
-    : record.kind === "walk" ? `Hola, ${fullName}.\nHem rebut correctament la teva inscripció a la caminada de l’Aplec Iltiŕ 2026.\n${detail}` : `Hola, ${fullName}.\nHem rebut la teva disponibilitat per fer voluntariat a l’Aplec Iltiŕ 2026. L’organització es posarà en contacte amb tu. Encara no tens cap torn assignat.\n${detail}`;
+    : record.kind === "walk"
+      ? `Hola, ${fullName}.\nHem rebut correctament la teva inscripció a la caminada de l’Aplec Iltiŕ 2026.\n${detail}`
+      : record.kind === "football"
+        ? `Hola, ${fullName}.\nHem rebut correctament la teva inscripció al Torneig de Futbol ILTIŔ de l’Aplec Iltiŕ 2026.\n\n${detail}`
+        : `Hola, ${fullName}.\nHem rebut la teva disponibilitat per fer voluntariat a l’Aplec Iltiŕ 2026. L’organització es posarà en contacte amb tu. Encara no tens cap torn assignat.\n${detail}`;
   const notifications = { ...record.notifications };
   const recipient =
   record.kind === "walk"
     ? process.env.REGISTRATION_WALK_NOTIFY_EMAIL || "lluis.arambilet@gmail.com"
     : record.kind === "lunch"
-      ? process.env.REGISTRATION_LUNCH_NOTIFY_EMAIL || "kombillay@resilience.earth"
-      : process.env.REGISTRATION_NOTIFY_EMAIL || "carla@resilience.earth";
+      ? process.env.REGISTRATION_LUNCH_NOTIFY_EMAIL || "info@resilience.earth"
+      : record.kind === "football"
+        ? process.env.REGISTRATION_FOOTBALL_NOTIFY_EMAIL ||
+          process.env.REGISTRATION_NOTIFY_EMAIL ||
+          "info@resilience.earth"
+        : process.env.REGISTRATION_NOTIFY_EMAIL || "carla@resilience.earth";
   if (notifications.organization !== "sent") notifications.organization = await send(recipient, title, `${fullName}\nCorreu: ${record.email}\nTelèfon: ${record.phone}\n${detail}\n\nAdministració: ${base}/admin#inscripcions-aplec`, `${record.id}-organization`);
   if (notifications.participant !== "sent") notifications.participant = await send(record.email, title, participantText, `${record.id}-participant`);
   try { await updateNotifications(record.kind, record.id, notifications); return true; } catch {

@@ -127,6 +127,11 @@ export default function Aplec2026Page() {
                 <strong>Reserva el dinar</strong>
               </a>
 
+<a href="/aplecs/2026/futbol">
+  <span>Torneig de Futbol ILTIŔ</span>
+  <strong>Inscriu-t’hi</strong>
+</a>
+
               <a href="/aplecs/2026/voluntariat">
                 <span>Vols donar un cop de mà?</span>
                 <strong>Comparteix la teva disponibilitat</strong>
