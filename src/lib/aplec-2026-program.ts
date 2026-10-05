@@ -146,8 +146,9 @@ location: "Sortida del Camp de futbol de Lladó i recorregut pel poble fins a la
           "Escoltar amb més profunditat el metabolisme del territori, la funció dels diversos agents que ens hi relacionem i els processos de producció i economia pot ser clau per augmentar la resiliència del lloc. En parlem?",
       },
 {
-  time: "10.30 h",
-  title: "Músic en directe i la matemàtica en la natura · Albert Cuebas",
+  time: "10.30–12.30 h",
+  title: "Exposició Fibonacci i concert amb imatges immersives d’Albert Cuevas",
+  moreInfo: "Música en directe i la matemàtica en la natura",
   location: "Can Miró/Sala QArts",
 }, 
     {
@@ -155,7 +156,7 @@ location: "Sortida del Camp de futbol de Lladó i recorregut pel poble fins a la
   title: "Exposició de Poesia Cinètica · Rafel Ortiz",
   moreInfo:
     "Una experiència immersiva on la poesia deixa de ser llenguatge literari i es converteix en fenomen físic.",
-  location: "Sala 1 d’Octubre",
+  location: "Sala 1 d’Octubre, Navata",
 },
       {
   time: "11.00 h",
@@ -194,24 +195,14 @@ location: "Sortida del Camp de futbol de Lladó i recorregut pel poble fins a la
         title: "Presentació dels equips CF Navata",
         location: "Camp de futbol",
       },
-      {
-        time: "16.00 h",
-        title: "Partit del primer equip de Navata",
-        location: "Camp de futbol",
-      },
-      {
+            {
         time: "16.00 h",
         title: "Diàleg · Transició energètica des del territori",
         location: "Plaça de la Vila",
         moreInfo:
           "El Cercle de Transició Energètica treballa per entendre els consums locals, diversificar l’estratègia de producció energètica elèctrica (solar i eòlica), biogàs i biomassa, tenir la informació real i generar propostes. Durant la tarda ens presentarà allò amb què està treballant i com seguir teixint una proposta real des del lloc. Ens acompanyarà l’Oficina de Transició Energètica de l’Empordà i la comunitat energètica local Navata Sostenible.",
       },
-           {
-        time: "16.00 h",
-        title: "Exposició · Albert Cuevas",
-        location: "Can Miró/Sala QArts",
-      },
-     {
+       {
   time: "16.30 h",
   title: "Joc-taller 'Casa meva, el meu poble'",
   moreInfo: "Amb Esther Roca i Alícia Vázquez",
@@ -345,10 +336,12 @@ La Sala de Cabanelles`,
 location: "Plaça de l'Església",
       },
       {
-        time: "13.00 h",
-        title: "Mostra i tast de productes locals",
-        location: "Plaça Major",
-      },
+  time: "13.00 h",
+  title: "Tastet de producte local amb jazz",
+  moreInfo:
+    "Teixir i donar a conèixer els productors de la zona. Ens acompanyarà Can Canari, horta ecològica de Cistella, els embotits d'en Pitiu, formatges amb la Marta de Can Cloella, formatge fresc amb Làctics Tramuntana, pa del forn Lleva't, oli de Can Clotas i vi de Mas Ballís.",
+  location: "Plaça de l'Església",
+},
       {
         time: "14.30 h",
         title: "Dinar de germanor ILTIŔ",
