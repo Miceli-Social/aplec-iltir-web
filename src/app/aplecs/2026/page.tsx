@@ -183,18 +183,23 @@ export default function Aplec2026Page() {
                         </p>
                       )}
 
-                      {activity.moreInfo && (
-                        <details className="aplec-2026-details">
-                          <summary
-                            aria-label={`Més informació sobre ${activity.title}`}
-                          >
-                            Més informació
-                          </summary>
-                          <p className="aplec-2026-activity-copy">
-                            {activity.moreInfo}
-                          </p>
-                        </details>
-                      )}
+                      {(activity.moreInfoLead || activity.moreInfo) && (
+  <details className="aplec-2026-details">
+    <summary
+      aria-label={`Més informació sobre ${activity.title}`}
+    >
+      Més informació
+    </summary>
+    <div className="aplec-2026-activity-copy">
+      {activity.moreInfoLead && (
+        <p>
+          <strong>{activity.moreInfoLead}</strong>
+        </p>
+      )}
+      {activity.moreInfo && <p>{activity.moreInfo}</p>}
+    </div>
+  </details>
+)}
 
                       {activity.registration && (
                         <RegistrationNotice

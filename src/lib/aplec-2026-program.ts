@@ -10,6 +10,7 @@ export type ProgramActivity = {
   title: string;
   location?: string;
   information?: string;
+  moreInfoLead?: string;
   moreInfo?: string;
   status?: string;
   registration?: ProgramRegistration;
@@ -47,22 +48,27 @@ export const aplec2026Program: ProgramDay[] = [
     "Una experiència immersiva on la poesia deixa de ser llenguatge literari i es converteix en fenomen físic.",
   location: "Sala 1 d’Octubre",
 },    
- {
+{
   time: "15.00 h",
-  title: "Xerrada sobre un territori abraçat pel Mont",
-  moreInfo: "Parlem del patrimoni històric, cultural i natural d'uns pobles abraçats pel Mont. Amb Joaquim Tremoleda, Arqueòleg i historiador de Lladó; i Joan Nogué, geògraf català i director de l'Observatori del Paisatge de Catalunya fins al 2017.",
+  title: "Un territori abraçat per la Mare de Déu del Mont.",
+  moreInfoLead: "T'has plantejat mai quina és la funció ecològica del lloc?",
+  moreInfo:
+    "Parlem del patrimoni històric, cultural i natural d'uns pobles abraçats pel Mont. Amb Joaquim Tremoleda, Arqueòleg i historiador de Lladó; i Joan Nogué, geògraf català i director de l'Observatori del Paisatge de Catalunya fins al 2017.",
   location: "Placeta del Priorat",
+},      
+{
+  time: "16.30 h",
+  title: "Repic de Campanes Goigs del Mont",
+  moreInfo:
+    "Inici de la cerimònia amb les campanes, el primer gran mitjà de comunicació de masses dels pobles. Un repic que honra la terra, les muntanyes i la seva gent.",
+  location: "Església Santa Maria de Lladó",
 },
-      {
-        time: "16.30 h",
-        title: "Repic de campanes · Goigs del Mont",
-        location: "Església Santa Maria de Lladó",
-      },
      {
   time: "17.00 h",
-  title:
-    "Cerimònia d’obertura i Somnis Territorials amb els infants d'infantil i alumnes de primària de L'Escola de Lladó Montserrat Vayreda i Trullol",
-  moreInfo: "Tot seguit, les alcaldies de Cabanelles, Navata i Lladó, acompanyades del Consell de Poble de Lladó i de Cabanelles i d'en Miquel Reverter, diputat delegat de Assistència als Micropobles i Arxiu de la Diputació de Girona, faran una obertura de l'aplec i les companyes del Collsacabra que van acollir l'aplec l'any passat faran entrega del \"relleu Iltiŕ\".",
+  title: "Cerimònia d'Obertura de l'Aplec Iltiŕ",
+  moreInfoLead: "Quin és el poder d'una cerimònia d'obertura?",
+  moreInfo:
+    "Infants de l'Escola de Lladó acompanyats per la faràndula dels municipis propers desitgen els seus bons auguris pel territori i la gent que hi viu presentant l'Skyline que han estat treballant. A més, hi haurà un espai de diàleg per honrar aquest moment, a càrrec de les alcaldies i la gent que hi viu presentant l'Skyline que han estat treballant. A més, hi haurà un espai de diàleg per honrar aquest moment, a càrrec de les alcaldies i els Consells de Poble del territori. També ens acompanyarà el Collsacabra, que va acollir l'aplec l'any passat i farà entrega del llegat ILTIŔ.",
   location: "Placeta del Priorat",
 },
       {
@@ -81,9 +87,11 @@ export const aplec2026Program: ProgramDay[] = [
      {
   time: "18.00 h",
   title:
-    "Espai de Diàleg · Com la governança comunitària pot revitalitzar tot un poble",
+    "L'evolució democràtica als pobles. Experiències de cogestió comunitària i governança des del lloc.",
+  moreInfoLead:
+    "Quina forma pren una governança comunitària i territorial sincera, honesta i arrelada?",
   moreInfo:
-    "Amb el Teatre-Sindicat de Lladó, els Consells de Poble i les alcaldies que treballen en aquesta direcció.",
+    "Escoltarem allò que està viu al territori i les seves experiències amb l'objectiu d'aprendre dels encerts i els errors. Volem comprendre el següent pas d'evolució democràctia del territori, des de la participació i la corresponsabilitat, l'estima, el diàleg i les tensions reconciliades. Ens acompanyarà en Jordi Puig, del Teatre-Sindicat de Lladó, la Sala de Cabanelles, l'Aina Carbonell, regidora de participació de Navata, l'Ousman Jangana, regidor de participació de Santa Coloma de Farners, el Consell de Poble de Cabanelles, Lladó, Santa Pau i Sant Martí del Llèmena, xarxes de suport comunitari, secretàries municipals, jutges de pau, el projecte Simbiosi Fluvial i l'Ismael Peña-López, investigador i consultor en governança multiactor i multinivell.",
   location: "Placeta del Priorat",
 },
       {
@@ -139,12 +147,14 @@ location: "Sortida del Camp de futbol de Lladó i recorregut pel poble fins a la
         location: "Església de Sant Pere",
       },
       {
-        time: "09.30 h",
-        title: "Diàleg · Cap a un paisatge agroforestal resilient",
-        location: "Plaça de la Vila",
-        moreInfo:
-          "Escoltar amb més profunditat el metabolisme del territori, la funció dels diversos agents que ens hi relacionem i els processos de producció i economia pot ser clau per augmentar la resiliència del lloc. En parlem?",
-      },
+  time: "09.30 h",
+  title: "Cap a un paisatge agroforestal resilient.",
+  moreInfoLead:
+    "Què ens explica el paisatge quan observem les relacions que el configuren i quines propostes podrien emergir?",
+  moreInfo:
+    "Proposem escoltar amb més profunditat com funciona el metabolisme agroforestal del territori: quines relacions existeixen entre bosc, agricultura, ramaderia, aigua, economia i comunitat; quina funció desenvolupen els diferents agents; i quines cadenes de valor i formes de cooperació poden contribuir a recuperar un paisatge més resilient. El diàleg serà entre ramaders, propietaris, ADFs del territori i empreses expertes en gestió forestal i biomassa. El Consorci Salines Bassegoda i els Serveis Territorials de Boscos de la Generalitat de Catalunya, així com alcaldies de la zona portaran la veu de l'administració i algunes de les propostes que ja s'hi estan gestant, com la feina dels Pioneers of Our Time a la conca de la Muga. I ens acompanyaran veus expertes com l'Eduard Pla del CREAF i en Miquel Macias amb la mirada de Simbiosi Fluvial, des de la mirada de la biodiversitat i l'evolució dels ecosistemes forestals.",
+  location: "Plaça de la Vila",
+},
 {
   time: "10.30–12.30 h",
   title: "Exposició Fibonacci i concert amb imatges immersives d’Albert Cuevas",
@@ -160,18 +170,23 @@ location: "Sortida del Camp de futbol de Lladó i recorregut pel poble fins a la
 },
       {
   time: "11.00 h",
-  title:
-    "Somnis territorials amb el Consell d’Infants de l’Escola de Navata Joaquim Vallmajó i els gegants del municipi",
+  title: "Somnis territorials",
+  moreInfoLead:
+    "Què es fa possible quan escoltem la mirada dels infants sobre el futur del territori?",
   moreInfo:
-    "Els infants i alumnes expliquen els seus desitjos pel poble presentant el graffiti que han fet, acompanyats de la faràndula i músics del territori i de l'AMPA.",
+    "Infants del Consell d'Infants de Navata parlen dels seus somnis i desitjos de futur del municipi acompanyats de la faràndula del poble.",
   location: "Plaça de l’Era de l’Obra",
 },
       {
-        time: "11.30 h",
-        title:
-          "Conversa amb casos inspiradors que estan responent al repte de l’habitatge als pobles",
-        location: "Plaça de la Vila",
-      },
+  time: "11.30 h",
+  title:
+    "Respostes que estan emergint des de les ruralitats per respondre el repte de l'habitatge",
+  moreInfoLead:
+    "Què podem aprendre quan els municipis comparteixen allò que estan fent possible?",
+  moreInfo:
+    "Conversa oberta entre alcaldies per compartir experiències, aprendre les unes de les altres i inspirar noves possibilitats als nostres municipis alhora que ens preguntem, quin rol hi tenen els agents inmobiliàris, les constructores i promotores locals així com les propietàries, veïnes, llogateres i cooperativistes que vivim o volem arribar i viure al poble. Entre les experiències a compartir tenim el procés participatiu desenvolupat des de Lladó amb el jovent del poble i les alcaldies Oriol Balliu de la Pera i Mateu Sobregrau de Gallifa.",
+  location: "Plaça de la Vila",
+},
       {
   time: "12.00 h",
   title: "Pinta les teves sensacions",
@@ -196,12 +211,14 @@ location: "Sortida del Camp de futbol de Lladó i recorregut pel poble fins a la
         location: "Camp de futbol",
       },
             {
-        time: "16.00 h",
-        title: "Diàleg · Transició energètica des del territori",
-        location: "Plaça de la Vila",
-        moreInfo:
-          "El Cercle de Transició Energètica treballa per entendre els consums locals, diversificar l’estratègia de producció energètica elèctrica (solar i eòlica), biogàs i biomassa, tenir la informació real i generar propostes. Durant la tarda ens presentarà allò amb què està treballant i com seguir teixint una proposta real des del lloc. Ens acompanyarà l’Oficina de Transició Energètica de l’Empordà i la comunitat energètica local Navata Sostenible.",
-      },
+  time: "16.00 h",
+  title: "Articulem la transició energètica des del territori.",
+  moreInfoLead:
+    "Què es fa possible quan articulem la transició energètica des del territori?",
+  moreInfo:
+    "El Cercle de Transició Energètica treballa per entendre els consums locals, diversificar l'estratègia de producció d'energia solar i eòlica, biogàs i biomassa, tenir la informació real i generar propostes. Durant la tarda ens presentarà allò amb què està treballant i com seguir teixint una proposta real des del lloc. Ens acompanyarà l'alcaldessa de Navata, l'Oficina de Transició Energètica de l'Empordà, la comunitat energètica local Navata Sostenible i la Universitat de Girona, i els veïns i veïnes que estan teixint i cocreant la proposta.",
+  location: "Plaça de la Vila",
+},
        {
   time: "16.30 h",
   title: "Joc-taller 'Casa meva, el meu poble'",
@@ -318,22 +335,19 @@ La Sala de Cabanelles`,
     "Espectacle sobre la apassionant i tendre història de les trementinaires. Dirigit a tots els públics. A càrrec de la companyia Tramuntana.",
   location: "Plaça de l'església",
 },
-      {
-        time: "11.00 h",
-        title: "Diàleg · Territori, alimentació i salut",
-        location: "Plaça del Poble",
-        moreInfo:
-          "Observar les interseccions entre consum, territori, pagesia, ramaderia, salut, distribució, coneixement i comunitat, alhora que escoltar els reptes i les propostes que ja estan sobre la taula és clau pel futur. Ens assentarem amb persones del territori i de fora per abordar aquesta qüestió.",
-      },
+     {
+  time: "11.00 h",
+  title: "Territori, alimentació i salut (diàleg i tasts)",
+  moreInfoLead:
+    "Què descobrim quan observem l’alimentació com una relació entre territori i salut?",
+  moreInfo:
+    "Comprendre com funciona el sistema agroalimentari del territori a través de les relacions entre producció, transformació, distribució, consum, salut, coneixement i comunitat, identificant què ja existeix, quins són els principals reptes, que està emergint i quines possibilitats podrien néixer. El diàleg serà entre ramaders, pagesos i productors de la zona, la cooperativa de consum La Fusteria, el Parc Agrari de l'Empordà i el projecte de distribució català de Som Singulars.",
+  location: "Plaça del Poble",
+},
       {
         time: "12.00 h",
         title: "Ofici Solemne",
         location: "Església de Santa Coloma",
-      },
-      {
-        time: "13.00 h",
-        title: "Concert de Jazz · Grup d’Espinavessa/Cabanelles",
-location: "Plaça de l'Església",
       },
       {
   time: "13.00 h",
