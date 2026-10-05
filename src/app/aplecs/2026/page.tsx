@@ -182,7 +182,19 @@ export default function Aplec2026Page() {
                           {activity.status}
                         </p>
                       )}
-
+{activity.externalLink && (
+  <p className="aplec-2026-activity-status">
+    Forma part de la{" "}
+    <a
+      href={activity.externalLink.url}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {activity.externalLink.label}
+    </a>
+    .
+  </p>
+)}
                       {(activity.moreInfoLead || activity.moreInfo) && (
   <details className="aplec-2026-details">
     <summary

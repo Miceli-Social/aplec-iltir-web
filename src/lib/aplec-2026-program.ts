@@ -13,7 +13,11 @@ export type ProgramActivity = {
   moreInfoLead?: string;
   moreInfo?: string;
   status?: string;
-  registration?: ProgramRegistration;
+externalLink?: {
+  label: string;
+  url: string;
+};
+registration?: ProgramRegistration;
 };
 
 export type ProgramDay = {
@@ -46,7 +50,7 @@ export const aplec2026Program: ProgramDay[] = [
   title: "Exposició de Poesia Cinètica · Rafel Ortiz",
   moreInfo:
     "Una experiència immersiva on la poesia deixa de ser llenguatge literari i es converteix en fenomen físic.",
-  location: "Sala 1 d’Octubre",
+  location: "Sala 1 d’Octubre, Navata",
 },    
 {
   time: "15.00 h",
@@ -82,7 +86,7 @@ export const aplec2026Program: ProgramDay[] = [
   title: "Exposició de Poesia Cinètica · Rafel Ortiz",
   moreInfo:
     "Una experiència immersiva on la poesia deixa de ser llenguatge literari i es converteix en fenomen físic.",
-  location: "Sala 1 d’Octubre",
+  location: "Sala 1 d’Octubre, Navata",
 }, 
      {
   time: "18.00 h",
@@ -100,10 +104,16 @@ export const aplec2026Program: ProgramDay[] = [
         location: "Camp de futbol de Lladó",
       },
       {
-        time: "20.00 h",
-        title: "Mostra de cuina · El meu plat estrella",
-        location: "Sala Sindicat de Navata",
-      },
+  time: "20.00 h",
+  title: "Mostra de cuina · El meu plat estrella",
+  location: "Sala Sindicat de Navata",
+  externalLink: {
+    label: "Setmana Cultural de Navata",
+    url: "https://www.navata.cat/setmana-cultural/",
+  },
+  moreInfo:
+    "Quin és el teu plat estrella? Aquell que sempre triomfa, la recepta de la família, la teva especialitat... o simplement aquell que t’encanta preparar i compartir!\n\nAquest any, a la Mostra de Cuina, volem tastar els plats que us representen. Si tens ganes de cuinar, compartir i passar-ho bé, t’hi esperem.\n\nObertura de portes: 20.30 h\nInici de la Mostra: 21.00 h\n\nPrepara el teu plat estrella i vine a compartir-lo amb els veïns!",
+},
       {
         time: "21.00 h",
         title: "Könunpar",
@@ -159,7 +169,7 @@ location: "Sortida del Camp de futbol de Lladó i recorregut pel poble fins a la
   time: "10.30–12.30 h",
   title: "Exposició Fibonacci i concert amb imatges immersives d’Albert Cuevas",
   moreInfo: "Música en directe i la matemàtica en la natura",
-  location: "Can Miró/Sala QArts",
+  location: "Can Miró / Sala QArts, Navata",
 }, 
     {
   time: "11.00–13.00 h",
@@ -206,10 +216,10 @@ location: "Sortida del Camp de futbol de Lladó i recorregut pel poble fins a la
         location: "Plaça de l’Era de l’Obra",
       },
       {
-        time: "15.00 h",
-        title: "Presentació dels equips CF Navata",
-        location: "Camp de futbol",
-      },
+  time: "15.00 h",
+  title: "Presentació dels equips CF Navata",
+  location: "Camp de futbol de Navata",
+},
             {
   time: "16.00 h",
   title: "Articulem la transició energètica des del territori.",
@@ -243,7 +253,7 @@ moreInfo: "Concert ritual amb aromes. Cançons d'art de Frances Bartlett, violon
   title: "Exposició de Poesia Cinètica · Rafel Ortiz",
   moreInfo:
     "Una experiència immersiva on la poesia deixa de ser llenguatge literari i es converteix en fenomen físic.",
-  location: "Sala 1 d’Octubre",
+  location: "Sala 1 d’Octubre, Navata",
 }, 
      {
         time: "18.00 h",
@@ -325,7 +335,7 @@ La Sala de Cabanelles`,
   title: "Exposició de Poesia Cinètica · Rafel Ortiz",
   moreInfo:
     "Una experiència immersiva on la poesia deixa de ser llenguatge literari i es converteix en fenomen físic.",
-  location: "Sala 1 d’Octubre",
+  location: "Sala 1 d’Octubre, Navata",
 },
       {
   time: "11.00 h",
@@ -355,6 +365,11 @@ La Sala de Cabanelles`,
   moreInfo:
     "Teixir i donar a conèixer els productors de la zona. Ens acompanyarà Can Canari, horta ecològica de Cistella, els embotits d'en Pitiu, formatges amb la Marta de Can Cloella, formatge fresc amb Làctics Tramuntana, pa del forn Lleva't, oli de Can Clotas i vi de Mas Ballís.",
   location: "Plaça de l'Església",
+},
+{
+  time: "13.00 h",
+  title: "Concert de Jazz del grup d'Espinavesa/Cabanelles",
+  location: "Plaça Major",
 },
       {
         time: "14.30 h",
@@ -420,7 +435,7 @@ La Sala de Cabanelles`,
   title: "Exposició de Poesia Cinètica · Rafel Ortiz",
   moreInfo:
     "Una experiència immersiva on la poesia deixa de ser llenguatge literari i es converteix en fenomen físic.",
-  location: "Sala 1 d’Octubre",
+  location: "Sala 1 d’Octubre, Navata",
 }, 
      {
         time: "19.00 h",
