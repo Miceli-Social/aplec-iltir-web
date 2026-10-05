@@ -105,7 +105,7 @@ export function RegistrationForm({ kind }: { kind: RegistrationKind }) {
       <div className="aplec-2026-form-grid">
         {field("firstName", "Nom", "text", 80, undefined, undefined, "given-name")}
         {field("lastName", "Cognoms", "text", 100, undefined, undefined, "family-name")}
-        {{field("email", "Correu electrònic", "email", 254, undefined, undefined, "email")}
+        {field("email", "Correu electrònic", "email", 254, undefined, undefined, "email")}
 
 {kind !== "football" &&
   field("phone", "Telèfon", "tel", 30, undefined, undefined, "tel")}
