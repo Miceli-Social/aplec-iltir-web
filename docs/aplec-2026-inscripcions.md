@@ -129,3 +129,28 @@ No hi ha cap mode de proves ni store de memòria activable a producció.
 
 Abans de posar-ho en servei, cal comprovar amb l’organització el Blob privat,
 el remitent verificat i el procediment de venda física. No s’ha fet cap deploy.
+
+## Futbol: inscripcions per equips
+
+`/aplecs/2026/futbol` registra un únic equip a
+`iltir-2026/football/registrations.json`, amb `teamName`, `responsibleName`,
+`email`, `phone`, `playerCount` i un array `players` amb nom, cognoms, edat,
+municipi i document identificatiu. Els camps comuns `firstName` i `lastName`
+es mantenen buits en els nous equips per compatibilitat amb el tipus compartit.
+
+El servidor exigeix 5–8 jugadors, el mateix recompte declarat i real, edats
+enteres de 17–120 anys (majors de 16) i representació d’almenys dos municipis
+entre Cabanelles, Lladó i Navata. Es permeten jugadors d’altres municipis.
+El consentiment específic d’equip té versió `2026-10-08-football-teams-v1`.
+
+Es manté `REGISTRATION_FOOTBALL_NOTIFY_EMAIL` com a destinatari de
+l’organització. Aquest correu inclou la fitxa completa; la confirmació al
+responsable inclou equip i recompte, sense documents identificatius.
+
+L’administració mostra una fitxa per equip i permet reintentar els correus.
+El CSV té una fila per equip, dades de contacte i cinc columnes per jugador
+(fins a vuit), amb protecció contra fórmules. Els registres individuals antics
+es mostren com a «Inscripció individual anterior» i s’exporten sense perdre
+les seves dades; no es converteixen artificialment en equips.
+
+Proves: `node --test tests/*.test.mjs`, `npm run lint`, `npm run build`.

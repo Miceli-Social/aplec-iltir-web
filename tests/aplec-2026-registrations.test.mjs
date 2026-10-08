@@ -1,3 +1,4 @@
+import { createElement } from "react";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { randomUUID } from "node:crypto";
@@ -210,3 +211,73 @@ test("programme replacements and separate other activity use only requested deta
 });
 
 
+
+const footballInput = (count = 5, extra = {}) => input({ teamName: "Unió dels pobles", responsibleName: "Núria Prova", playerCount: count, players: Array.from({length: count}, (_, index) => ({firstName: `Jugador ${index + 1}`, lastName: "Prova", age: 17 + index, municipality: index % 2 ? "Navata" : "Lladó", dni: `1234567${index}A`})), ...extra });
+
+test("football validates whole teams, age, municipalities and every required player field", async () => {
+  const h = registrationHarness();
+  const {validateRegistration} = h.load("src/lib/aplec-2026-registration.ts");
+  for (const count of [5, 8]) assert.deepEqual(validateRegistration("football", footballInput(count)).errors, {});
+  for (const extra of [{teamName:""},{responsibleName:""},{phone:""},{playerCount:4},{playerCount:9},{playerCount:5.5},{players:[]},{players:null},{consent:false},{website:"bot"}]) assert.equal((await submit(h,footballInput(5,extra),"football")).status,400);
+  for (const field of ["firstName","lastName","age","municipality","dni"]) {
+    const body = footballInput(); body.players[3][field] = "";
+    const response = await submit(h,body,"football"); assert.equal(response.status,400); assert((await response.json()).errors[`players.3.${field}`]);
+  }
+  for (const age of [16,0,17.5,121]) {
+    const body = footballInput(); body.players[0].age = age;
+    assert.equal((await submit(h,body,"football")).status,400);
+  }
+  const body = footballInput(); body.players.forEach(player => player.municipality = "Lladó");
+  assert.equal((await submit(h,body,"football")).status,400);
+  body.players[0].municipality = "  NAVATA  "; assert.equal((await submit(h,body,"football")).status,200);
+});
+
+test("football stores a single private team and rejects changed-player idempotency replays", async () => {
+  const h = registrationHarness(), body = footballInput(8);
+  const responses = await Promise.all([submit(h,body,"football"),submit(h,body,"football")]);
+  assert(responses.every(response => response.status === 200));
+  const records = await h.load("src/lib/aplec-2026-registration-store.ts").getRegistrations("football");
+  assert.equal(records.length,1); assert.equal(records[0].players.length,8); assert.equal(records[0].teamName,body.teamName);
+  assert.equal(records[0].consentVersion,"2026-10-08-football-teams-v1");
+  assert(!("dni" in records[0])); assert(h.blobs.has("iltir-2026/football/registrations.json"));
+  body.players[0].dni = "87654321B";
+  assert.equal((await submit(h,body,"football")).status,409);
+});
+
+test("football mail, authenticated administration and CSV preserve team grouping", async () => {
+  const h=registrationHarness(); h.env.RESEND_API_KEY="test"; h.env.REGISTRATION_FROM_EMAIL="sender@example.com"; h.env.REGISTRATION_FOOTBALL_NOTIFY_EMAIL="football@example.com";
+  const body=footballInput(8,{teamName:"=1+1"}); body.players[0].firstName="=2+2";
+  await submit(h,body,"football"); await h.flush();
+  assert.equal(h.emails.length,2); assert.equal(h.emails[0].to[0],"football@example.com"); assert.equal(h.emails[1].to[0],"prova@example.com");
+  for (const player of body.players) for (const value of Object.values(player)) assert(h.emails[0].text.includes(String(value)));
+  assert(h.emails[0].text.includes(body.responsibleName)); assert(h.emails[0].text.includes("+34600000000"));
+  assert(h.emails[1].text.includes("ha quedat inscrit")); assert(h.emails[1].text.includes(body.teamName)); assert(h.emails[1].text.includes("8")); assert(!h.emails[1].text.includes(body.players[0].dni));
+  const route=h.load("src/app/admin/aplec-2026/route.ts"), req=new Request("http://localhost:3027/admin/aplec-2026?kind=football");
+  assert.equal((await route.GET(req)).status,401); h.options.admin=true;
+  const response=await route.GET(req); assert.equal(response.headers.get("cache-control"),"private, no-store");
+  const csv=await response.text(); assert.equal(csv.split("\r\n").length,2); assert(csv.includes("player8_dni")); assert(csv.includes("'=1+1")); assert(csv.includes("'=2+2")); assert(csv.includes(body.players[7].dni));
+  const html=renderToStaticMarkup(await h.load("src/components/aplec-2026-registration-admin.tsx").RegistrationAdmin({}));
+  assert(html.includes("Exporta equips CSV")); assert(html.includes("8 jugadors")); assert(html.includes(body.players[7].dni));
+  const record=(await h.load("src/lib/aplec-2026-registration-store.ts").getRegistrations("football"))[0];
+  await h.load("src/lib/aplec-2026-registration-mail.ts").notifyRegistration(record); assert.equal(h.emails.length,2);
+});
+
+test("football form starts with team and contact fields and renders five player cards", () => {
+  const h=registrationHarness();
+  const html=renderToStaticMarkup(createElement(h.load("src/components/aplec-2026-registration-form.tsx").RegistrationForm,{kind:"football"}));
+  assert(html.indexOf('name="teamName"') < html.indexOf('name="playerCount"'));
+  assert(html.indexOf('name="playerCount"') < html.indexOf('name="responsibleName"'));
+  assert.equal((html.match(/<legend>Jugador /g)||[]).length,5);
+  assert(html.includes('min="17"')); assert(html.includes('name="players.4.dni"'));
+});
+
+test("legacy football records remain readable in administration and export", async () => {
+  const h=registrationHarness(); const store=h.load("src/lib/aplec-2026-registration-store.ts");
+  await store.createRegistration("football", {requestId:randomUUID(),firstName:"Antic",lastName:"Jugador",email:"legacy@example.com",age:20,municipality:"Cabanelles",dni:"12345678A"});
+  const records=await store.getRegistrations("football");
+  const csv=h.load("src/lib/aplec-2026-registration-admin.ts").registrationCsv(records,"football");
+  assert(csv.includes("individual anterior")); assert(csv.includes("12345678A"));
+  h.options.admin=true;
+  const html=renderToStaticMarkup(await h.load("src/components/aplec-2026-registration-admin.tsx").RegistrationAdmin({}));
+  assert(html.includes("Inscripció individual anterior")); assert(html.includes("Antic")); assert(html.includes("12345678A"));
+});

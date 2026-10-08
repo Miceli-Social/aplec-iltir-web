@@ -1,7 +1,7 @@
 import "server-only";
 import { get, head, put, BlobPreconditionFailedError } from "@vercel/blob";
 import { randomBytes, timingSafeEqual } from "node:crypto";
-import { CONSENT_VERSION, consentText, LUNCH_CAPACITY, LUNCH_DEADLINE, type RegistrationInput, type RegistrationKind, type RegistrationRecord, type LunchStatus, type Notifications } from "./aplec-2026-registration";
+import { FOOTBALL_CONSENT_VERSION, CONSENT_VERSION, consentText, LUNCH_CAPACITY, LUNCH_DEADLINE, type RegistrationInput, type RegistrationKind, type RegistrationRecord, type LunchStatus, type Notifications } from "./aplec-2026-registration";
 
 type Ledger = { version: 1; records: RegistrationRecord[]; physicalPlaces?: number };
 export class RegistrationError extends Error {
@@ -89,7 +89,7 @@ export async function createRegistration(kind: RegistrationKind, input: Registra
       const remaining = LUNCH_CAPACITY - reservedPlaces(ledger.records) - (ledger.physicalPlaces || 0);
       if (input.people! > remaining) throw new RegistrationError(remaining ? `Queden ${remaining} places. Redueix el nombre de persones.` : "Reserves completes", "capacity");
     }
-    const record: RegistrationRecord = { ...input, id, kind, createdAt: new Date().toISOString(), consentVersion: CONSENT_VERSION, consentText: consentText[kind], notifications: { organization: "pending", participant: "pending" }, ...(kind === "lunch" ? { status: "pending", ticketToken } : {}) };
+    const record: RegistrationRecord = { ...input, id, kind, createdAt: new Date().toISOString(), consentVersion: kind === "football" ? FOOTBALL_CONSENT_VERSION : CONSENT_VERSION, consentText: consentText[kind], notifications: { organization: "pending", participant: "pending" }, ...(kind === "lunch" ? { status: "pending", ticketToken } : {}) };
     ledger.records.push(record);
     return record;
   });

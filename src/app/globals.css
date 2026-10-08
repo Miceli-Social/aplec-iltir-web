@@ -1162,3 +1162,7 @@ a.footer-entity:hover { opacity:.78; background:rgba(255,255,255,.04); }
   .aplec-upcoming-slot { padding:24px; }
   .aplec-upcoming { padding-top:40px; padding-bottom:40px; }
 }
+
+.aplec-2026-form select { width:100%; padding:12px; border:1px solid var(--ink-soft); border-radius:8px; background:white; color:var(--ink); font:inherit; }
+.aplec-2026-player-list { display:grid; gap:20px; }
+.aplec-2026-football-page li { line-height:1.6; margin-bottom:8px; }

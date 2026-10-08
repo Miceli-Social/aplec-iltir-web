@@ -23,14 +23,14 @@ async function send(to: string, subject: string, text: string, key: string): Pro
 export async function notifyRegistration(record: RegistrationRecord) {
   if (record.status === "cancelled") return false;
   const base = (process.env.NEXT_PUBLIC_SITE_URL || "https://apleciltir.cat").replace(/\/$/, "");
-  const fullName = `${record.firstName} ${record.lastName}`;
+  const fullName = record.responsibleName || `${record.firstName} ${record.lastName}`;
   const detail =
   record.kind === "lunch"
     ? `${record.id}\nPersones: ${record.people}\nMenús vegetarians: ${record.vegetarian}\n${ticketHeadings[record.status ?? "pending"]}`
     : record.kind === "walk"
       ? "Caminada popular sobre biodiversitat i plantes aromàtiques del territori. Diumenge 18 d’octubre · 10.00 h."
       : record.kind === "football"
-        ? `Torneig de Futbol ILTIŔ\nDivendres 16 d’octubre · 20.00 h\nEdat: ${record.age}\nMunicipi: ${record.municipality}\nDNI / document identificatiu: ${record.dni}`
+        ? record.players ? `Torneig de Futbol ILTIŔ\nEquip: ${record.teamName}\nResponsable: ${fullName}\nNombre de jugadors: ${record.playerCount}\n\n${record.players.map((player, index) => `${index + 1}. Nom: ${player.firstName}\nCognoms: ${player.lastName}\nEdat: ${player.age}\nMunicipi: ${player.municipality}\nDNI / document identificatiu: ${player.dni}`).join("\n\n")}` : `Torneig de Futbol ILTIŔ\nDivendres 16 d’octubre · 20.00 h\nEdat: ${record.age}\nMunicipi: ${record.municipality}\nDNI / document identificatiu: ${record.dni}`
         : `Dies: ${record.days?.join(", ")}`;
 
 const title =
@@ -48,7 +48,7 @@ const participantText =
     : record.kind === "walk"
       ? `Hola, ${fullName}.\nHem rebut correctament la teva inscripció a la caminada de l’Aplec Iltiŕ 2026.\n${detail}`
       : record.kind === "football"
-        ? `Hola, ${fullName}.\nHem rebut correctament la teva inscripció al Torneig de Futbol ILTIŔ de l’Aplec Iltiŕ 2026.\n\n${detail}`
+        ? record.players ? `Hola, ${fullName}.\nL’equip ${record.teamName} ha quedat inscrit al Torneig de Futbol ILTIŔ 2026.\nNombre de jugadors: ${record.playerCount}.\nEns veiem el 16 d’octubre de 20 h a 22 h al camp de futbol de la UE Lladó.\nLa inscripció és de 3 € per participant i inclou l’assegurança i el sopar.` : `Hola, ${fullName}.\nHem rebut correctament la teva inscripció al Torneig de Futbol ILTIŔ de l’Aplec Iltiŕ 2026.\n\n${detail}`
         : `Hola, ${fullName}.\nHem rebut la teva disponibilitat per fer voluntariat a l’Aplec Iltiŕ 2026. L’organització es posarà en contacte amb tu. Encara no tens cap torn assignat.\n${detail}`;
   const notifications = { ...record.notifications };
   const recipient =
