@@ -104,7 +104,7 @@ export const aplec2026Program: ProgramDay[] = [
   location: "Camp de futbol de Lladó",
   registration: {
     label: "Inscripcions pel Torneig de Futbol ILTIŔ",
-    information: "Inscripció individual per jugador.",
+    information: "Inscripció per equips de 5 a 8 jugadors.",
     url: "/aplecs/2026/futbol",
   },
 },
