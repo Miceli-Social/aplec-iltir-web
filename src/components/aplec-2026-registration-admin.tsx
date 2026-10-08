@@ -18,13 +18,13 @@ function Notification({ record }: { record: RegistrationRecord }) {
 }
 export async function RegistrationAdmin({ result }: { result?: string }) {
   if (!(await isRegistrationAdmin())) return null;
-  let volunteers: RegistrationRecord[] = [], lunch: RegistrationRecord[] = [], walk: RegistrationRecord[] = [];
+  let volunteers: RegistrationRecord[] = [], lunch: RegistrationRecord[] = [], walk: RegistrationRecord[] = [], football: RegistrationRecord[] = [];
   let physicalPlaces = 0, reserved = 0;
   let unavailable = !hasRegistrationStore();
   if (!unavailable) {
     try {
-      const [volunteerRecords, summary, walkRecords] = await Promise.all([getRegistrations("volunteers"), getLunchSummary(), getRegistrations("walk")]);
-      volunteers = volunteerRecords; lunch = summary.records; walk = walkRecords; physicalPlaces = summary.physicalPlaces; reserved = summary.reserved;
+      const [volunteerRecords, summary, walkRecords, footballRecords] = await Promise.all([getRegistrations("volunteers"), getLunchSummary(), getRegistrations("walk"), getRegistrations("football")]);
+      football = footballRecords; volunteers = volunteerRecords; lunch = summary.records; walk = walkRecords; physicalPlaces = summary.physicalPlaces; reserved = summary.reserved;
     }
     catch { unavailable = true; }
   }
@@ -53,6 +53,14 @@ export async function RegistrationAdmin({ result }: { result?: string }) {
         <p>{record.email}<br />{record.phone}</p>
         <Notification record={record} />
       </article>) : <p>Encara no hi ha inscripcions a la caminada.</p>}</div>
+      <h3>Torneig de Futbol · Equips</h3><a className="text-link" href="/admin/aplec-2026?kind=football">Exporta equips CSV</a>
+      <div className="aplec-2026-admin-records">{football.length ? [...football].reverse().map(record => <article key={record.id}>
+        <h4>{record.teamName || "Inscripció individual anterior"}</h4>
+        <p>{record.id} · {adminDateTimeFormatter.format(new Date(record.createdAt))}</p>
+        <p>Responsable: {record.responsibleName || `${record.firstName} ${record.lastName}`}<br />{record.email}<br />{record.phone}</p>
+        {record.players ? <><p>{record.playerCount} jugadors</p><ol>{record.players.map((player, index) => <li key={index}><strong>{player.firstName} {player.lastName}</strong> · {player.age} anys · {player.municipality}<br />DNI / document identificatiu: {player.dni}</li>)}</ol></> : <p>{record.firstName} {record.lastName} · {record.age} anys · {record.municipality}<br />DNI / document identificatiu: {record.dni}</p>}
+        <Notification record={record} />
+      </article>) : <p>Encara no hi ha equips inscrits.</p>}</div>
     </>}
   </section>;
 }

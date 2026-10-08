@@ -5,6 +5,7 @@ import { RegistrationPrivacy } from "./aplec-2026-privacy";
 
 export function RegistrationForm({ kind }: { kind: RegistrationKind }) {
   const [result, setResult] = useState<FormResult>({});
+  const [playerCount, setPlayerCount] = useState(5);
   const [pending, setPending] = useState(false);
   const [places, setPlaces] = useState<{ remaining: number; closed: boolean } | null>(null);
   const busy = useRef(false);
@@ -25,7 +26,9 @@ export function RegistrationForm({ kind }: { kind: RegistrationKind }) {
     busy.current = true; setPending(true); setResult({});
     if (!requestId.current) requestId.current = crypto.randomUUID();
     const form = new FormData(event.currentTarget);
-    const payload = { ...Object.fromEntries(form), days: form.getAll("days"), consent: form.get("consent") === "on", requestId: requestId.current };
+    const players = kind === "football" ? Array.from({ length: playerCount }, (_, index) => Object.fromEntries(["firstName", "lastName", "age", "municipality", "dni"].map(key => [key, form.get(`players.${index}.${key}`)]))) : undefined;
+    const fields = kind === "football" ? [...form].filter(([key]) => !key.startsWith("players.")) : form;
+    const payload = { ...Object.fromEntries(fields), ...(players ? { players } : {}), days: form.getAll("days"), consent: form.get("consent") === "on", requestId: requestId.current };
     try {
       const response = await fetch(`/api/aplec-2026/${kind}`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
       const data: FormResult = await response.json();
@@ -53,7 +56,7 @@ export function RegistrationForm({ kind }: { kind: RegistrationKind }) {
           : kind === "walk"
             ? "Hem rebut correctament la teva inscripció"
             : kind === "football"
-              ? "Inscripció al torneig registrada"
+              ? "Equip inscrit al torneig"
               : "Hem rebut la teva disponibilitat"}
       </h2>
 
@@ -63,7 +66,7 @@ export function RegistrationForm({ kind }: { kind: RegistrationKind }) {
           : kind === "walk"
             ? "La teva inscripció a la caminada ha quedat registrada."
             : kind === "football"
-              ? "La teva inscripció al Torneig de Futbol ILTIŔ ha quedat registrada."
+              ? "El teu equip ha quedat inscrit al Torneig de Futbol ILTIŔ."
               : "L’organització es posarà en contacte amb tu. Encara no tens cap torn assignat."}
       </p>
 
@@ -103,12 +106,17 @@ export function RegistrationForm({ kind }: { kind: RegistrationKind }) {
       {kind === "lunch" && <p role="status">{places ? places.closed ? "El termini de reserva ha finalitzat." : places.remaining === 0 ? "Reserves completes" : `Queden ${places.remaining} places` : "Comprovarem les places disponibles en enviar la reserva."}</p>}
       <p>{kind === "volunteers" ? "Tots els camps són obligatoris, excepte les observacions." : "Tots els camps són obligatoris."}</p>
       <div className="aplec-2026-form-grid">
+        {kind === "football" ? <>
+          {field("teamName", "Nom de l’equip", "text", 100)}
+          <div className="aplec-2026-field"><label htmlFor="playerCount">Nombre de jugadors</label><select id="playerCount" name="playerCount" value={playerCount} onChange={event => setPlayerCount(Number(event.target.value))} aria-invalid={Boolean(errors.playerCount)} aria-describedby={errors.playerCount ? "playerCount-error" : undefined}>{[5, 6, 7, 8].map(count => <option key={count} value={count}>{count}</option>)}</select>{errors.playerCount && <p className="form-error" id="playerCount-error">{errors.playerCount}</p>}</div>
+          {field("responsibleName", "Nom i cognoms de la persona responsable", "text", 180, undefined, undefined, "name")}
+        </> : <>
         {field("firstName", "Nom", "text", 80, undefined, undefined, "given-name")}
         {field("lastName", "Cognoms", "text", 100, undefined, undefined, "family-name")}
-        {field("email", "Correu electrònic", "email", 254, undefined, undefined, "email")}
+        </>}
+        {field("email", kind === "football" ? "Correu electrònic de contacte" : "Correu electrònic", "email", 254, undefined, undefined, "email")}
 
-{kind !== "football" &&
-  field("phone", "Telèfon", "tel", 30, undefined, undefined, "tel")}
+{field("phone", kind === "football" ? "Telèfon de contacte" : "Telèfon", "tel", 30, undefined, undefined, "tel")}
 
 {kind === "volunteers" ? (
   field("age", "Edat", "number", 3, 1, 120)
@@ -131,14 +139,19 @@ export function RegistrationForm({ kind }: { kind: RegistrationKind }) {
       LUNCH_CAPACITY
     )}
   </>
-) : kind === "football" ? (
-  <>
-    {field("age", "Edat", "number", 3, 1, 120)}
-    {field("municipality", "Municipi", "text", 100)}
-    {field("dni", "DNI / document identificatiu", "text", 20)}
-  </>
 ) : null}
       </div>
+      {kind === "football" && <section id="players" aria-label="Jugadors de l’equip" className="aplec-2026-player-list">
+        <p>Entre 5 i 8 jugadors majors de 16 anys, amb representació d’almenys dos dels tres pobles: Cabanelles, Lladó o Navata.</p>
+        {errors.players && <p className="form-error">{errors.players}</p>}
+        {Array.from({ length: playerCount }, (_, index) => <fieldset key={index}><legend>Jugador {index + 1}</legend><div className="aplec-2026-form-grid">
+          {field(`players.${index}.firstName`, "Nom", "text", 80)}
+          {field(`players.${index}.lastName`, "Cognoms", "text", 100)}
+          {field(`players.${index}.age`, "Edat", "number", 3, 17, 120)}
+          {field(`players.${index}.municipality`, "Municipi", "text", 100)}
+          {field(`players.${index}.dni`, "DNI / document identificatiu", "text", 20)}
+        </div></fieldset>)}
+      </section>}
       {kind === "volunteers" && <>
         <fieldset id="days" aria-describedby={errors.days ? "days-error" : undefined}><legend>Disponibilitat per dies</legend>{volunteerDays.map(day => <label className="aplec-2026-check" key={day}><input type="checkbox" name="days" value={day} />{day}</label>)}{errors.days && <p id="days-error" className="form-error">{errors.days}</p>}</fieldset>
         <label htmlFor="availability">Disponibilitat aproximada / franges horàries</label><textarea id="availability" name="availability" required rows={3} maxLength={500} aria-invalid={Boolean(errors.availability)} aria-describedby={errors.availability ? "availability-error" : undefined} />{errors.availability && <p id="availability-error" className="form-error">{errors.availability}</p>}
@@ -155,7 +168,7 @@ export function RegistrationForm({ kind }: { kind: RegistrationKind }) {
     : kind === "walk"
       ? "Envia la inscripció"
       : kind === "football"
-        ? "Inscriu-me al torneig"
+        ? "Inscriu l’equip al torneig"
         : "Envia la disponibilitat"}</button>
     </form>}
   </>;

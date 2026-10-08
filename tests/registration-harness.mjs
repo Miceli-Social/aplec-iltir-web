@@ -20,6 +20,12 @@ export function registrationHarness() {
       const found = blobs.get(path);
       return found ? { statusCode: 200, stream: new Response(found.text).body, blob: { etag: found.etag } } : null;
     },
+    head: async (path, config) => {
+      if (options.failReads || config.token !== env.REGISTRATION_BLOB_READ_WRITE_TOKEN) throw new Error("Storage unavailable");
+      const found = blobs.get(path);
+      if (!found) throw new Error("Missing blob");
+      return { etag: found.etag };
+    },
     put: async (path, text, config) => {
       if (config.access !== "private" || config.token !== env.REGISTRATION_BLOB_READ_WRITE_TOKEN) throw new Error("Unsafe Blob write");
       if (options.failWrites) throw new Error("Storage unavailable");
