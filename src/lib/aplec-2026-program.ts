@@ -120,7 +120,7 @@ export const aplec2026Program: ProgramDay[] = [
     "Quin és el teu plat estrella? Aquell que sempre triomfa, la recepta de la família, la teva especialitat... o simplement aquell que t’encanta preparar i compartir!\n\nAquest any, a la Mostra de Cuina, volem tastar els plats que us representen. Si tens ganes de cuinar, compartir i passar-ho bé, t’hi esperem.\n\nObertura de portes: 20.30 h\nInici de la Mostra: 21.00 h\n\nPrepara el teu plat estrella i vine a compartir-lo amb els veïns!",
 },
       {
-        time: "21.00 h",
+        time: "20.00 h",
         title: "Könunpar",
         moreInfo: "Un bon concert no es mesura per la mida de l’escenari. Es mesura pel que passa entre la cançó i la gent.",
         location: "Plaça Major",
@@ -131,7 +131,7 @@ export const aplec2026Program: ProgramDay[] = [
         location: "Camp de futbol de Lladó",
       },
       {
-        time: "22.00 h",
+        time: "21.00 h",
         title: "Concert · No-Name · Blues, Rock i Ska",
         location: "Plaça Major",
       },
