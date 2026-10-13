@@ -248,7 +248,7 @@ test("football mail, authenticated administration and CSV preserve team grouping
   const h=registrationHarness(); h.env.RESEND_API_KEY="test"; h.env.REGISTRATION_FROM_EMAIL="sender@example.com"; h.env.REGISTRATION_FOOTBALL_NOTIFY_EMAIL="football@example.com";
   const body=footballInput(8,{teamName:"=1+1"}); body.players[0].firstName="=2+2";
   await submit(h,body,"football"); await h.flush();
-  assert.equal(h.emails.length,2); assert.equal(h.emails[0].to[0],"football@example.com"); assert.equal(h.emails[1].to[0],"prova@example.com");
+  assert.equal(h.emails.length,2); assert.deepEqual(h.emails[0].to,["football@example.com","josepmaria@resilience.earth"]); assert.deepEqual(h.emails[1].to,["prova@example.com"]);
   for (const player of body.players) for (const value of Object.values(player)) assert(h.emails[0].text.includes(String(value)));
   assert(h.emails[0].text.includes(body.responsibleName)); assert(h.emails[0].text.includes("+34600000000"));
   assert(h.emails[1].text.includes("ha quedat inscrit")); assert(h.emails[1].text.includes(body.teamName)); assert(h.emails[1].text.includes("8")); assert(!h.emails[1].text.includes(body.players[0].dni));
@@ -260,6 +260,37 @@ test("football mail, authenticated administration and CSV preserve team grouping
   assert(html.includes("Exporta equips CSV")); assert(html.includes("8 jugadors")); assert(html.includes(body.players[7].dni));
   const record=(await h.load("src/lib/aplec-2026-registration-store.ts").getRegistrations("football"))[0];
   await h.load("src/lib/aplec-2026-registration-mail.ts").notifyRegistration(record); assert.equal(h.emails.length,2);
+});
+
+test("football organization recipients preserve primary fallbacks and allow a secondary override", async () => {
+  for (const [env, expected] of [
+    [{REGISTRATION_FOOTBALL_NOTIFY_EMAIL:"arrelslladonenques@gmail.com"}, ["arrelslladonenques@gmail.com","josepmaria@resilience.earth"]],
+    [{REGISTRATION_FOOTBALL_NOTIFY_EMAIL:"football@example.com",REGISTRATION_NOTIFY_EMAIL:"general@example.com",REGISTRATION_FOOTBALL_NOTIFY_EMAIL_SECONDARY:"secondary@example.com"}, ["football@example.com","secondary@example.com"]],
+    [{REGISTRATION_NOTIFY_EMAIL:"general@example.com",REGISTRATION_FOOTBALL_NOTIFY_EMAIL_SECONDARY:""}, ["general@example.com","josepmaria@resilience.earth"]],
+    [{}, ["info@resilience.earth","josepmaria@resilience.earth"]],
+  ]) {
+    const h=registrationHarness(); Object.assign(h.env,{RESEND_API_KEY:"test",REGISTRATION_FROM_EMAIL:"sender@example.com"},env);
+    const body=footballInput(); assert.equal((await submit(h,body,"football")).status,200); await h.flush();
+    assert.equal(h.emails.length,2); assert.deepEqual(h.emails[0].to,expected); assert.deepEqual(h.emails[1].to,["prova@example.com"]);
+    assert.equal(h.emails[1].text,`Hola, Núria Prova.\nL’equip ${body.teamName} ha quedat inscrit al Torneig de Futbol ILTIŔ 2026.\nNombre de jugadors: 5.\nEns veiem el 16 d’octubre de 20 h a 22 h al camp de futbol de la UE Lladó.\nLa inscripció és de 3 € per participant i inclou l’assegurança i el sopar.`);
+    const record=(await h.load("src/lib/aplec-2026-registration-store.ts").getRegistrations("football"))[0];
+    assert.deepEqual(record.notifications,{organization:"sent",participant:"sent"});
+    await h.load("src/lib/aplec-2026-registration-mail.ts").notifyRegistration(record);
+    assert.equal(h.emails.length,2);
+  }
+});
+
+test("other registration kinds keep exactly one organization recipient and one confirmation", async () => {
+  for (const [kind, variable, fallback] of [
+    ["walk","REGISTRATION_WALK_NOTIFY_EMAIL","lluis.arambilet@gmail.com"],
+    ["lunch","REGISTRATION_LUNCH_NOTIFY_EMAIL","info@resilience.earth"],
+    ["volunteers","REGISTRATION_NOTIFY_EMAIL","carla@resilience.earth"],
+  ]) for (const override of [undefined,"override@example.com"]) {
+    const h=registrationHarness(); Object.assign(h.env,{RESEND_API_KEY:"test",REGISTRATION_FROM_EMAIL:"sender@example.com",REGISTRATION_FOOTBALL_NOTIFY_EMAIL:"football@example.com",REGISTRATION_FOOTBALL_NOTIFY_EMAIL_SECONDARY:"secondary@example.com"});
+    if (override) h.env[variable]=override;
+    assert.equal((await submit(h,input({age:"25",days:["Divendres 16 d’octubre"],availability:"Matí"}),kind)).status,200); await h.flush();
+    assert.equal(h.emails.length,2); assert.deepEqual(h.emails[0].to,[override || fallback]); assert.deepEqual(h.emails[1].to,["prova@example.com"]);
+  }
 });
 
 test("football form starts with team and contact fields and renders five player cards", () => {
