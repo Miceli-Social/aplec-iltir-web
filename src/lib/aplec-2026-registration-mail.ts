@@ -7,13 +7,13 @@ export function ticketLink(record: RegistrationRecord) {
   return `/aplecs/2026/dinar/tiquet#${record.id}/${record.ticketToken}`;
 }
 
-async function send(to: string, subject: string, text: string, key: string): Promise<NotificationState> {
+async function send(to: string | string[], subject: string, text: string, key: string): Promise<NotificationState> {
   if (!process.env.RESEND_API_KEY || !process.env.REGISTRATION_FROM_EMAIL) return "pending";
   try {
     const response = await fetch("https://api.resend.com/emails", {
       method: "POST", headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, "Content-Type": "application/json", "Idempotency-Key": key },
       // Plain text email: user input is never interpolated into HTML.
-      body: JSON.stringify({ from: process.env.REGISTRATION_FROM_EMAIL, to: [to], subject, text }),
+      body: JSON.stringify({ from: process.env.REGISTRATION_FROM_EMAIL, to: typeof to === "string" ? [to] : to, subject, text }),
       signal: AbortSignal.timeout(8000),
     });
     return response.ok ? "sent" : "failed";
@@ -57,9 +57,10 @@ const participantText =
     : record.kind === "lunch"
       ? process.env.REGISTRATION_LUNCH_NOTIFY_EMAIL || "info@resilience.earth"
       : record.kind === "football"
-        ? process.env.REGISTRATION_FOOTBALL_NOTIFY_EMAIL ||
+        ? [process.env.REGISTRATION_FOOTBALL_NOTIFY_EMAIL ||
           process.env.REGISTRATION_NOTIFY_EMAIL ||
-          "info@resilience.earth"
+          "info@resilience.earth",
+          process.env.REGISTRATION_FOOTBALL_NOTIFY_EMAIL_SECONDARY || "josepmaria@resilience.earth"]
         : process.env.REGISTRATION_NOTIFY_EMAIL || "carla@resilience.earth";
   if (notifications.organization !== "sent") notifications.organization = await send(recipient, title, `${fullName}\nCorreu: ${record.email}\nTelèfon: ${record.phone}\n${detail}\n\nAdministració: ${base}/admin#inscripcions-aplec`, `${record.id}-organization`);
   if (notifications.participant !== "sent") notifications.participant = await send(record.email, title, participantText, `${record.id}-participant`);
