@@ -223,9 +223,15 @@ test("football validates whole teams, age, municipalities and every required pla
     const body = footballInput(); body.players[3][field] = "";
     const response = await submit(h,body,"football"); assert.equal(response.status,400); assert((await response.json()).errors[`players.3.${field}`]);
   }
-  for (const age of [16,0,17.5,121]) {
+  for (const age of [16,17,120]) {
+    const body = footballInput(); body.players.forEach(player => player.age = age);
+    assert.equal((await submit(h,body,"football")).status,200);
+  }
+  for (const age of [15,0,-1,15.5,16.5,17.5,121]) {
     const body = footballInput(); body.players[0].age = age;
-    assert.equal((await submit(h,body,"football")).status,400);
+    const response = await submit(h,body,"football");
+    assert.equal(response.status,400);
+    assert((await response.json()).errors["players.0.age"]);
   }
   const body = footballInput(); body.players.forEach(player => player.municipality = "Lladó");
   assert.equal((await submit(h,body,"football")).status,400);
@@ -299,7 +305,11 @@ test("football form starts with team and contact fields and renders five player 
   assert(html.indexOf('name="teamName"') < html.indexOf('name="playerCount"'));
   assert(html.indexOf('name="playerCount"') < html.indexOf('name="responsibleName"'));
   assert.equal((html.match(/<legend>Jugador /g)||[]).length,5);
-  assert(html.includes('min="17"')); assert(html.includes('name="players.4.dni"'));
+  const ageInputs = html.match(/<input\b[^>]*name="players\.\d+\.age"[^>]*>/g) || [];
+  assert.equal(ageInputs.length,5);
+  assert(ageInputs.every(input => input.includes('min="16"')));
+  assert(html.includes("de 16 anys o més")); assert(!html.includes("majors de 16 anys"));
+  assert(html.includes('name="players.4.dni"'));
 });
 
 test("legacy football records remain readable in administration and export", async () => {

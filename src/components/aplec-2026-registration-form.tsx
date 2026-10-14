@@ -142,12 +142,12 @@ export function RegistrationForm({ kind }: { kind: RegistrationKind }) {
 ) : null}
       </div>
       {kind === "football" && <section id="players" aria-label="Jugadors de l’equip" className="aplec-2026-player-list">
-        <p>Entre 5 i 8 jugadors majors de 16 anys, amb representació d’almenys dos dels tres pobles: Cabanelles, Lladó o Navata.</p>
+        <p>Entre 5 i 8 jugadors de 16 anys o més, amb representació d’almenys dos dels tres pobles: Cabanelles, Lladó o Navata.</p>
         {errors.players && <p className="form-error">{errors.players}</p>}
         {Array.from({ length: playerCount }, (_, index) => <fieldset key={index}><legend>Jugador {index + 1}</legend><div className="aplec-2026-form-grid">
           {field(`players.${index}.firstName`, "Nom", "text", 80)}
           {field(`players.${index}.lastName`, "Cognoms", "text", 100)}
-          {field(`players.${index}.age`, "Edat", "number", 3, 17, 120)}
+          {field(`players.${index}.age`, "Edat", "number", 3, 16, 120)}
           {field(`players.${index}.municipality`, "Municipi", "text", 100)}
           {field(`players.${index}.dni`, "DNI / document identificatiu", "text", 20)}
         </div></fieldset>)}

@@ -22,7 +22,7 @@ export default function FootballPage() {
         <p>El torneig serà de futbol 5 i de caire festiu.</p>
         <h2>Requisits per formar un equip:</h2>
         <ol>
-          <li>Un mínim de 5 persones majors de 16 anys i un màxim de 8.</li>
+          <li>Un mínim de 5 persones de 16 anys o més i un màxim de 8.</li>
           <li>Tenir a l’equip representació de dos dels tres pobles: Cabanelles, Lladó o Navata.</li>
         </ol>
         <p>Ens veiem el dia <strong>16 d’octubre de 20 h a 22 h al camp de futbol de la UE Lladó</strong>.</p>
