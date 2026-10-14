@@ -202,11 +202,11 @@ location: "Sortida del Camp de futbol de Lladó i recorregut pel poble fins a la
       {
   time: "11.30 h",
   title:
-    "Respostes que estan emergint des de les ruralitats per respondre el repte de l'habitatge",
+    "Respostes que estan emergint des de les ruralitats davant el repte de l'habitatge",
   moreInfoLead:
     "Què podem aprendre quan els municipis comparteixen allò que estan fent possible?",
   moreInfo:
-    "Conversa oberta entre alcaldies per compartir experiències, aprendre les unes de les altres i inspirar noves possibilitats als nostres municipis alhora que ens preguntem, quin rol hi tenen els agents inmobiliàris, les constructores i promotores locals així com les propietàries, veïnes, llogateres i cooperativistes que vivim o volem arribar i viure al poble. Entre les experiències a compartir tenim el procés participatiu desenvolupat des de Lladó amb el jovent del poble i les alcaldies Oriol Balliu de la Pera i Mateu Sobregrau de Gallifa.",
+    "Conversa oberta entre alcaldies, ciutadania i diversos agents per compartir experiències, aprendre les unes de les altres i inspirar noves possibilitats als nostres municipis. Un espai per preguntar-nos també quin rol hi té cadascú i què podem arribar a fer si ens posem a pensar i treballar juntes. Entre les experiències que compartirem hi ha el procés participatiu desenvolupat a Lladó amb el jovent del poble; la cooperativa d’habitatge Som Tribu, a Navata; l’experiència de Dolors Navarro, alcaldessa de Sant Martí de Llémena, amb la regulació de l’ús turístic de les masies; les polítiques d’habitatge impulsades a Gallifa per l’alcalde Mateu Sobregrau; les eines que la Generalitat posa a disposició dels municipis, de la mà del director general d’Habitatge, Jordi Mas; i totes aquelles experiències, preguntes i possibilitats que vulguem posar en comú entre les persones participants.",
   location: "Plaça de la Vila",
 },
       {
