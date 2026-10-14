@@ -129,7 +129,7 @@ const input: RegistrationInput = {
     return {
       firstName: text("firstName", 80, true, player, key("firstName")),
       lastName: text("lastName", 100, true, player, key("lastName")),
-      age: integer("age", 17, 120, player, key("age")),
+      age: integer("age", 16, 120, player, key("age")),
       municipality: text("municipality", 100, true, player, key("municipality")),
       dni,
     };
