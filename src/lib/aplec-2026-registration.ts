@@ -1,7 +1,9 @@
 // Shared public constants and types. Never put credentials or stored records here.
 export const LUNCH_CAPACITY = 120;
-// Midnight after 17 October in Europe/Madrid (CEST, UTC+2).
-export const LUNCH_DEADLINE = "2026-10-17T22:00:00.000Z";
+// 16 October at 15:30 in Europe/Madrid (CEST, UTC+2).
+export const LUNCH_DEADLINE = "2026-10-16T13:30:00.000Z";
+export const LUNCH_CLOSED_MESSAGE = "Les reserves online ja estan tancades. Pots comprar o reservar el tiquet directament al punt d’informació de l’Aplec, durant divendres i fins dissabte al migdia, sempre que quedin places.";
+export const isLunchClosed = (now = Date.now()) => now >= Date.parse(LUNCH_DEADLINE);
 export const CONSENT_VERSION = "2026-09-24-v1";
 export const volunteerDays = ["Divendres 16 d’octubre", "Dissabte 17 d’octubre", "Diumenge 18 d’octubre"] as const;
 export type RegistrationKind = "volunteers" | "lunch" | "walk" | "football";

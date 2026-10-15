@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { consentText, volunteerDays, LUNCH_CAPACITY, type FormResult, type RegistrationKind } from "@/lib/aplec-2026-registration";
+import { consentText, volunteerDays, LUNCH_CAPACITY, LUNCH_CLOSED_MESSAGE, isLunchClosed, type FormResult, type RegistrationKind } from "@/lib/aplec-2026-registration";
 import { RegistrationPrivacy } from "./aplec-2026-privacy";
 
 export function RegistrationForm({ kind }: { kind: RegistrationKind }) {
@@ -15,6 +15,10 @@ export function RegistrationForm({ kind }: { kind: RegistrationKind }) {
     if (kind !== "lunch") return;
     let active = true;
     const refresh = async () => {
+      if (isLunchClosed()) {
+        setPlaces(previous => ({ remaining: previous?.remaining ?? 0, closed: true }));
+        return;
+      }
       try { const response = await fetch("/api/aplec-2026/lunch", { cache: "no-store" }); if (active && response.ok) setPlaces(await response.json()); } catch { /* Submission will verify availability on the server. */ }
     };
     void refresh(); const timer = setInterval(refresh, 30000);
@@ -23,6 +27,11 @@ export function RegistrationForm({ kind }: { kind: RegistrationKind }) {
   useEffect(() => { if (result.ok || result.errors || result.message) feedback.current?.focus(); }, [result]);
   async function submit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault(); if (busy.current) return;
+    if (kind === "lunch" && isLunchClosed()) {
+      setPlaces(previous => ({ remaining: previous?.remaining ?? 0, closed: true }));
+      setResult({ message: LUNCH_CLOSED_MESSAGE });
+      return;
+    }
     busy.current = true; setPending(true); setResult({});
     if (!requestId.current) requestId.current = crypto.randomUUID();
     const form = new FormData(event.currentTarget);
@@ -103,7 +112,7 @@ export function RegistrationForm({ kind }: { kind: RegistrationKind }) {
   )}
 </div>
     {!result.ok && <form id="registration-form" className="aplec-2026-form" onSubmit={submit} aria-busy={pending}>
-      {kind === "lunch" && <p role="status">{places ? places.closed ? "El termini de reserva ha finalitzat." : places.remaining === 0 ? "Reserves completes" : `Queden ${places.remaining} places` : "Comprovarem les places disponibles en enviar la reserva."}</p>}
+      {kind === "lunch" && <p role="status">{places ? places.closed ? LUNCH_CLOSED_MESSAGE : places.remaining === 0 ? "Reserves completes" : `Queden ${places.remaining} places` : "Comprovarem les places disponibles en enviar la reserva."}</p>}
       <p>{kind === "volunteers" ? "Tots els camps són obligatoris, excepte les observacions." : "Tots els camps són obligatoris."}</p>
       <div className="aplec-2026-form-grid">
         {kind === "football" ? <>
