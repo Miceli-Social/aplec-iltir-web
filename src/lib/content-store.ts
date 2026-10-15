@@ -1,4 +1,6 @@
-import { list, put } from "@vercel/blob";
+import { head, list, put } from "@vercel/blob";
+import { randomUUID } from "node:crypto";
+import { type ActivityReturn, type AplecReturns, findActivity, photoPrefix, PHOTO_TYPES, MAX_PHOTO_BYTES, validateReturn } from "./aplec-2026-returns";
 import type { CalendarEvent, Circle, DocumentLink } from "@/lib/types";
 
 const STATE_PREFIX = "iltir/editorial-state/";
@@ -181,4 +183,64 @@ export async function uploadPublicDocument(file: File, title: string) {
       url: blob.url,
     }),
   );
+}
+
+// Immutable per-activity revisions avoid both overwritten-JSON CDN staleness and
+// unrelated editors overwriting each other's circles/events/activities.
+const RETURNS_PREFIX = "iltir/aplec-2026/returns/";
+async function readAplecReturns(): Promise<AplecReturns> {
+  if (!hasContentStore()) return {};
+  const latest = new Map<string, { pathname: string; url: string }>();
+  let cursor: string | undefined;
+  do {
+    const page = await list({ prefix: RETURNS_PREFIX, cursor, limit: 1000,
+      token: process.env.BLOB_READ_WRITE_TOKEN });
+    for (const blob of page.blobs) {
+      const id = blob.pathname.slice(RETURNS_PREFIX.length).split("/")[0];
+      if (!findActivity(id)) continue;
+      const previous = latest.get(id);
+      if (!previous || blob.pathname > previous.pathname) latest.set(id, blob);
+    }
+    cursor = page.hasMore ? page.cursor : undefined;
+  } while (cursor);
+  const entries = await Promise.all([...latest].map(async ([id, blob]) => {
+    const response = await fetch(blob.url, { cache: "no-store" });
+    if (!response.ok) throw new Error("No s’han pogut llegir els retorns de l’Aplec.");
+    const value = validateReturn(await response.json());
+    if (value.activityId !== id) throw new Error("Retorn editorial inconsistent.");
+    return [id, value] as const;
+  }));
+  return Object.fromEntries(entries);
+}
+
+export async function getAplecReturns(): Promise<AplecReturns> {
+  try {
+    return await readAplecReturns();
+  } catch (error) {
+    console.error("Aplec return read failed", error);
+    // Keep the programme and existing site usable during a storage outage.
+    return {};
+  }
+}
+
+export async function saveAplecReturn(input: ActivityReturn) {
+  if (!hasContentStore()) throw new Error("L’emmagatzematge editorial no està configurat.");
+  const value = validateReturn(input);
+  const storeId = getStoreIdFromToken();
+  // Only accept actual photos in this activity's public editorial store.
+  await Promise.all(value.photos.map(async (url) => {
+    const parsed = new URL(url);
+    if (parsed.origin !== `https://${storeId}.public.blob.vercel-storage.com` ||
+        parsed.search || parsed.hash || !parsed.pathname.startsWith(`/${photoPrefix(value.activityId)}`)) {
+      throw new Error("La fotografia no pertany a aquesta activitat.");
+    }
+    const photo = await head(url, { token: process.env.BLOB_READ_WRITE_TOKEN });
+    if (!PHOTO_TYPES.includes(photo.contentType) || photo.size > MAX_PHOTO_BYTES || photo.size === 0) {
+      throw new Error("Format o mida de fotografia no vàlids.");
+    }
+  }));
+  await put(`${RETURNS_PREFIX}${value.activityId}/${Date.now()}-${randomUUID()}.json`, JSON.stringify(value), {
+    access: "public", addRandomSuffix: false, contentType: "application/json",
+    token: process.env.BLOB_READ_WRITE_TOKEN,
+  });
 }

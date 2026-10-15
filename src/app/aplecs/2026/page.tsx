@@ -1,3 +1,7 @@
+import { ActivityPhotoLink } from "@/components/aplec-return-public";
+import { getAplecReturns } from "@/lib/content-store";
+
+export const dynamic = "force-dynamic";
 import type { Metadata } from "next";
 import Image from "next/image";
 import {
@@ -30,7 +34,8 @@ export const metadata: Metadata = {
     "L’Aplec Iltiŕ 2026 se celebrarà el 16, 17 i 18 d’octubre a Cabanelles, Navata i Lladó.",
 };
 
-export default function Aplec2026Page() {
+export default async function Aplec2026Page() {
+  const returns = await getAplecReturns();
   return (
     <article className="aplec-2026-page">
       <header className="aplec-2026-hero">
@@ -163,12 +168,13 @@ export default function Aplec2026Page() {
                 {day.activities.map((activity) => (
                   <li
                     className="aplec-2026-activity"
-                    key={`${activity.time}-${activity.title}`}
+                    key={activity.id}
                   >
                     <p className="aplec-2026-activity-time">{activity.time}</p>
 
                     <div className="aplec-2026-activity-body">
                       <h4>{activity.title}</h4>
+                      <ActivityPhotoLink editorial={returns[activity.id]} />
 
                       {activity.location && (
                         <p className="aplec-2026-activity-location">

@@ -1,3 +1,5 @@
+import { ReviuHome } from "@/components/aplec-return-public";
+import { getAplecReturns } from "@/lib/content-store";
 import Link from "next/link";
 import Image from "next/image";
 import { GovernanceMap } from "@/components/governance-map";
@@ -11,7 +13,7 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export default async function Home() {
-  const circles = await getCircles();
+  const [circles, aplecReturns] = await Promise.all([getCircles(), getAplecReturns()]);
   const upcoming = getUpcomingAplecActivities();
   const slotLabels = ["LA PROPERA ACTIVITAT", "A CONTINUACIÓ", "TOT SEGUIT"];
   const activityDate = new Intl.DateTimeFormat("ca-ES", {
@@ -69,6 +71,8 @@ export default async function Home() {
           </div>
         </div>
       </section>
+
+      <ReviuHome returns={aplecReturns} />
 
       <section id="aplec" className="aplec-overview">
         <div className="aplec-overview-main">

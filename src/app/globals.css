@@ -1166,3 +1166,20 @@ a.footer-entity:hover { opacity:.78; background:rgba(255,255,255,.04); }
 .aplec-2026-form select { width:100%; padding:12px; border:1px solid var(--ink-soft); border-radius:8px; background:white; color:var(--ink); font:inherit; }
 .aplec-2026-player-list { display:grid; gap:20px; }
 .aplec-2026-football-page li { line-height:1.6; margin-bottom:8px; }
+
+/* Aplec photos and editorial returns */
+.aplec-reviu-home { padding-block: 3rem; }
+.aplec-reviu-page > section { margin-block: 3rem; }
+.aplec-photo-grid, .aplec-photo-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 1.25rem; }
+.aplec-photo-grid img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: .5rem; }
+.aplec-photo-gallery img { width: 100%; height: auto; border-radius: .5rem; }
+.aplec-photo-gallery > a:first-child { grid-column: 1 / -1; }
+.aplec-photo-card { display: block; padding: 1rem; border: 1px solid currentColor; border-radius: .75rem; }
+.aplec-return-picker { margin-block: .75rem; border: 1px solid #bbb; border-radius: .5rem; padding: 1rem; }
+.aplec-return-picker summary { cursor: pointer; min-height: 44px; }
+.aplec-return-editor { padding-block: 1rem; }
+.aplec-return-editor fieldset { min-width: 0; display: grid; gap: 1rem; border: 0; padding: 0; }
+.aplec-return-editor .admin-form { margin-block: 1rem; }
+.aplec-return-editor input[type=radio] { width: auto; }
+.aplec-return-editor button { min-height: 44px; }
+.aplec-return-description p { white-space: pre-line; }

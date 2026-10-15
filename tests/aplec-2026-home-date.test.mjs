@@ -18,6 +18,7 @@ async function renderedDate(now, date) {
   const imports = (name) => {
     if (name === "react/jsx-runtime") return dependency(name);
     if (name === "@/lib/remote-content") return { getCircles: async () => [] };
+    if (name === "@/lib/content-store") return { getAplecReturns: async () => ({}) };
     if (name === "@/lib/aplec-2026-upcoming") return {
       getUpcomingAplecActivities: () => ({
         finished: false,
