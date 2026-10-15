@@ -5,6 +5,8 @@ export type ProgramRegistration = {
 };
 
 export type ProgramActivity = {
+  /** Persistent editorial identity: never renumber or reuse. */
+  id: string;
   time: string;
   nextDay?: boolean;
   title: string;
@@ -46,6 +48,7 @@ export const aplec2026Program: ProgramDay[] = [
       "En cas de pluja els concerts es faran al Teatre-Sindicat i els diàlegs a la sala Sant Joan.",
     activities: [
 {
+  id: "aplec26-001",
   time: "11.00–13.00 h",
   title: "Exposició de Poesia Cinètica · Rafel Ortiz",
   moreInfo:
@@ -53,6 +56,7 @@ export const aplec2026Program: ProgramDay[] = [
   location: "Sala 1 d’Octubre, Navata",
 },    
 {
+  id: "aplec26-002",
   time: "15.00 h",
   title: "Un territori abraçat per la Mare de Déu del Mont.",
   moreInfoLead: "T'has plantejat mai quina és la funció ecològica del lloc?",
@@ -61,6 +65,7 @@ export const aplec2026Program: ProgramDay[] = [
   location: "Placeta del Priorat",
 },      
 {
+  id: "aplec26-003",
   time: "16.30 h",
   title: "Repic de Campanes Goigs del Mont",
   moreInfo:
@@ -68,6 +73,7 @@ export const aplec2026Program: ProgramDay[] = [
   location: "Església Santa Maria de Lladó",
 },
      {
+  id: "aplec26-004",
   time: "17.00 h",
   title: "Cerimònia d'Obertura de l'Aplec Iltiŕ",
   moreInfoLead: "Quin és el poder d'una cerimònia d'obertura?",
@@ -76,12 +82,14 @@ export const aplec2026Program: ProgramDay[] = [
   location: "Placeta del Priorat",
 },
       {
+        id: "aplec26-005",
         time: "17.30 h",
         title:
           "Berenar popular i ballada amb la companyia de faràndules del territori",
         location: "Plaça Major",
       },
 {
+  id: "aplec26-006",
   time: "18.00–21.00 h",
   title: "Exposició de Poesia Cinètica · Rafel Ortiz",
   moreInfo:
@@ -89,6 +97,7 @@ export const aplec2026Program: ProgramDay[] = [
   location: "Sala 1 d’Octubre, Navata",
 }, 
      {
+  id: "aplec26-007",
   time: "18.00 h",
   title:
     "L'evolució democràtica als pobles. Experiències de cogestió comunitària i governança des del lloc.",
@@ -99,6 +108,7 @@ export const aplec2026Program: ProgramDay[] = [
   location: "Placeta del Priorat",
 },
       {
+  id: "aplec26-008",
   time: "20.00 h",
   title: "Torneig de Futbol ILTIŔ",
   location: "Camp de futbol de Lladó",
@@ -109,6 +119,7 @@ export const aplec2026Program: ProgramDay[] = [
   },
 },
       {
+  id: "aplec26-009",
   time: "20.00 h",
   title: "Mostra de cuina · El meu plat estrella",
   location: "Sala Sindicat de Navata",
@@ -120,22 +131,26 @@ export const aplec2026Program: ProgramDay[] = [
     "Quin és el teu plat estrella? Aquell que sempre triomfa, la recepta de la família, la teva especialitat... o simplement aquell que t’encanta preparar i compartir!\n\nAquest any, a la Mostra de Cuina, volem tastar els plats que us representen. Si tens ganes de cuinar, compartir i passar-ho bé, t’hi esperem.\n\nObertura de portes: 20.30 h\nInici de la Mostra: 21.00 h\n\nPrepara el teu plat estrella i vine a compartir-lo amb els veïns!",
 },
       {
+        id: "aplec26-010",
         time: "20.00 h",
         title: "Könunpar",
         moreInfo: "Un bon concert no es mesura per la mida de l’escenari. Es mesura pel que passa entre la cançó i la gent.",
         location: "Plaça Major",
       },
       {
+        id: "aplec26-011",
         time: "22.00 h",
         title: "Botifarrada popular",
         location: "Camp de futbol de Lladó",
       },
       {
+        id: "aplec26-012",
         time: "21.00 h",
         title: "Concert · No-Name · Blues, Rock i Ska",
         location: "Plaça Major",
       },
       {
+  id: "aplec26-013",
   time: "23.00 h",
   title: "Concert a càrrec de Carlota Giró",
   location: "Al costat del camp de futbol",
@@ -143,12 +158,14 @@ export const aplec2026Program: ProgramDay[] = [
     "Carlota Giró és una cantautora de 24 anys nascuda a Figueres. Fa uns anys va descobrir que escriure cançons li permetia posar en paraules tot allò que anava vivint. La nostàlgia, la sinceritat i l’amor per les petites coses són els pilars del seu univers creatiu. Amb el seu projecte propi, busca compartir les seves cançons i connectar amb aquelles persones que s’hi puguin sentir identificades.",
 },
       {
+        id: "aplec26-014",
         time: "00.00 h",
         nextDay: true,
         title: "Txaranga Bufant Fort",
 location: "Sortida del Camp de futbol de Lladó i recorregut pel poble fins a la Plaça Major",
       },
       {
+        id: "aplec26-015",
         time: "Tot seguit",
         title: "DJ Ivanote",
         location: "Plaça Major",
@@ -164,11 +181,13 @@ location: "Sortida del Camp de futbol de Lladó i recorregut pel poble fins a la
       "En cas de pluja els concerts i les xerrades es faran al Sindicat de Navata.",
     activities: [
       {
+        id: "aplec26-016",
         time: "09.30 h",
         title: "Repic de campanes pel territori",
         location: "Església de Sant Pere",
       },
       {
+  id: "aplec26-017",
   time: "09.30 h",
   title: "Cap a un paisatge agroforestal resilient.",
   moreInfoLead:
@@ -178,12 +197,14 @@ location: "Sortida del Camp de futbol de Lladó i recorregut pel poble fins a la
   location: "Plaça de la Vila",
 },
 {
+  id: "aplec26-018",
   time: "10.30–12.30 h",
   title: "Exposició Fibonacci i concert amb imatges immersives d’Albert Cuevas",
   moreInfo: "Música en directe i la matemàtica en la natura",
   location: "Can Miró / Sala QArts, Navata",
 }, 
     {
+  id: "aplec26-019",
   time: "11.00–13.00 h",
   title: "Exposició de Poesia Cinètica · Rafel Ortiz",
   moreInfo:
@@ -191,6 +212,7 @@ location: "Sortida del Camp de futbol de Lladó i recorregut pel poble fins a la
   location: "Sala 1 d’Octubre, Navata",
 },
       {
+  id: "aplec26-020",
   time: "11.00 h",
   title: "Somnis territorials",
   moreInfoLead:
@@ -200,6 +222,7 @@ location: "Sortida del Camp de futbol de Lladó i recorregut pel poble fins a la
   location: "Plaça de l’Era de l’Obra",
 },
       {
+  id: "aplec26-021",
   time: "11.30 h",
   title:
     "Respostes que estan emergint des de les ruralitats davant el repte de l'habitatge",
@@ -210,6 +233,7 @@ location: "Sortida del Camp de futbol de Lladó i recorregut pel poble fins a la
   location: "Plaça de la Vila",
 },
       {
+  id: "aplec26-022",
   time: "12.00 h",
   title: "Pinta les teves sensacions",
   moreInfo:
@@ -217,22 +241,26 @@ location: "Sortida del Camp de futbol de Lladó i recorregut pel poble fins a la
   location: "Plaça de l’Era de l’Obra",
 },
       {
+        id: "aplec26-023",
         time: "12.30 h",
         title: "Concert · Mini-Stress · Cançoner de Navata-Lladó",
         moreInfo: "Concert de cançons tradicionals del nostre país recollides a l’Alt Empordà.",
         location: "Plaça de l’Era de l’Obra",
       },
       {
+        id: "aplec26-024",
         time: "14.00 h",
         title: "Dinar del Sindicat de Navata",
         location: "Plaça de l’Era de l’Obra",
       },
       {
+  id: "aplec26-025",
   time: "15.00 h",
   title: "Presentació dels equips CF Navata",
   location: "Camp de futbol de Navata",
 },
             {
+  id: "aplec26-026",
   time: "16.00 h",
   title: "Articulem la transició energètica des del territori.",
   moreInfoLead:
@@ -242,12 +270,14 @@ location: "Sortida del Camp de futbol de Lladó i recorregut pel poble fins a la
   location: "Plaça de la Vila",
 },
        {
+  id: "aplec26-027",
   time: "16.30 h",
   title: "Joc-taller 'Casa meva, el meu poble'",
   moreInfo: "Amb Esther Roca i Alícia Vázquez",
   location: "Davant de l'església",
 },
       {
+        id: "aplec26-028",
         time: "17.00–18.00 h",
         title:
           "Somia'm verd / Dream Me Green · Wave Ensemble",
@@ -255,12 +285,14 @@ moreInfo: "Concert ritual amb aromes. Cançons d'art de Frances Bartlett, violon
         location: "Església de Sant Pere",
       },
       {
+        id: "aplec26-029",
         time: "17.15 h",
         title: "Ara t'ho explico · Jordi Tonietti",
         moreInfo: "Amb música en directe, cançons originals, contes que fan volar la imaginació i molta participació. Els nostres espectacles són una festa pensada per a fer gaudir a tothom que tingui ganes de riure, cantar i passar-ho molt bé!",
         location: "Era de l’Obra",
       },
  {
+  id: "aplec26-030",
   time: "18.00–21.00 h",
   title: "Exposició de Poesia Cinètica · Rafel Ortiz",
   moreInfo:
@@ -268,24 +300,28 @@ moreInfo: "Concert ritual amb aromes. Cançons d'art de Frances Bartlett, violon
   location: "Sala 1 d’Octubre, Navata",
 }, 
      {
+        id: "aplec26-031",
         time: "18.00 h",
         title: "Concert · Coral de Lladó",
         moreInfo: "La Coral de Lladó és un espai de trobada a través del cant col·lectiu que fomenta els vincles comunitaris i manté viva la cultura musical del territori.",
         location: "Església de Sant Pere",
       },
       {
+        id: "aplec26-032",
         time: "18.30 h",
         title: "Concert · Corral de Cabanelles",
         moreInfo: "La Corral Rural de Cabanelles som una Coral Reivindicativa, és un espai de trobada, és xarxa i comunitat que, des de la diversitat i la cura dels processos individuals i col·lectius, reivindica una societat més justa i digna. Cantem per portar els valors de la lluita al carrers, a les places i als cors.",
         location: "Plaça de davant de l’Església",
       },
       {
+        id: "aplec26-033",
         time: "19.00–20.00 h",
         title: "Music on Cycles · LaDinamo",
         moreInfo: "LaDinamo és funk en moviment, és música en bicicletes. Una formació única de músics sobre rodes que trenca esquemes amb un concert itinerant d’alt voltatge i una festa de carrer trepidant a ritme de Funk.",
         location: "De l’Era de l’Obra al Camp de rugbi",
       },
       {
+        id: "aplec26-034",
         time: "20.00 h",
         title: "Espectacle comunitari · CANALLA",
         location: "Camp de rugbi",
@@ -301,6 +337,7 @@ moreInfo: "Concert ritual amb aromes. Cançons d'art de Frances Bartlett, violon
       "En cas de pluja les activitats es desenvoluparan a la Sala de Cabanelles.",
     activities: [
       {
+  id: "aplec26-035",
   time: "10.00–13.30 h",
   title:
     "Geni del lloc, geni de la planta · Mòdul 1: El lloc (caminada)",
@@ -343,6 +380,7 @@ La Sala de Cabanelles`,
   },
 },
 {
+  id: "aplec26-036",
   time: "11.00–13.00 h",
   title: "Exposició de Poesia Cinètica · Rafel Ortiz",
   moreInfo:
@@ -350,6 +388,7 @@ La Sala de Cabanelles`,
   location: "Sala 1 d’Octubre, Navata",
 },
       {
+  id: "aplec26-037",
   time: "11.00 h",
   title:
     "Històries d'una petita trementinaire · Companyia Tramuntana",
@@ -358,6 +397,7 @@ La Sala de Cabanelles`,
   location: "Plaça de l'església",
 },
      {
+  id: "aplec26-038",
   time: "11.00 h",
   title: "Territori, alimentació i salut (diàleg i tasts)",
   moreInfoLead:
@@ -367,11 +407,13 @@ La Sala de Cabanelles`,
   location: "Plaça del Poble",
 },
       {
+        id: "aplec26-039",
         time: "12.00 h",
         title: "Ofici Solemne",
         location: "Església de Santa Coloma",
       },
       {
+  id: "aplec26-040",
   time: "13.00 h",
   title: "Tastet de producte local amb jazz",
   moreInfo:
@@ -379,11 +421,13 @@ La Sala de Cabanelles`,
   location: "Plaça de l'Església",
 },
 {
+  id: "aplec26-041",
   time: "13.00 h",
   title: "Concert de Jazz del grup d'Espinavesa/Cabanelles",
   location: "Plaça Major",
 },
       {
+        id: "aplec26-042",
         time: "14.30 h",
         title: "Dinar de germanor ILTIŔ",
         location: "Sala de Cabanelles",
@@ -399,6 +443,7 @@ La Sala de Cabanelles`,
         },
       },
      {
+  id: "aplec26-043",
   time: "17.00 h",
   title: "Taller de circ · Companyia Tramuntana",
   moreInfo:
@@ -406,6 +451,7 @@ La Sala de Cabanelles`,
   location: "A la Sala",
 },
       {
+  id: "aplec26-044",
   time: "16.30–18.00 h",
   title:
     "Geni del lloc, geni de la planta · Mòdul 2: La planta i la seva olor · Essències.cat",
@@ -443,6 +489,7 @@ La Sala de Cabanelles`,
   location: "La Sala de Cabanelles",
 },
 {
+  id: "aplec26-045",
   time: "18.00–21.00 h",
   title: "Exposició de Poesia Cinètica · Rafel Ortiz",
   moreInfo:
@@ -450,6 +497,7 @@ La Sala de Cabanelles`,
   location: "Sala 1 d’Octubre, Navata",
 }, 
      {
+        id: "aplec26-046",
         time: "19.00 h",
         title: "Cloenda",
         location: "A la Sala",
@@ -463,6 +511,7 @@ export const aplec2026OtherActivities = [
     date: "8 d’octubre",
     dateISO: "2026-10-08",
     municipality: "Lladó",
+    id: "aplec26-047",
     time: "19.30 h",
     title: "Jornada informativa d’habitatge",
     location: "Sindicat de Lladó",

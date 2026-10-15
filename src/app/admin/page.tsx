@@ -1,3 +1,5 @@
+import { AplecReturnsAdmin } from "@/components/aplec-2026-returns-admin";
+import { getAplecReturns } from "@/lib/content-store";
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import Link from "next/link";
@@ -84,11 +86,12 @@ export default async function AdminPage({
     );
   }
 
-  const [circles, events, state, whatsappConsents] = await Promise.all([
+  const [circles, events, state, whatsappConsents, aplecReturns] = await Promise.all([
     getCircles({ freshEditorial: true, includeHidden: true }),
     getEvents({ freshEditorial: true }),
     getEditorialState({ fresh: true }),
     getWhatsappConsents(),
+    getAplecReturns(),
   ]);
   const selectedCircle =
     circles.find((circle) => circle.slug === params.edit) || circles[0];
@@ -119,6 +122,7 @@ export default async function AdminPage({
       )}
 
       <nav className="admin-section-nav" aria-label="Seccions de l’editor">
+        <a href="#retorns-aplec">Aplec 2026 · Fotos i retorns</a>
         <a href="#continguts">Continguts</a>
         <a href="#agenda-admin">Agenda</a>
         <a href="#actes-admin">Actes</a>
@@ -126,6 +130,8 @@ export default async function AdminPage({
         <a href="#inscripcions-aplec">Aplec 2026 · Inscripcions</a>
         <Link href="/" target="_blank">Veure la web ↗</Link>
       </nav>
+
+      <AplecReturnsAdmin returns={aplecReturns} />
 
       <RegistrationAdmin result={params.registrations} />
 
