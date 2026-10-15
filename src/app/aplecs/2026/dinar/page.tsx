@@ -9,7 +9,7 @@ export default function LunchPage() {
     <div className="aplec-2026-registration">
       <p>Paella de mar i muntanya amb trompetes de la mort, aigua i vi, amb postres de Làctics Tramuntana, elaborada per Cuinats Siseta. Hi haurà menú de paella de mar i muntanya i opció vegetariana.</p>
       <p><strong>Preu previst: 15 € per persona — pendent de confirmació.</strong></p>
-      <p>Aforament màxim: 120 persones. Es pot reservar fins al dissabte 17 d’octubre de 2026, sempre que quedin places. Venda física de tiquets a la Sala de Cabanelles.</p>
+      <p>Aforament màxim: 120 persones. Es pot reservar online fins al divendres 16 d’octubre de 2026 a les 15.30 h (hora de Catalunya, Europe/Madrid), sempre que quedin places. Després, pots comprar o reservar el tiquet al punt d’informació de l’Aplec, durant divendres i fins dissabte al migdia, sempre que quedin places.</p>
       <p><strong>La reserva online NO implica pagament. La reserva queda pendent de pagament.</strong> L’import s’haurà d’abonar segons les indicacions de l’organització.</p>
     </div>
     <RegistrationForm kind="lunch" />

@@ -1,7 +1,7 @@
 import "server-only";
 import { get, head, put, BlobPreconditionFailedError } from "@vercel/blob";
 import { randomBytes, timingSafeEqual } from "node:crypto";
-import { FOOTBALL_CONSENT_VERSION, CONSENT_VERSION, consentText, LUNCH_CAPACITY, LUNCH_DEADLINE, type RegistrationInput, type RegistrationKind, type RegistrationRecord, type LunchStatus, type Notifications } from "./aplec-2026-registration";
+import { FOOTBALL_CONSENT_VERSION, CONSENT_VERSION, consentText, LUNCH_CAPACITY, LUNCH_CLOSED_MESSAGE, isLunchClosed, type RegistrationInput, type RegistrationKind, type RegistrationRecord, type LunchStatus, type Notifications } from "./aplec-2026-registration";
 
 type Ledger = { version: 1; records: RegistrationRecord[]; physicalPlaces?: number };
 export class RegistrationError extends Error {
@@ -58,7 +58,7 @@ export async function getLunchSummary() {
 }
 export async function getLunchAvailability() {
   const remaining = LUNCH_CAPACITY - (await getLunchSummary()).reserved;
-  return { remaining, closed: Date.now() >= Date.parse(LUNCH_DEADLINE) };
+  return { remaining, closed: isLunchClosed() };
 }
 
 export async function createRegistration(kind: RegistrationKind, input: RegistrationInput) {
@@ -85,7 +85,7 @@ export async function createRegistration(kind: RegistrationKind, input: Registra
     }
     if (ledger.records.some(r => r.id === id)) throw new RegistrationError("Torna-ho a provar.");
     if (kind === "lunch") {
-      if (Date.now() >= Date.parse(LUNCH_DEADLINE)) throw new RegistrationError("El termini de reserva ha finalitzat.");
+      if (isLunchClosed()) throw new RegistrationError(LUNCH_CLOSED_MESSAGE);
       const remaining = LUNCH_CAPACITY - reservedPlaces(ledger.records) - (ledger.physicalPlaces || 0);
       if (input.people! > remaining) throw new RegistrationError(remaining ? `Queden ${remaining} places. Redueix el nombre de persones.` : "Reserves completes", "capacity");
     }

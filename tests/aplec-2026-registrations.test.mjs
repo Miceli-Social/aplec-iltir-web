@@ -48,8 +48,8 @@ test("simultaneous first writes, double submits, physical sales and deadline", a
   assert(results.every(r=>r.status===200)); assert.equal((await store.getRegistrations("lunch")).length,2);
   await store.updatePhysicalPlaces(116); assert.equal((await store.getLunchAvailability()).remaining,0);
   await assert.rejects(store.updatePhysicalPlaces(117)); await store.updatePhysicalPlaces(0);
-  h.options.now = Date.parse("2026-10-17T21:59:59.000Z"); assert.equal((await submit(h,input())).status,200);
-  h.options.now = Date.parse("2026-10-17T22:00:00.000Z"); assert.equal((await submit(h,input())).status,409);
+  h.options.now = Date.parse("2026-10-16T13:29:59.999Z"); assert.equal((await submit(h,input())).status,200);
+  h.options.now = Date.parse("2026-10-16T13:30:00.000Z"); assert.equal((await submit(h,input())).status,409);
   assert.equal((await store.getLunchAvailability()).closed,true);
 });
 

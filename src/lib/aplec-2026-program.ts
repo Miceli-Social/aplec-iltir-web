@@ -438,7 +438,7 @@ La Sala de Cabanelles`,
         registration: {
           label: "Reserva el dinar",
           information:
-            "Màxim 120 persones. Reserves fins al dissabte 17 d’octubre de 2026, sempre que quedin places. Venda física de tiquets a la Sala de Cabanelles. La reserva online queda pendent de pagament.",
+            "Màxim 120 persones. Reserves online fins al divendres 16 d’octubre de 2026 a les 15.30 h (Europe/Madrid), sempre que quedin places. Després, compra o reserva el tiquet al punt d’informació de l’Aplec, durant divendres i fins dissabte al migdia, sempre que quedin places. La reserva online queda pendent de pagament.",
           url: "/aplecs/2026/dinar",
         },
       },
