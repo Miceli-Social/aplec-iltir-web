@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { aplecPhotoSizes } from "@/lib/aplec-photo-sizes";
 import { getAplecReturns } from "@/lib/content-store";
 import { activityUrl, hasPublishedReturns, publishedDays } from "@/lib/aplec-2026-returns";
 
@@ -14,7 +15,7 @@ export default async function ReviuPage() {
     {publishedDays(returns).map((day) => day.activities.length > 0 && <section key={day.id}>
       <h2>{day.heading}</h2>
       <div className="aplec-photo-grid">{day.activities.map((activity) => <Link className="aplec-photo-card" key={activity.id} href={activityUrl(activity.id)}>
-        <Image src={returns[activity.id].cover} alt={activity.title} width={800} height={600} unoptimized />
+        <Image src={returns[activity.id].cover} alt={activity.title} width={800} height={600} sizes={aplecPhotoSizes(day.activities.length, "card")} />
         <p>{activity.time}</p><h3>{activity.title}</h3><span>Veure fotos i retorn →</span>
       </Link>)}</div>
     </section>)}

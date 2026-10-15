@@ -53,6 +53,15 @@ La pujada directa segueix el patró oficial: https://vercel.com/docs/vercel-blob
 
 - Dos editors poden publicar activitats diferents sense sobreescriure's. Si editen alhora la mateixa activitat, preval la revisió amb el timestamp més recent; no hi ha bloqueig ni fusió d'edicions. Eviteu editar simultàniament una mateixa activitat.
 - Les revisions històriques i fotos retirades/pugades però no publicades es conserven. Cal preveure neteja posterior i costos de Blob. El llistat i les lectures per petició prioritzen frescor; el cost creix amb les revisions.
-- Es mostren originals sense generar miniatures ni comprimir. Per agilitzar la consulta mòbil, convé pujar JPEG/WebP d'una mida moderada. HEIC no s'admet.
+- Les vistes Reviu, fitxa i admin utilitzen next/image amb sizes adaptats a la graella i a mòbil/escriptori. Les fotos originals de Blob es conserven intactes i els enllaços de la galeria permeten obrir-los expressament. Next.js pot conservar sense transformar les imatges animades. HEIC no s'admet.
 - Si Blob falla en una lectura, es registra l'error i es manté accessible el Programa; els retorns poden desaparèixer temporalment fins a recuperar la connexió. Si una publicació falla, no es mostra confirmació d'èxit.
 - El vídeo és un enllaç HTTPS, no una incrustació de tercers. No s'ha afegit un flux d'esborranys ni despublicació completa.
+
+## Optimització de fotografies (revisió abans del merge)
+
+`next.config.ts` autoritza exclusivament HTTPS, sense port alternatiu ni query string, per a `*.public.blob.vercel-storage.com/iltir/aplec-2026/photos/**`. Les tres vistes eliminen `unoptimized` i comparteixen `src/lib/aplec-photo-sizes.ts`, que calcula els sizes segons les columnes, els marges i el nombre de fotos. La principal de la fitxa ocupa tota l’amplada; les altres es carreguen de manera diferida. El navegador demana variants a `/_next/image`; Next.js recupera l’original al servidor per generar-les, sense modificar-lo a Blob.
+
+Proves addicionals: acceptació/rebuig de URLs amb el matcher real de Next.js i renderitzat amb el component real next/image, comprovant src/srcSet optimitzats, sizes i enllaços als originals. Referència: https://nextjs.org/docs/app/api-reference/components/image.
+
+Validació d’aquesta revisió: 13/13 tests de retorns correctes (incloses les dues proves noves d’imatges), TypeScript i lint dels fitxers afectats correctes. La branca incorpora `origin/main` (`29c5517`) mitjançant rebase, sense commit de merge.
+Build de producció correcte (29 pàgines), repetit fora del sandbox després del bloqueig EPERM de .next.

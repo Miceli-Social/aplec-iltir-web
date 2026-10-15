@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import Image from "next/image";
+import { aplecPhotoSizes } from "@/lib/aplec-photo-sizes";
 import { aplec2026Program, type ProgramActivity } from "@/lib/aplec-2026-program";
 import { activityUrl, type ActivityReturn, type AplecReturns } from "@/lib/aplec-2026-returns";
 import { uploadAplecPhoto } from "@/lib/aplec-photo-upload";
@@ -57,7 +58,7 @@ function ReturnEditor({ activity, initial }: { activity: ProgramActivity; initia
         <legend>Foto principal i galeria</legend>
         <div className="aplec-photo-grid">
           {photos.map((url, index) => <div key={url}>
-            <label><Image src={url} alt={`Fotografia ${index + 1}`} width={480} height={320} unoptimized />
+            <label><Image src={url} alt={`Fotografia ${index + 1}`} width={480} height={320} sizes={aplecPhotoSizes(photos.length, "admin")} />
               <input type="radio" name="cover" checked={cover === url} onChange={() => setCover(url)} /> Principal · Foto {index + 1}
             </label>
             <button type="button" onClick={() => { setPhotos(photos.filter((photo) => photo !== url)); if (cover === url) setCover(photos.find((photo) => photo !== url) || ""); }}>Retirar de la galeria</button>

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { aplecPhotoSizes } from "@/lib/aplec-photo-sizes";
 import { notFound } from "next/navigation";
 import { getAplecReturns } from "@/lib/content-store";
 import { activityDetail, findActivity } from "@/lib/aplec-2026-returns";
@@ -23,7 +24,7 @@ export default async function ActivityPage({ params }: Props) {
     {photos.length > 0 ? <section aria-label="Fotografies de l’activitat">
       <p>Obre qualsevol fotografia per veure i desar l’original.</p>
       <div className="aplec-photo-gallery">{photos.map((url, index) => <a href={url} key={url} target="_blank" rel="noopener noreferrer" aria-label={`Obre la fotografia ${index + 1} a mida completa`}>
-        <Image src={url} alt={`${activity.title} · Fotografia ${index + 1}`} width={1200} height={800} unoptimized loading={index === 0 ? "eager" : "lazy"} />
+        <Image src={url} alt={`${activity.title} · Fotografia ${index + 1}`} width={1200} height={800} sizes={aplecPhotoSizes(index === 0 ? 1 : 4)} loading={index === 0 ? "eager" : "lazy"} />
       </a>)}</div><p>Fotografies: {editorial!.credit}</p>
     </section> : <p>Encara no s’han publicat fotografies d’aquesta activitat.</p>}
     {editorial?.ideas.length ? <section><h2>Idees clau</h2><ul>{editorial.ideas.map((idea, index) => <li key={index}>{idea}</li>)}</ul></section> : null}

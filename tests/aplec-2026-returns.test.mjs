@@ -187,3 +187,36 @@ test('programme renders photo link only on its matching activity', async () => {
   assert.equal((html.match(/Fotos disponibles/g) || []).length, 1);
   assert.ok(html.includes(model.activityUrl(activity.id)));
 });
+
+test('image optimizer allows only HTTPS Aplec photo paths in public Blob stores', () => {
+  const config = load('next.config.ts').default;
+  const { hasRemoteMatch } = require('next/dist/shared/lib/match-remote-pattern');
+  const allowed = url => hasRemoteMatch([], config.images.remotePatterns, new URL(url));
+  assert.equal(allowed(photo), true);
+  for (const url of [photo.replace('https:', 'http:'), photo.replace('.public.', '.private.'), photo.replace('/photos/', '/returns/'), photo + '?download=1', photo.replace('.com/', '.com:8443/'), photo.replace('teststore.public.blob.vercel-storage.com', 'example.com')]) {
+    assert.equal(allowed(url), false, url);
+  }
+});
+
+test('public galleries and admin render responsive optimizer URLs while activity links keep originals', async () => {
+  const config = load('next.config.ts').default;
+  const { imageConfigDefault } = require('next/dist/shared/lib/image-config');
+  const { ImageConfigContext } = require('next/dist/shared/lib/image-config-context.shared-runtime');
+  const nextImage = require('next/image');
+  const imageMocks = { ...uiMocks, 'next/image': nextImage,
+    '@/lib/content-store': { getAplecReturns: async () => returns },
+    '@/lib/aplec-photo-upload': {}, '@/app/admin/aplec-return-actions': {},
+  };
+  const render = element => renderToStaticMarkup(React.createElement(ImageConfigContext.Provider, { value: { ...imageConfigDefault, ...config.images } }, element));
+  const detail = loader(imageMocks)('src/app/aplecs/2026/activitats/[activityId]/page.tsx');
+  const html = render(await detail.default({ params: Promise.resolve({ activityId: activity.id }) }));
+  assert.ok(html.includes(`href="${photo}"`));
+  const reviu = loader(imageMocks)('src/app/aplecs/2026/reviu/page.tsx');
+  const admin = loader(imageMocks)('src/components/aplec-2026-returns-admin.tsx');
+  for (const markup of [html, render(await reviu.default()), render(React.createElement(admin.AplecReturnsAdmin, { returns }))]) {
+    assert.match(markup, /src="\/_next\/image\?/);
+    assert.match(markup, /srcSet="\/_next\/image\?/);
+    assert.match(markup, /sizes="\(max-width:/);
+    assert.ok(!markup.includes(`src="${photo}"`));
+  }
+});
