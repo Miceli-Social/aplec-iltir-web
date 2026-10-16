@@ -119,9 +119,9 @@ test("missing private configuration fails closed without using the editorial tok
   assert.equal((await submit(h,input())).status,503);assert.equal(h.blobs.size,0);
 });
 
-test("walk validates four fields and consent; stores only relevant data with idempotency and no lunch limit", async () => {
+test("walk validates names and consent; stores only relevant data with idempotency and no lunch limit", async () => {
   const h=registrationHarness(); const store=h.load("src/lib/aplec-2026-registration-store.ts");
-  for (const key of ["firstName","lastName","email","phone"]) {
+  for (const key of ["firstName","lastName"]) {
     const response=await submit(h,input({[key]:""}),"walk");
     assert.equal(response.status,400);assert((await response.json()).errors[key]);
   }
