@@ -48,7 +48,8 @@ export function RegistrationForm({ kind }: { kind: RegistrationKind }) {
   const errors = result.errors || {};
   const blocked = kind === "lunch" && places && (places.closed || places.remaining === 0);
   function field(name: string, label: string, type = "text", maxLength = 100, min?: number, max?: number, autoComplete?: string) {
-    return <div className="aplec-2026-field"><label htmlFor={name}>{label}</label><input id={name} name={name} type={type} required maxLength={maxLength} min={min} max={max} step={type === "number" ? 1 : undefined} autoComplete={autoComplete} aria-invalid={Boolean(errors[name])} aria-describedby={errors[name] ? `${name}-error` : undefined} defaultValue={name === "vegetarian" ? 0 : name === "people" ? 1 : undefined} />{errors[name] && <p className="form-error" id={`${name}-error`}>{errors[name]}</p>}</div>;
+    const walkContact = kind === "walk" && (name === "email" || name === "phone");
+    return <div className="aplec-2026-field"><label htmlFor={name}>{label}</label><input id={name} name={name} type={type} required={!walkContact} maxLength={maxLength} min={min} max={max} step={type === "number" ? 1 : undefined} autoComplete={autoComplete} aria-invalid={Boolean(errors[name])} aria-describedby={[walkContact && "walk-contact-help", errors[name] && `${name}-error`].filter(Boolean).join(" ") || undefined} defaultValue={name === "vegetarian" ? 0 : name === "people" ? 1 : undefined} />{errors[name] && <p className="form-error" id={`${name}-error`}>{errors[name]}</p>}</div>;
   }
   return <>
     <div
@@ -113,7 +114,8 @@ export function RegistrationForm({ kind }: { kind: RegistrationKind }) {
 </div>
     {!result.ok && <form id="registration-form" className="aplec-2026-form" onSubmit={submit} aria-busy={pending}>
       {kind === "lunch" && <p role="status">{places ? places.closed ? LUNCH_CLOSED_MESSAGE : places.remaining === 0 ? "Reserves completes" : `Queden ${places.remaining} places` : "Comprovarem les places disponibles en enviar la reserva."}</p>}
-      <p>{kind === "volunteers" ? "Tots els camps són obligatoris, excepte les observacions." : "Tots els camps són obligatoris."}</p>
+      <p>{kind === "volunteers" ? "Tots els camps són obligatoris, excepte les observacions." : kind === "walk" ? "El nom, els cognoms i el consentiment són obligatoris." : "Tots els camps són obligatoris."}</p>
+      {kind === "walk" && <p id="walk-contact-help">Cal indicar almenys un correu electrònic o un telèfon de contacte.</p>}
       <div className="aplec-2026-form-grid">
         {kind === "football" ? <>
           {field("teamName", "Nom de l’equip", "text", 100)}

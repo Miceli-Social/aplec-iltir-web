@@ -69,17 +69,19 @@ export function validateRegistration(kind: RegistrationKind, body: Record<string
     if (!["availability", "observations"].includes(key) && /[\r\n\t]/.test(value)) errors[errorKey] = "Introdueix el valor en una sola línia.";
     return value;
   }
-  const phone = text("phone", 30).replace(/[\s().-]/g, "");
+  const phone = text("phone", 30, kind !== "walk").replace(/[\s().-]/g, "");
 
 const input: RegistrationInput = {
   requestId: text("requestId", 36),
   firstName: kind === "football" ? "" : text("firstName", 80),
   lastName: kind === "football" ? "" : text("lastName", 100),
-  email: text("email", 254).toLowerCase(),
+  email: text("email", 254, kind !== "walk").toLowerCase(),
   phone: phone || undefined,
 };
   if (!/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(input.requestId)) errors.requestId = "Recarrega la pàgina i torna-ho a provar.";
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.email)) errors.email = "Introdueix un correu electrònic vàlid.";
+  if ((kind !== "walk" || input.email) && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.email)) errors.email = "Introdueix un correu electrònic vàlid.";
+  if (kind === "walk" && !input.email && !input.phone) errors.email = "Cal indicar almenys un correu electrònic o un telèfon de contacte.";
+  if (kind === "walk" && typeof body.phone === "string" && body.phone.trim() && !input.phone) errors.phone = "Introdueix un telèfon vàlid, amb prefix si cal.";
   if (kind === "football" && !input.phone) errors.phone = "Introdueix un telèfon de contacte.";
   if (input.phone && !/^\+?[0-9]{7,15}$/.test(input.phone)) {
   errors.phone = "Introdueix un telèfon vàlid, amb prefix si cal.";

@@ -63,7 +63,7 @@ const participantText =
           process.env.REGISTRATION_FOOTBALL_NOTIFY_EMAIL_SECONDARY || "josepmaria@resilience.earth"]
         : process.env.REGISTRATION_NOTIFY_EMAIL || "carla@resilience.earth";
   if (notifications.organization !== "sent") notifications.organization = await send(recipient, title, `${fullName}\nCorreu: ${record.email}\nTelèfon: ${record.phone}\n${detail}\n\nAdministració: ${base}/admin#inscripcions-aplec`, `${record.id}-organization`);
-  if (notifications.participant !== "sent") notifications.participant = await send(record.email, title, participantText, `${record.id}-participant`);
+  if (notifications.participant !== "sent" && (record.kind !== "walk" || record.email)) notifications.participant = await send(record.email, title, participantText, `${record.id}-participant`);
   try { await updateNotifications(record.kind, record.id, notifications); return true; } catch {
     // The durable record remains pending if the status write fails. Never log PII
     // or turn a successfully saved registration into a public submission error.
