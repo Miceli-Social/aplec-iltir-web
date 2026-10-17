@@ -4,12 +4,14 @@
 
 1. Entra amb l'accés d'administració existent i obre «Aplec 2026 · Fotos i retorns».
 2. Desplega una activitat del dia corresponent.
-3. Selecciona diverses fotografies i prem «Pujar fotografies seleccionades». Recomanat: 2–6; es permet publicar amb una sola foto. Màxim 6 per activitat i 15 MB per fitxer. Formats: JPEG, PNG, WebP, AVIF i GIF. Converteix HEIC a JPEG abans de pujar-lo.
+3. Selecciona diverses fotografies i prem «Pujar fotografies seleccionades». Es permet publicar amb una sola foto. Màxim 10 per activitat i 15 MB per fitxer. Formats: JPEG, PNG, WebP, AVIF i GIF. Converteix HEIC a JPEG abans de pujar-lo.
 4. Tria la principal, indica l'autoria/crèdit i, opcionalment, fins a tres idees, una cita i una URL HTTPS de vídeo.
 5. Prem «Desar i publicar». El missatge confirma la publicació i l'enllaç permet obrir la fitxa.
 6. Per editar, torna a desplegar l'activitat. Pots canviar la principal, retirar fotos de la galeria, afegir-ne o canviar els textos i tornar a publicar.
 
 Les fotos es pugen directament al Blob públic abans de publicar el retorn; la galeria no apareix al web fins que es desa. No canviïs de pàgina abans de publicar. Si falla una pujada, es mantenen les fotos ja pujades en el formulari: selecciona només les pendents. Retirar una foto de la galeria no elimina el fitxer original de Blob.
+
+El bloc «Reviu l’Aplec Iltiŕ 2026» apareix sota l’hero de la Home només quan hi ha fotos publicades. Mostra automàticament la portada de la darrera activitat amb fotos segons l’ordre del Programa, perquè el model de retorns no exposa una data de publicació. La foto s’optimitza amb `next/image`; en mòbil queda damunt del text i del botó d’accés a `/aplecs/2026/reviu`.
 
 ## Arquitectura i fitxers
 
@@ -47,7 +49,7 @@ La pujada directa segueix el patró oficial: https://vercel.com/docs/vercel-blob
 - `next build`: **correcte**. La primera execució va topar amb un permís del sandbox a `.next`; repetida amb permís ampliat, genera les 29 pàgines correctament.
 - Suite completa `node --test tests/*.test.mjs`: **39 passen, 5 fallen**. Les cinc fallades també es reprodueixen amb els fitxers de `HEAD` anteriors al canvi: dos tests antics d'inscripcions/programa i tres de properes activitats encara esperen un programa anterior (43 activitats, dos actes simultanis, menys exposicions i l'horari antic del taller). No s'han alterat els textos ni horaris per adaptar-los a tests obsolets.
 - No hi ha credencials editorials locals: les operacions Blob s'han provat amb un servei simulat, no amb publicacions reals.
-- El servidor local va iniciar-se, però les eines de navegador i HTTP no hi van poder connectar. No s'afirma verificació visual ni de la pujada real de principi a fi. Cal fer una prova amb 2–6 fotos en un entorn amb Blob abans de l'ús durant l'Aplec.
+- El servidor local va iniciar-se, però les eines de navegador i HTTP no hi van poder connectar. No s'afirma verificació visual ni de la pujada real de principi a fi. Cal fer una prova amb fins a 10 fotos en un entorn amb Blob abans de l'ús durant l'Aplec.
 
 ## Límits operatius
 

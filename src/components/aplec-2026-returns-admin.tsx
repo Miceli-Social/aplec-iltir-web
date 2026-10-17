@@ -4,7 +4,7 @@ import { useState, type FormEvent } from "react";
 import Image from "next/image";
 import { aplecPhotoSizes } from "@/lib/aplec-photo-sizes";
 import { aplec2026Program, type ProgramActivity } from "@/lib/aplec-2026-program";
-import { activityUrl, type ActivityReturn, type AplecReturns } from "@/lib/aplec-2026-returns";
+import { activityUrl, MAX_PHOTOS, type ActivityReturn, type AplecReturns } from "@/lib/aplec-2026-returns";
 import { uploadAplecPhoto } from "@/lib/aplec-photo-upload";
 import { publishAplecReturn } from "@/app/admin/aplec-return-actions";
 
@@ -17,7 +17,7 @@ function ReturnEditor({ activity, initial }: { activity: ProgramActivity; initia
     event.preventDefault();
     const form = event.currentTarget;
     const files = new FormData(form).getAll("photos").filter((file): file is File => file instanceof File && file.size > 0);
-    if (!files.length || photos.length + files.length > 6) { setMessage("Selecciona fotos fins a un màxim de 6 en total."); return; }
+    if (!files.length || photos.length + files.length > MAX_PHOTOS) { setMessage(`Selecciona fotos fins a un màxim de ${MAX_PHOTOS} en total.`); return; }
     setBusy(true);
     try {
       for (const [index, file] of files.entries()) {
@@ -48,10 +48,10 @@ function ReturnEditor({ activity, initial }: { activity: ProgramActivity; initia
   return <div className="aplec-return-editor">
     <p>{activity.time} · {activity.location}</p>
     <form onSubmit={uploadPhotos} className="admin-form">
-      <label>Fotografies (recomanat: 2–6; màxim 15 MB per foto)
+      <label>Fotografies (fins a {MAX_PHOTOS} fotos; màxim 15 MB per foto)
         <input name="photos" type="file" multiple accept="image/jpeg,image/png,image/webp,image/avif,image/gif" required disabled={busy} />
       </label>
-      <button className="button button-primary" disabled={busy || photos.length >= 6}>Pujar fotografies seleccionades</button>
+      <button className="button button-primary" disabled={busy || photos.length >= MAX_PHOTOS}>Pujar fotografies seleccionades</button>
     </form>
     <form onSubmit={publish} className="admin-form">
       <fieldset disabled={busy}>
