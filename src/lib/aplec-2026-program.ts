@@ -369,7 +369,7 @@ mirarem → dibuixarem → escriurem → compartirem → crearem
 
 El dibuix ens permet entrar en l'espai a través de la mirada.  L'escriptura pot ser una manera de descobrir, una possibilitat de deixar que l'espai es mostri mentre escrivim.  Després, el grup posarà en relació les diferents mirades i crearà una presentació breu del seu lloc per compartir-la amb la resta.
 
-2. La planta i la seva olor (taller a la tarda). 16:30h a 18:00h
+2. La planta i la seva olor (taller a la tarda). 16.15–18.15 h
 A la tarda treballarem amb les olors a partir d'un o més olis essencials.
 Abans de començar, farem un centrament senzill: postura, contacte amb el terra i amb el seient, respiració i percepció de l'estat present. Després introduirem una única variable: l'olor
 
@@ -379,8 +379,7 @@ Que cal portar
 Calçat per caminar pel camp, pantaló llar, barret o gorra pel sol.
 Llibreta -millor sense pauta-, llapis, boligraf, retolador…
 
-Lloc de trobada
-La Sala de Cabanelles`,
+Lloc de trobada: Destil·leria EssènciesCat, Pontós`,
   registration: {
     label: "Inscripció prèvia",
     information: "Cal inscripció prèvia online.",
