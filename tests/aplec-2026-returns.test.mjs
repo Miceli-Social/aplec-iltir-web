@@ -75,21 +75,47 @@ test('Reviu renders only photographed programme activities and one cover each', 
   assert.ok(!html.includes(program[0].activities[1].title));
 });
 
-test('Home features the last photographed programme activity regardless of record insertion order', () => {
+test('Home carousel prioritizes different published activities, then shows more photos up to six', () => {
   const { ReviuHome } = loader(uiMocks)('src/components/aplec-return-public.tsx');
-  const last = program.at(-1).activities.at(-1);
-  const cover = `${origin}/${model.photoPrefix(last.id)}cover.jpg`;
-  const latest = { ...record, activityId: last.id, photos: [cover], cover };
+  const first = program[0].activities[0];
+  const second = program[0].activities[1];
+  const third = program[0].activities[2];
+  const photosFor = (item, count) => Array.from({ length: count }, (_, index) =>
+    `${origin}/${model.photoPrefix(item.id)}foto-${index}.jpg`);
+  const editorialFor = (item, count) => {
+    const photos = photosFor(item, count);
+    return { ...record, activityId: item.id, photos, cover: photos[Math.min(1, count - 1)] };
+  };
+  const data = {
+    [third.id]: editorialFor(third, 3),
+    [second.id]: editorialFor(second, 2),
+    [first.id]: editorialFor(first, 4),
+  };
+  const slides = model.homeCarouselPhotos(data);
+  assert.equal(slides.length, 6);
+  assert.deepEqual(slides.slice(0, 3).map(slide => slide.activityId), [first.id, second.id, third.id]);
+  assert.deepEqual(slides.slice(0, 3).map(slide => slide.src), [first, second, third]
+    .map(item => data[item.id].cover));
+  assert.equal(slides[3].activityId, first.id);
+  assert.equal(slides[4].activityId, second.id);
+  assert.equal(slides[5].activityId, third.id);
   const render = data => renderToStaticMarkup(React.createElement(ReviuHome, { returns: data }));
   assert.equal(render({ unknown: record, [activity.id]: { ...record, photos: [] } }), '');
-  const html = render({ [last.id]: latest, [activity.id]: record });
+  const html = render(data);
   assert.equal((html.match(/<img /g) || []).length, 1);
-  assert.ok(html.includes(`src="${cover}"`));
-  assert.ok(!html.includes(`src="${photo}"`));
-  assert.ok(html.includes(last.time));
-  assert.ok(html.includes(last.title));
+  assert.ok(html.includes(`src="${data[first.id].cover}"`));
+  assert.ok(html.includes(first.time));
+  assert.ok(html.includes(first.title));
   assert.ok(html.includes('Les primeres imatges de l’Aplec ja són aquí.'));
   assert.ok(html.includes('href="/aplecs/2026/reviu"'));
+  assert.ok(html.includes('role="group"'));
+  assert.ok(html.includes('Fotografia següent'));
+  assert.ok(html.includes('Pausa el carrusel'));
+  const onePhoto = model.homeCarouselPhotos({ [first.id]: editorialFor(first, 1) });
+  const onePhotoHtml = renderToStaticMarkup(React.createElement(ReviuHome, { returns: { [first.id]: editorialFor(first, 1) } }));
+  assert.equal(onePhoto.length, 1);
+  assert.ok(onePhotoHtml.includes(`src="${onePhoto[0].src}"`));
+  assert.ok(!onePhotoHtml.includes('Fotografia següent'));
 });
 
 test('gallery accepts ten distinct photos, rejects eleven and retains cover and uniqueness checks', () => {

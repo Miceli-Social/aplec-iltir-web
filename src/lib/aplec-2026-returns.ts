@@ -27,6 +27,38 @@ export function publishedDays(returns: AplecReturns) {
     activities: day.activities.filter((activity) => hasPhotos(returns[activity.id])),
   }));
 }
+export type HomeCarouselPhoto = {
+  activityId: string;
+  title: string;
+  time: string;
+  src: string;
+};
+export function homeCarouselPhotos(returns: AplecReturns): HomeCarouselPhoto[] {
+  const activities = publishedDays(returns).flatMap((day) => day.activities)
+    .map((activity) => {
+      const editorial = returns[activity.id];
+      return {
+        activity,
+        photos: [editorial.cover, ...editorial.photos.filter((photo) => photo !== editorial.cover)],
+      };
+    });
+  const selected: HomeCarouselPhoto[] = [];
+  const usedPhotos = new Set<string>();
+  for (let round = 0; selected.length < 6; round++) {
+    let foundPhoto = false;
+    for (const { activity, photos } of activities) {
+      const src = photos[round];
+      if (!src) continue;
+      foundPhoto = true;
+      if (usedPhotos.has(src)) continue;
+      selected.push({ activityId: activity.id, title: activity.title, time: activity.time, src });
+      usedPhotos.add(src);
+      if (selected.length === 6) break;
+    }
+    if (!foundPhoto) break;
+  }
+  return selected;
+}
 export const hasPublishedReturns = (returns: AplecReturns) =>
   publishedDays(returns).some((day) => day.activities.length > 0);
 export function activityDetail(id: string, returns: AplecReturns) {
