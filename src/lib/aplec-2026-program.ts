@@ -342,7 +342,15 @@ moreInfo: "Concert ritual amb aromes. Cançons d'art de Frances Bartlett, violon
   title:
     "Geni del lloc, geni de la planta · Mòdul 1: El lloc (caminada)",
   location: "La Sala de Cabanelles",
-  moreInfo: `Vols descobrir què entenem per geni del lloc i geni de la planta?
+  moreInfo: `☔ AVÍS IMPORTANT · CANVI DE PUNT DE TROBADA
+
+Diumenge 18 d'octubre, a les 10.00 h, ens trobarem directament a la Destil·leria EssènciesCat, a Pontós, a causa de la previsió de pluja.
+
+Queda anul·lat el punt de trobada de les 9.30 h al dipòsit d'aigua de Lladó.
+
+L'activitat del matí es manté i, en cas de pluja, es podrà desenvolupar en un espai tancat de la destil·leria, amb un format adaptat.
+
+Vols descobrir què entenem per geni del lloc i geni de la planta?
 
 Per respondre a aquesta pregunta, s’ofereix un espai d’exploració i creació compartida en petits grups per relacionar-se d’una altra manera amb el paisatge i les plantes, a partir de la percepció, l’experiència i la connexió amb l’entorn natural com a part activa del procés.
 
@@ -452,7 +460,7 @@ La Sala de Cabanelles`,
 },
       {
   id: "aplec26-044",
-  time: "16.30–18.00 h",
+  time: "16.15–18.15 h",
   title:
     "Geni del lloc, geni de la planta · Mòdul 2: La planta i la seva olor · Essències.cat",
   moreInfo: `Vols descobrir què entenem per geni del lloc i geni de la planta?
@@ -474,7 +482,7 @@ mirarem → dibuixarem → escriurem → compartirem → crearem
 
 El dibuix ens permet entrar en l'espai a través de la mirada.  L'escriptura pot ser una manera de descobrir, una possibilitat de deixar que l'espai es mostri mentre escrivim.  Després, el grup posarà en relació les diferents mirades i crearà una presentació breu del seu lloc per compartir-la amb la resta.
 
-2. La planta i la seva olor (taller a la tarda). 16:30h a 18:00h
+2. La planta i la seva olor (taller a la tarda). 16:15h a 18:15h
 A la tarda treballarem amb les olors a partir d'un o més olis essencials.
 Abans de començar, farem un centrament senzill: postura, contacte amb el terra i amb el seient, respiració i percepció de l'estat present. Després introduirem una única variable: l'olor
 
