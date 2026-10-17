@@ -226,14 +226,15 @@ export async function getAplecReturns(): Promise<AplecReturns> {
 export async function saveAplecReturn(input: ActivityReturn) {
   if (!hasContentStore()) throw new Error("L’emmagatzematge editorial no està configurat.");
   const value = validateReturn(input);
-  const storeId = getStoreIdFromToken();
   // Only accept actual photos in this activity's public editorial store.
   await Promise.all(value.photos.map(async (url) => {
     const parsed = new URL(url);
-    if (parsed.origin !== `https://${storeId}.public.blob.vercel-storage.com` ||
-        parsed.search || parsed.hash || !parsed.pathname.startsWith(`/${photoPrefix(value.activityId)}`)) {
+    if (parsed.protocol !== "https:" || !parsed.hostname.endsWith(".public.blob.vercel-storage.com") ||
+        parsed.port || parsed.username || parsed.password || parsed.search || parsed.hash ||
+        !parsed.pathname.startsWith(`/${photoPrefix(value.activityId)}`)) {
       throw new Error("La fotografia no pertany a aquesta activitat.");
     }
+    // Authenticate against the configured editorial store without parsing its token.
     const photo = await head(url, { token: process.env.BLOB_READ_WRITE_TOKEN });
     if (!PHOTO_TYPES.includes(photo.contentType) || photo.size > MAX_PHOTO_BYTES || photo.size === 0) {
       throw new Error("Format o mida de fotografia no vàlids.");

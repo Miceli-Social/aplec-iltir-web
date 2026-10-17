@@ -152,6 +152,59 @@ test('public Blob revisions are visible on next read across instances; unrelated
   } finally { global.fetch = oldFetch; if (before === undefined) delete process.env.BLOB_READ_WRITE_TOKEN; else process.env.BLOB_READ_WRITE_TOKEN = before; }
 });
 
+test('publication accepts public Blob photos with an opaque editorial token and authenticates metadata checks', async () => {
+  const before = process.env.BLOB_READ_WRITE_TOKEN;
+  process.env.BLOB_READ_WRITE_TOKEN = 'opaque-editorial-token';
+  const checks = []; const saved = [];
+  let metadata = { contentType: 'image/jpeg', size: 1024 };
+  let headError;
+  const store = loader({ '@vercel/blob': {
+    head: async (url, options) => {
+      checks.push({ url, options });
+      if (headError) throw headError;
+      return metadata;
+    },
+    put: async (...args) => saved.push(args),
+  } })('src/lib/content-store.ts');
+  try {
+    await store.saveAplecReturn(record);
+    assert.deepEqual(checks, [{ url: photo, options: { token: 'opaque-editorial-token' } }]);
+    assert.equal(saved.length, 1);
+    assert.deepEqual(JSON.parse(saved[0][1]), record);
+    assert.equal(saved[0][2].token, 'opaque-editorial-token');
+
+    for (const url of [
+      photo.replace('https:', 'http:'),
+      photo.replace(origin, 'https://example.com'),
+      photo.replace('.public.', '.private.'),
+      photo.replace('.com/', '.com.evil.example/'),
+      photo.replace('.com/', '.com:8443/'),
+      photo.replace(activity.id, program[0].activities[1].id),
+      photo.replace(activity.id + '/', activity.id + '-other/'),
+      photo.replace('/photos/', '/returns/'),
+      photo + '?download=1', photo + '#fragment',
+    ]) {
+      await assert.rejects(store.saveAplecReturn({ ...record, photos: [url], cover: url }), /La fotografia no pertany/);
+    }
+    assert.equal(checks.length, 1, 'invalid URLs must be rejected before head');
+    for (const invalid of [
+      { contentType: 'image/svg+xml', size: 1024 },
+      { contentType: 'image/jpeg', size: model.MAX_PHOTO_BYTES + 1 },
+      { contentType: 'image/jpeg', size: 0 },
+    ]) {
+      metadata = invalid;
+      await assert.rejects(store.saveAplecReturn(record), /Format o mida/);
+    }
+    metadata = { contentType: 'image/jpeg', size: 1024 };
+    headError = new Error('Blob missing or inaccessible to editorial token');
+    await assert.rejects(store.saveAplecReturn(record), /missing or inaccessible/);
+    assert.equal(saved.length, 1, 'failed validation must never publish a revision');
+  } finally {
+    if (before === undefined) delete process.env.BLOB_READ_WRITE_TOKEN;
+    else process.env.BLOB_READ_WRITE_TOKEN = before;
+  }
+});
+
 test('upload helper validates files before uploading and returns public URL', async () => {
   const uploaded = [];
   const helper = loader({ '@vercel/blob/client': { upload: async (...args) => { uploaded.push(args); return { url: photo }; } } })('src/lib/aplec-photo-upload.ts');
