@@ -1169,18 +1169,25 @@ a.footer-entity:hover { opacity:.78; background:rgba(255,255,255,.04); }
 
 /* Aplec photos and editorial returns */
 .aplec-reviu-home { display:grid; grid-template-columns:minmax(0,3fr) minmax(0,2fr); padding:0; margin-block:48px 64px; background:var(--cream); border-radius:var(--radius); overflow:hidden; }
-.aplec-reviu-home-photo { min-width:0; }
-.aplec-reviu-home-photo img { display:block; width:100%; height:100%; min-height:440px; aspect-ratio:4 / 3; object-fit:cover; }
-.aplec-reviu-home-copy { min-width:0; align-self:center; padding:clamp(28px,4vw,64px); }
-.aplec-reviu-home-copy h2 { margin-bottom:24px; font-size:clamp(2rem,3.4vw,3.6rem); line-height:1.05; }
-.aplec-reviu-home-lead { font-size:clamp(1.1rem,1.5vw,1.35rem); line-height:1.5; margin-bottom:28px; }
+.aplec-reviu-home-photo { min-width:0; padding:clamp(20px,3vw,40px); }
+.aplec-reviu-home-slide img { display:block; width:100%; height:auto; aspect-ratio:16 / 9; object-fit:cover; border-radius:var(--radius); }
+.aplec-reviu-home-caption { min-height:3.3em; margin:14px 0 0; font-size:.9rem; line-height:1.5; color:var(--ink-soft); }
+.aplec-reviu-home-caption span { display:block; margin-bottom:4px; font-size:.82rem; }
+.aplec-reviu-home-controls { display:flex; align-items:center; gap:10px; margin-top:10px; }
+.aplec-reviu-home-controls button { display:grid; min-width:44px; min-height:44px; place-items:center; border:1px solid var(--line); border-radius:50%; background:transparent; color:var(--ink); font:inherit; font-size:1.25rem; cursor:pointer; }
+.aplec-reviu-home-controls button:hover { background:var(--ink); color:var(--cream); }
+.aplec-reviu-home-controls > span { min-width:4ch; text-align:center; font-size:.85rem; color:var(--ink-soft); }
+.aplec-reviu-home-controls .aplec-reviu-home-pause { min-width:0; padding-inline:14px; border-radius:24px; font-size:.85rem; }
+.aplec-reviu-home-copy { min-width:0; align-self:center; padding:clamp(24px,3.5vw,48px); }
+.aplec-reviu-home-copy h2 { margin-bottom:20px; font-size:clamp(1.8rem,3vw,2.8rem); line-height:1.05; }
+.aplec-reviu-home-lead { font-size:clamp(1rem,1.35vw,1.2rem); line-height:1.5; margin-bottom:24px; }
 .aplec-reviu-home-copy .button { min-height:48px; white-space:normal; text-align:center; }
-.aplec-reviu-home-caption { margin:32px 0 0; padding-top:20px; border-top:1px solid var(--line); font-size:.9rem; line-height:1.5; color:var(--ink-soft); }
-.aplec-reviu-home-caption span { display:block; margin-bottom:4px; }
 @media (max-width:720px) {
   .aplec-reviu-home { grid-template-columns:minmax(0,1fr); margin-block:24px 40px; }
-  .aplec-reviu-home-photo img { min-height:0; height:auto; aspect-ratio:4 / 3; }
+  .aplec-reviu-home-photo { padding:16px 16px 0; }
   .aplec-reviu-home-copy { padding:28px 24px; }
+  .aplec-reviu-home-copy h2 { margin-bottom:16px; }
+  .aplec-reviu-home-lead { margin-bottom:20px; }
   .aplec-reviu-home-copy .button { display:flex; width:100%; }
 }
 .aplec-reviu-page > section { margin-block: 3rem; }
