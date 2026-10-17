@@ -12,6 +12,7 @@ export type ActivityReturn = {
 export type AplecReturns = Record<string, ActivityReturn>;
 export const PHOTO_TYPES = ["image/jpeg", "image/png", "image/webp", "image/avif", "image/gif"];
 export const MAX_PHOTO_BYTES = 15 * 1024 * 1024;
+export const MAX_PHOTOS = 10;
 export const photoPrefix = (id: string) => `iltir/aplec-2026/photos/${id}/`;
 export const activityUrl = (id: string) => `/aplecs/2026/activitats/${id}`;
 export function findActivity(id: string) {
@@ -38,9 +39,9 @@ export function cleanPhotoName(name: string) {
 }
 export function validateReturn(value: ActivityReturn): ActivityReturn {
   if (!findActivity(value.activityId)) throw new Error("Activitat desconeguda.");
-  if (!Array.isArray(value.photos) || value.photos.length < 1 || value.photos.length > 6 ||
+  if (!Array.isArray(value.photos) || value.photos.length < 1 || value.photos.length > MAX_PHOTOS ||
       new Set(value.photos).size !== value.photos.length || !value.photos.includes(value.cover)) {
-    throw new Error("Tria entre 1 i 6 fotos i una foto principal de la galeria.");
+    throw new Error(`Tria entre 1 i ${MAX_PHOTOS} fotos i una foto principal de la galeria.`);
   }
   if (!Array.isArray(value.ideas) || value.ideas.length > 3) throw new Error("Màxim 3 idees clau.");
   for (const text of [value.credit, value.quote, value.videoUrl, ...value.ideas]) {

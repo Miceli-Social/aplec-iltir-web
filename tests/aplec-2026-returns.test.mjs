@@ -75,6 +75,54 @@ test('Reviu renders only photographed programme activities and one cover each', 
   assert.ok(!html.includes(program[0].activities[1].title));
 });
 
+test('Home features the last photographed programme activity regardless of record insertion order', () => {
+  const { ReviuHome } = loader(uiMocks)('src/components/aplec-return-public.tsx');
+  const last = program.at(-1).activities.at(-1);
+  const cover = `${origin}/${model.photoPrefix(last.id)}cover.jpg`;
+  const latest = { ...record, activityId: last.id, photos: [cover], cover };
+  const render = data => renderToStaticMarkup(React.createElement(ReviuHome, { returns: data }));
+  assert.equal(render({ unknown: record, [activity.id]: { ...record, photos: [] } }), '');
+  const html = render({ [last.id]: latest, [activity.id]: record });
+  assert.equal((html.match(/<img /g) || []).length, 1);
+  assert.ok(html.includes(`src="${cover}"`));
+  assert.ok(!html.includes(`src="${photo}"`));
+  assert.ok(html.includes(last.time));
+  assert.ok(html.includes(last.title));
+  assert.ok(html.includes('Les primeres imatges de l’Aplec ja són aquí.'));
+  assert.ok(html.includes('href="/aplecs/2026/reviu"'));
+});
+
+test('gallery accepts ten distinct photos, rejects eleven and retains cover and uniqueness checks', () => {
+  assert.equal(model.MAX_PHOTOS, 10);
+  const photos = Array.from({ length: 10 }, (_, index) => photo.replace('foto.jpg', `foto-${index}.jpg`));
+  const value = { ...record, photos, cover: photos[9] };
+  assert.deepEqual(model.validateReturn(value), value);
+  assert.throws(() => model.validateReturn({ ...value, photos: [...photos, photo] }), /entre 1 i 10/);
+  assert.throws(() => model.validateReturn({ ...value, cover: photo }));
+  assert.throws(() => model.validateReturn({ ...value, photos: [...photos.slice(1), photos[9]] }));
+});
+
+test('admin allows uploads at nine photos and disables them at ten; public gallery renders all ten', async () => {
+  const photos = Array.from({ length: 10 }, (_, index) => photo.replace('foto.jpg', `foto-${index}.jpg`));
+  const value = { ...record, photos, cover: photos[9] };
+  const { AplecReturnsAdmin } = loader({ ...uiMocks,
+    '@/lib/aplec-photo-upload': {}, '@/app/admin/aplec-return-actions': {},
+  })('src/components/aplec-2026-returns-admin.tsx');
+  for (const count of [9, 10]) {
+    const html = renderToStaticMarkup(React.createElement(AplecReturnsAdmin, {
+      returns: { [activity.id]: { ...value, photos: photos.slice(0, count), cover: photos[0] } },
+    }));
+    const button = html.match(/<button[^>]*>Pujar fotografies seleccionades<\/button>/)[0];
+    assert.equal(button.includes('disabled'), count === 10);
+    assert.ok(html.includes('fins a 10 fotos; màxim 15 MB per foto'));
+  }
+  const page = loader({ ...uiMocks, '@/lib/content-store': { getAplecReturns: async () => ({ [activity.id]: value }) } })('src/app/aplecs/2026/activitats/[activityId]/page.tsx');
+  const html = renderToStaticMarkup(await page.default({ params: Promise.resolve({ activityId: activity.id }) }));
+  assert.equal((html.match(/<img /g) || []).length, 10);
+  assert.equal((html.match(/loading="lazy"/g) || []).length, 9);
+  for (const url of photos) assert.ok(html.includes(`href="${url}"`));
+});
+
 test('activity page combines current programme data with editorial gallery and credits', async () => {
   const page = loader({ ...uiMocks, '@/lib/content-store': { getAplecReturns: async () => returns } })('src/app/aplecs/2026/activitats/[activityId]/page.tsx');
   const html = renderToStaticMarkup(await page.default({ params: Promise.resolve({ activityId: activity.id }) }));
@@ -86,7 +134,7 @@ test('activity page combines current programme data with editorial gallery and c
 
 test('return validation rejects unknown activities, foreign covers, excess photos, ideas and unsafe video URLs', () => {
   assert.deepEqual(model.validateReturn(record), record);
-  for (const changes of [{ activityId: 'unknown' }, { photos: [] }, { cover: 'other' }, { photos: Array(7).fill(photo) }, { ideas: ['1','2','3','4'] }, { credit: '' }, { videoUrl: 'javascript:alert(1)' }]) {
+  for (const changes of [{ activityId: 'unknown' }, { photos: [] }, { cover: 'other' }, { photos: Array(11).fill(photo) }, { ideas: ['1','2','3','4'] }, { credit: '' }, { videoUrl: 'javascript:alert(1)' }]) {
     assert.throws(() => model.validateReturn({ ...record, ...changes }));
   }
   assert.equal(model.cleanPhotoName('../Fòto bonica.JPG'), 'foto-bonica.jpg');
@@ -266,7 +314,8 @@ test('public galleries and admin render responsive optimizer URLs while activity
   assert.ok(html.includes(`href="${photo}"`));
   const reviu = loader(imageMocks)('src/app/aplecs/2026/reviu/page.tsx');
   const admin = loader(imageMocks)('src/components/aplec-2026-returns-admin.tsx');
-  for (const markup of [html, render(await reviu.default()), render(React.createElement(admin.AplecReturnsAdmin, { returns }))]) {
+  const { ReviuHome } = loader(imageMocks)('src/components/aplec-return-public.tsx');
+  for (const markup of [html, render(await reviu.default()), render(React.createElement(ReviuHome, { returns })), render(React.createElement(admin.AplecReturnsAdmin, { returns }))]) {
     assert.match(markup, /src="\/_next\/image\?/);
     assert.match(markup, /srcSet="\/_next\/image\?/);
     assert.match(markup, /sizes="\(max-width:/);
