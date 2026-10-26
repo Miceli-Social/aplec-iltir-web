@@ -148,12 +148,13 @@ export default async function Aplec2026Page() {
             </div>
           </section>
 
-          <nav className="aplec-2026-day-links" aria-label="Dies del programa">
+          <nav className="aplec-2026-day-links" aria-label="Navegació del Programa i Reviu">
             {aplec2026Program.map((day) => (
               <a key={day.id} href={`#${day.id}`}>
                 {day.heading}
               </a>
             ))}
+            <Link href="/aplecs/2026/reviu">Reviu l’Aplec 2026 →</Link>
           </nav>
 
           {aplec2026Program.map((day) => (
