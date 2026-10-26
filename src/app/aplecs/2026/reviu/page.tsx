@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { FlickrAlbumLinks } from "@/components/aplec-return-public";
 import { aplecPhotoSizes } from "@/lib/aplec-photo-sizes";
 import { getAplecReturns } from "@/lib/content-store";
 import { activityUrl, hasPublishedReturns, publishedDays } from "@/lib/aplec-2026-returns";
@@ -11,6 +12,11 @@ export default async function ReviuPage() {
   return <article className="inner-page aplec-reviu-page">
     <Link href="/aplecs/2026">← Programa 2026</Link>
     <h1>Reviu l’Aplec Iltiŕ 2026</h1>
+    <section aria-labelledby="aplec-day-by-day-title">
+      <h2 id="aplec-day-by-day-title">L’Aplec, dia a dia</h2>
+      <p className="aplec-flickr-note">Àlbums a Flickr · S’obren en una pestanya nova.</p>
+      <FlickrAlbumLinks />
+    </section>
     {!hasPublishedReturns(returns) && <p>Les fotografies de les activitats es publicaran aquí.</p>}
     {publishedDays(returns).map((day) => day.activities.length > 0 && <section key={day.id}>
       <h2>{day.heading}</h2>

@@ -1182,6 +1182,11 @@ a.footer-entity:hover { opacity:.78; background:rgba(255,255,255,.04); }
 .aplec-reviu-home-copy h2 { margin-bottom:20px; font-size:clamp(1.8rem,3vw,2.8rem); line-height:1.05; }
 .aplec-reviu-home-lead { font-size:clamp(1rem,1.35vw,1.2rem); line-height:1.5; margin-bottom:24px; }
 .aplec-reviu-home-copy .button { min-height:48px; white-space:normal; text-align:center; }
+.aplec-flickr-home { margin-top:24px; }
+.aplec-flickr-note { margin:0 0 8px; font-size:.8rem; line-height:1.5; color:var(--ink-soft); }
+.aplec-flickr-links { display:flex; flex-wrap:wrap; gap:4px 20px; margin:0; padding:0; list-style:none; }
+.aplec-flickr-links li { min-width:0; max-width:100%; }
+.aplec-flickr-links .text-link { min-height:44px; padding-block:8px; font-weight:400; }
 @media (max-width:720px) {
   .aplec-reviu-home { grid-template-columns:minmax(0,1fr); margin-block:24px 40px; }
   .aplec-reviu-home-photo { padding:16px 16px 0; }
