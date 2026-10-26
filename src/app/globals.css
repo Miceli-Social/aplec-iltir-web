@@ -1182,11 +1182,6 @@ a.footer-entity:hover { opacity:.78; background:rgba(255,255,255,.04); }
 .aplec-reviu-home-copy h2 { margin-bottom:20px; font-size:clamp(1.8rem,3vw,2.8rem); line-height:1.05; }
 .aplec-reviu-home-lead { font-size:clamp(1rem,1.35vw,1.2rem); line-height:1.5; margin-bottom:24px; }
 .aplec-reviu-home-copy .button { min-height:48px; white-space:normal; text-align:center; }
-.aplec-flickr-home { margin-top:24px; }
-.aplec-flickr-note { margin:0 0 8px; font-size:.8rem; line-height:1.5; color:var(--ink-soft); }
-.aplec-flickr-links { display:flex; flex-wrap:wrap; gap:4px 20px; margin:0; padding:0; list-style:none; }
-.aplec-flickr-links li { min-width:0; max-width:100%; }
-.aplec-flickr-links .text-link { min-height:44px; padding-block:8px; font-weight:400; }
 @media (max-width:720px) {
   .aplec-reviu-home { grid-template-columns:minmax(0,1fr); margin-block:24px 40px; }
   .aplec-reviu-home-photo { padding:16px 16px 0; }
@@ -1209,3 +1204,41 @@ a.footer-entity:hover { opacity:.78; background:rgba(255,255,255,.04); }
 .aplec-return-editor input[type=radio] { width: auto; }
 .aplec-return-editor button { min-height: 44px; }
 .aplec-return-description p { white-space: pre-line; }
+
+/* Aplec 2026: shared album cards and visual memory */
+.aplec-history-link { display:inline-block; margin-top:24px; padding-block:10px; color:var(--cream); text-decoration:underline; text-underline-offset:5px; font-size:.9rem; }
+.aplec-albums-home { padding-block:64px; }
+.aplec-albums-home h2, .aplec-memory-albums h2 { font-size:clamp(2.5rem,5vw,4.5rem); line-height:1.05; margin-bottom:20px; }
+.aplec-albums-intro { max-width:620px; line-height:1.7; color:var(--ink-soft); margin-bottom:32px; }
+.aplec-album-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; list-style:none; padding:0; margin:0; }
+.aplec-album-card { --album-accent:var(--orange); min-width:0; padding:28px; border-top:5px solid var(--album-accent); background:var(--cream); border-radius:0 0 var(--radius) var(--radius); }
+.aplec-album-blue { --album-accent:var(--blue); }
+.aplec-album-lime { --album-accent:var(--lime); }
+.aplec-album-date { position:relative; display:flex; flex-direction:column; align-items:flex-start; gap:16px; }
+.aplec-album-number { font-family:var(--font-display); font-size:clamp(5rem,8vw,8rem); letter-spacing:-.07em; line-height:1; }
+.aplec-album-date::after { content:""; position:absolute; width:48px; height:48px; border-radius:50%; background:var(--album-accent); right:0; top:16px; }
+.aplec-album-date time { font-size:.8rem; letter-spacing:.03em; }
+.aplec-album-card h3 { font-family:var(--font-display); font-weight:500; font-size:clamp(1.8rem,3vw,2.8rem); letter-spacing:-.04em; margin:12px 0 36px; overflow-wrap:anywhere; }
+.aplec-album-card a { display:flex; align-items:center; justify-content:space-between; gap:12px; min-height:48px; border-top:1px solid var(--line); padding-top:12px; font-size:.85rem; line-height:1.5; }
+.aplec-album-card a span { font-size:1.5rem; }
+.aplec-album-card a:hover { text-decoration:underline; text-underline-offset:4px; }
+.aplec-album-card a:focus-visible, .aplec-history-link:focus-visible { outline:3px solid var(--ink); outline-offset:5px; }
+.aplec-flickr-note { margin:18px 0 0; color:var(--ink-soft); font-size:.8rem; line-height:1.5; }
+.aplec-memory-header { position:relative; isolation:isolate; overflow:hidden; margin-top:28px; padding:clamp(28px,5vw,64px); background:var(--ink); color:var(--cream); border-radius:var(--radius); }
+.aplec-memory-header .eyebrow { color:var(--lime); line-height:1.7; max-width:80%; }
+.aplec-memory-header h1 { position:relative; z-index:1; font-size:clamp(2.6rem,7vw,6rem); line-height:1; margin:12px 0 32px; max-width:900px; }
+.aplec-memory-header p { position:relative; z-index:1; max-width:650px; font-size:clamp(1rem,1.5vw,1.2rem); line-height:1.8; margin:0; }
+.aplec-memory-symbol { position:absolute; z-index:0; width:320px; height:320px; right:-70px; bottom:-65px; opacity:.1; background:var(--lime); mask:url('/images/iltir-symbol.png') center/contain no-repeat; }
+.aplec-editorial-title { border-top:1px solid var(--line); padding-top:48px; margin-top:64px; font-size:clamp(2rem,4vw,3rem); }
+.aplec-reviu-home { grid-template-columns:minmax(0,1fr) minmax(0,1fr); background:transparent; border:1px solid var(--line); }
+.aplec-reviu-home-copy h2 { font-size:clamp(1.7rem,3vw,2.4rem); }
+@media (max-width:720px) {
+  .aplec-album-grid { grid-template-columns:minmax(0,1fr); gap:24px; }
+  .aplec-albums-home { padding-block:40px; }
+  .aplec-album-card { padding:24px; }
+  .aplec-album-number { font-size:5rem; }
+  .aplec-album-card h3 { font-size:2.4rem; margin-bottom:24px; }
+  .aplec-reviu-home { grid-template-columns:minmax(0,1fr); }
+  .aplec-memory-header .eyebrow { max-width:100%; }
+  .aplec-memory-header h1 { font-size:clamp(2.1rem,8vw,3.4rem); }
+}

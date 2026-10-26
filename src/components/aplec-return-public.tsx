@@ -2,12 +2,23 @@ import Link from "next/link";
 import { AplecHomePhotoCarousel } from "@/components/aplec-home-photo-carousel";
 import { activityUrl, hasPhotos, homeCarouselPhotos, type ActivityReturn, type AplecReturns } from "@/lib/aplec-2026-returns";
 
+const flickrAlbums = [
+  { day: "16", weekday: "Divendres", town: "Lladó", tone: "orange", url: "https://www.flickr.com/photos/205079672@N03/albums/72177720336326467/" },
+  { day: "17", weekday: "Dissabte", town: "Navata", tone: "blue", url: "https://www.flickr.com/photos/205079672@N03/albums/72177720336327130/" },
+  { day: "18", weekday: "Diumenge", town: "Cabanelles", tone: "lime", url: "https://www.flickr.com/photos/205079672@N03/albums/72177720336334041/" },
+];
+
 export function FlickrAlbumLinks() {
-  return <ul className="aplec-flickr-links">
-    <li><a className="text-link" href="https://www.flickr.com/photos/205079672@N03/albums/72177720336326467/" target="_blank" rel="noopener noreferrer">Divendres — Lladó</a></li>
-    <li><a className="text-link" href="https://www.flickr.com/photos/205079672@N03/albums/72177720336327130/" target="_blank" rel="noopener noreferrer">Dissabte — Navata</a></li>
-    <li><a className="text-link" href="https://www.flickr.com/photos/205079672@N03/albums/72177720336334041/" target="_blank" rel="noopener noreferrer">Diumenge — Cabanelles</a></li>
-  </ul>;
+  return <>
+    <ul className="aplec-album-grid">
+      {flickrAlbums.map(({ day, weekday, town, tone, url }) => <li className={`aplec-album-card aplec-album-${tone}`} key={day}>
+        <div className="aplec-album-date"><span className="aplec-album-number" aria-hidden="true">{day}</span><time dateTime={`2026-10-${day}`}>{weekday} {day} d’octubre</time></div>
+        <h3>{town}</h3>
+        <a href={url} target="_blank" rel="noopener noreferrer" aria-label={`Veure totes les fotografies de ${weekday.toLowerCase()} a ${town} (Flickr, pestanya nova)`}>Veure totes les fotografies <span aria-hidden="true">↗</span></a>
+      </li>)}
+    </ul>
+    <p className="aplec-flickr-note">Àlbums a Flickr · S’obren en una pestanya nova.</p>
+  </>;
 }
 
 export function ActivityPhotoLink({ editorial }: { editorial?: ActivityReturn }) {
@@ -19,13 +30,10 @@ export function ReviuHome({ returns }: { returns: AplecReturns }) {
   return <section className="section-shell aplec-reviu-home" aria-labelledby="aplec-reviu-home-title">
     <AplecHomePhotoCarousel slides={slides} />
     <div className="aplec-reviu-home-copy">
-      <h2 id="aplec-reviu-home-title">REVIU L’APLEC ILTIŔ 2026</h2>
-      <p className="aplec-reviu-home-lead">Les primeres imatges de l’Aplec ja són aquí.</p>
-      <Link className="button button-primary" href="/aplecs/2026/reviu">Veure fotos i retorns →</Link>
-      <div className="aplec-flickr-home">
-        <p className="aplec-flickr-note">Àlbums a Flickr · S’obren en una pestanya nova.</p>
-        <FlickrAlbumLinks />
-      </div>
+      <h2 id="aplec-reviu-home-title">La memòria de les activitats</h2>
+      <p className="aplec-reviu-home-lead">Records i veus de l’Aplec que hem compartit.</p>
+      <Link className="text-link" href="/aplecs/2026/reviu">Veure fotos i retorns →</Link>
+
     </div>
   </section>;
 }

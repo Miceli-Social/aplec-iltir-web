@@ -41,7 +41,7 @@ const record = { activityId: activity.id, photos: [photo], cover: photo, credit:
 const returns = { [activity.id]: record };
 const uiMocks = {
   'next/link': ({ children, ...props }) => React.createElement('a', props, children),
-  'next/image': ({ unoptimized, ...props }) => { void unoptimized; return React.createElement('img', props); },
+  'next/image': ({ unoptimized, fill, priority, ...props }) => { void unoptimized; void fill; void priority; return React.createElement('img', props); },
   'next/navigation': { notFound: () => { throw new Error('404'); } },
 };
 
@@ -106,7 +106,7 @@ test('Home carousel prioritizes different published activities, then shows more 
   assert.ok(html.includes(`src="${data[first.id].cover}"`));
   assert.ok(html.includes(first.time));
   assert.ok(html.includes(first.title));
-  assert.ok(html.includes('Les primeres imatges de l’Aplec ja són aquí.'));
+  assert.ok(html.includes('Records i veus de l’Aplec que hem compartit.'));
   assert.ok(html.includes('href="/aplecs/2026/reviu"'));
   assert.ok(html.includes('role="group"'));
   assert.ok(html.includes('Fotografia següent'));
@@ -348,3 +348,33 @@ test('public galleries and admin render responsive optimizer URLs while activity
     assert.ok(!markup.includes(`src="${photo}"`));
   }
 });
+
+const albumUrls = [
+  'https://www.flickr.com/photos/205079672@N03/albums/72177720336326467/',
+  'https://www.flickr.com/photos/205079672@N03/albums/72177720336327130/',
+  'https://www.flickr.com/photos/205079672@N03/albums/72177720336334041/',
+];
+for (const data of [{}, returns]) {
+  test('Home and Reviu show each album once with safe external links; editorial records: ' + Object.keys(data).length, async () => {
+    const mocks = { ...uiMocks, '@/lib/content-store': { getAplecReturns: async () => data },
+      '@/lib/remote-content': { getCircles: async () => [] },
+      '@/components/governance-map': { GovernanceMap: () => null },
+      '@/components/manifesto-slider': { ManifestoSlider: () => null },
+      '@/components/sectorials-home': { SectorialsHome: () => null },
+    };
+    for (const path of ['src/app/page.tsx', 'src/app/aplecs/2026/reviu/page.tsx']) {
+      const page = loader(mocks)(path);
+      const html = renderToStaticMarkup(await page.default());
+      for (const url of albumUrls) {
+        assert.equal(html.split('href="' + url + '"').length - 1, 1);
+        assert.ok(html.includes('href="' + url + '" target="_blank" rel="noopener noreferrer"'));
+      }
+      assert.ok(!html.includes('Les fotografies de les activitats es publicaran aquí'));
+      assert.ok(!/<img[^>]+src="https:\/\/www.flickr.com/.test(html));
+      if (path.includes('/reviu/')) {
+        assert.equal(html.includes('Retorns de les activitats'), Object.keys(data).length > 0);
+        if (Object.keys(data).length) assert.ok(html.indexOf(albumUrls[0]) < html.indexOf('Retorns de les activitats'));
+      }
+    }
+  });
+}
