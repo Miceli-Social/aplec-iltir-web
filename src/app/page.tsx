@@ -118,6 +118,9 @@ export default async function Home() {
         <h2 id="home-albums-title">L’Aplec, dia a dia</h2>
         <p className="aplec-albums-intro">El 16, 17 i 18 d’octubre vam compartir tres dies de comunitat. Reviu-los en imatges.</p>
         <FlickrAlbumLinks />
+        <div className="hero-actions">
+          <Link className="button button-primary" href="/aplecs/2026/reviu">Reviu l’Aplec 2026 →</Link>
+        </div>
       </section>
 
       <ManifestoSlider />
