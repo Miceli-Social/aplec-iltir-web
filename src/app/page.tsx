@@ -1,4 +1,4 @@
-import { ReviuHome } from "@/components/aplec-return-public";
+import { FlickrAlbumLinks, ReviuHome } from "@/components/aplec-return-public";
 import { getAplecReturns } from "@/lib/content-store";
 import Link from "next/link";
 import Image from "next/image";
@@ -7,31 +7,13 @@ import { ArrowIcon } from "@/components/icons";
 import { ManifestoSlider } from "@/components/manifesto-slider";
 import { SectorialsHome } from "@/components/sectorials-home";
 import { getCircles } from "@/lib/remote-content";
-import { getUpcomingAplecActivities } from "@/lib/aplec-2026-upcoming";
+
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export default async function Home() {
   const [circles, aplecReturns] = await Promise.all([getCircles(), getAplecReturns()]);
-  const upcoming = getUpcomingAplecActivities();
-  const slotLabels = ["LA PROPERA ACTIVITAT", "A CONTINUACIÓ", "TOT SEGUIT"];
-  const activityDate = new Intl.DateTimeFormat("ca-ES", {
-    day: "numeric", month: "long", year: "numeric", timeZone: "Europe/Madrid",
-  });
-  const todayParts = new Intl.DateTimeFormat("en-GB", {
-    year: "numeric", month: "2-digit", day: "2-digit", timeZone: "Europe/Madrid",
-  }).formatToParts(new Date());
-  const datePart = (type: string) => todayParts.find((part) => part.type === type)!.value;
-  const today = `${datePart("year")}-${datePart("month")}-${datePart("day")}`;
-  // Advance the local calendar date, not 24 hours across a daylight-saving change.
-  const tomorrowDate = new Date(`${today}T12:00:00Z`);
-  tomorrowDate.setUTCDate(tomorrowDate.getUTCDate() + 1);
-  const tomorrow = tomorrowDate.toISOString().slice(0, 10);
-  const formatActivityDate = (date: string) => date === today ? "Avui"
-    : date === tomorrow ? "Demà"
-    : activityDate.format(new Date(`${date}T12:00:00Z`));
-
   return (
     <>
       <section className="hero">
@@ -67,7 +49,7 @@ export default async function Home() {
           </p>
           <div className="hero-actions">
             <Link className="button button-primary" href="/governanca">Descobreix la governança <ArrowIcon /></Link>
-            <Link className="text-link" href="/agenda">Veure les properes trobades <span>↗</span></Link>
+            <Link className="text-link" href="/agenda">Consulta l’agenda <span>↗</span></Link>
           </div>
         </div>
       </section>
@@ -80,7 +62,7 @@ export default async function Home() {
             <span className="eyebrow">Què és l’Aplec?</span>
             <h2>L’Aplec Iltiŕ</h2>
             <div className="aplec-2026-highlight">
-              <span className="aplec-2026-label">Aplec Iltiŕ 2026</span>
+              <span className="aplec-2026-label">Edició celebrada · 2026</span>
               <strong className="aplec-2026-date">
                 16, 17 i 18 d’octubre de 2026
               </strong>
@@ -91,16 +73,7 @@ export default async function Home() {
             <p>
               Una trobada per compartir les propostes de resiliència que es treballen des dels pobles, compartir aprenentatges, expressar el vincle amb el territori i celebrar la cultura arrelada al lloc.
             </p>
-            <Link className="aplec-overview-cta aplec-2026-program-link" href="/aplecs/2026">
-  <span>
-    <strong>Consulta la programació</strong>
-    <small>Programa complet · 16, 17 i 18 d’octubre</small>
-  </span>
-  <ArrowIcon />
-</Link>
-<Link className="aplec-overview-cta aplec-2026-volunteer-link" href="/aplecs/2026/voluntariat">
-Vols donar un cop de mà? <ArrowIcon />
-</Link>
+            <Link className="aplec-history-link" href="/aplecs/2026">Consulta el Programa 2026 ↗</Link>
           </div>
           <div className="aplec-symbol-card" aria-hidden="true">
             <Image
@@ -140,35 +113,13 @@ Vols donar un cop de mà? <ArrowIcon />
         </div>
       </section>
 
-      <section className="aplec-upcoming section-shell" aria-labelledby="aplec-upcoming-title">
-        <span className="eyebrow">Aplec Iltiŕ 2026</span>
-        <h2 id="aplec-upcoming-title">{upcoming.finished ? "Gràcies per ser-hi" : "Properes activitats"}</h2>
-        {upcoming.slots.length ? (
-          <ol className="aplec-upcoming-grid">
-            {upcoming.slots.map((slot, index) => (
-              <li className="aplec-upcoming-slot" key={slot.startsAt}>
-                <span className="eyebrow">{slotLabels[index]}</span>
-                <p className="aplec-upcoming-date">
-                  <time dateTime={slot.date}>{formatActivityDate(slot.date)}</time>
-                </p>
-                <ul className="aplec-upcoming-activities">
-                  {slot.activities.map((activity) => (
-                    <li key={`${activity.time}-${activity.title}`}>
-                      <p className="aplec-upcoming-time">{activity.time}</p>
-                      <h3>{activity.title}</h3>
-                      <p className="aplec-upcoming-place"><strong>{activity.municipality}</strong> · {activity.location}</p>
-                    </li>
-                  ))}
-                </ul>
-              </li>
-            ))}
-          </ol>
-        ) : (
-          <p>{upcoming.finished ? "L’Aplec Iltiŕ 2026 ha finalitzat. Gràcies per compartir-lo!" : "Ja han començat totes les activitats programades. Gaudim de la cloenda!"}</p>
-        )}
-        <div className="aplec-upcoming-actions">
-          <Link className="text-link" href="/aplecs/2026">Consulta aquí la resta de la programació <ArrowIcon /></Link>
-          <a className="button button-primary" href="/programa-aplec-iltir-2026.pdf" download="programa-aplec-iltir-2026.pdf">Descarrega el programa <ArrowIcon /></a>
+      <section className="section-shell aplec-albums-home" aria-labelledby="home-albums-title">
+        <span className="eyebrow">La memòria compartida · 2026</span>
+        <h2 id="home-albums-title">L’Aplec, dia a dia</h2>
+        <p className="aplec-albums-intro">El 16, 17 i 18 d’octubre vam compartir tres dies de comunitat. Reviu-los en imatges.</p>
+        <FlickrAlbumLinks />
+        <div className="hero-actions">
+          <Link className="button button-primary" href="/aplecs/2026/reviu">Reviu l’Aplec 2026 →</Link>
         </div>
       </section>
 

@@ -4,6 +4,7 @@ import { getAplecReturns } from "@/lib/content-store";
 export const dynamic = "force-dynamic";
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import {
   aplec2026Program,
   aplec2026OtherActivities,
@@ -69,6 +70,9 @@ export default async function Aplec2026Page() {
             treballen des dels pobles, generar aprenentatges, expressar el
             vincle amb el territori i celebrar la cultura arrelada al lloc.
           </p>
+          <div className="hero-actions">
+            <Link className="button button-light" href="/aplecs/2026/reviu">Reviu l’Aplec: fotografies i retorns →</Link>
+          </div>
         </div>
       </header>
 
@@ -144,12 +148,13 @@ export default async function Aplec2026Page() {
             </div>
           </section>
 
-          <nav className="aplec-2026-day-links" aria-label="Dies del programa">
+          <nav className="aplec-2026-day-links" aria-label="Navegació del Programa i Reviu">
             {aplec2026Program.map((day) => (
               <a key={day.id} href={`#${day.id}`}>
                 {day.heading}
               </a>
             ))}
+            <Link href="/aplecs/2026/reviu">Reviu l’Aplec 2026 →</Link>
           </nav>
 
           {aplec2026Program.map((day) => (
