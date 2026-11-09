@@ -1,4 +1,5 @@
 import { FlickrAlbumLinks, ReviuHome } from "@/components/aplec-return-public";
+import { AplecSummaryVideo } from "@/components/aplec-summary-video";
 import { getAplecReturns } from "@/lib/content-store";
 import Link from "next/link";
 import Image from "next/image";
@@ -53,6 +54,8 @@ export default async function Home() {
           </div>
         </div>
       </section>
+
+      <AplecSummaryVideo />
 
       <ReviuHome returns={aplecReturns} />
 
