@@ -1190,6 +1190,13 @@ a.footer-entity:hover { opacity:.78; background:rgba(255,255,255,.04); }
   .aplec-reviu-home-lead { margin-bottom:20px; }
   .aplec-reviu-home-copy .button { display:flex; width:100%; }
 }
+.aplec-summary-video { width:min(880px, calc(100% - 48px)); margin:clamp(28px,4vw,48px) auto; }
+.aplec-summary-video h2 { margin-bottom:20px; font-size:clamp(1.8rem,3.5vw,2.7rem); line-height:1.1; }
+.aplec-summary-video .aplec-video-frame:has(.cookie-youtube-placeholder) { height:auto; aspect-ratio:auto; }
+.aplec-summary-video .cookie-youtube-placeholder { height:auto; min-height:clamp(240px,45vw,495px); }
+.aplec-summary-video .cookie-youtube-placeholder p { margin-bottom:0; }
+.aplec-summary-video .cookie-youtube-actions > * { min-height:44px; padding-block:10px; white-space:normal; text-align:center; }
+.aplec-reviu-page .aplec-summary-video { width:100%; max-width:880px; }
 .aplec-reviu-page > section { margin-block: 3rem; }
 .aplec-photo-grid, .aplec-photo-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 1.25rem; }
 .aplec-photo-grid img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: .5rem; }
